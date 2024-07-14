@@ -1,0 +1,82 @@
+﻿.context-menu {
+  position: fixed;
+  background-color: var(--menu-bg, #2b2d31);
+  color: var(--menu-text, #a4b1cd);
+  border-radius: 8px;
+  padding: 4px;
+  min-width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.1s, transform 0.1s;
+}
+
+.context-menu.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.context-menu-item:hover,
+.context-menu-item.selected {
+  background-color: var(--menu-highlight, rgba(78, 186, 253, 0.1));
+  color: var(--menu-highlight-text, #ffffff);
+}
+
+.context-menu-item i {
+  margin-right: 8px;
+  width: 16px;
+  text-align: center;
+}
+
+.context-menu-separator {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 4px 0;
+}
+
+.context-menu-item.has-submenu::after {
+  content: '▶';
+  position: absolute;
+  right: 8px;
+  font-size: 0.8em;
+}
+
+.menu-enter {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.menu-leave {
+  animation: fadeOut 0.2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}

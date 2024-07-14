@@ -1,0 +1,40 @@
+﻿@using Microsoft.JSInterop
+@inherits ComponentBase
+@inject IJSRuntime JS
+@namespace DropBear.Blazor.Components.Menus
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+<div @ref="MenuElement"
+     class="context-menu @(IsVisible ? "active" : "") @AnimationClass"
+     style="left: @(_left)px; top: @(_top)px; @CustomStyle"
+     @onkeydown="HandleKeyDown"
+     tabindex="-1">
+    @foreach (var item in MenuItems)
+    {
+        if (item.IsSeparator)
+        {
+            <div class="context-menu-separator"></div>
+        }
+        else
+        {
+            <div class="context-menu-item @(item.HasSubmenu ? "has-submenu" : "") @(item == SelectedItem ? "selected" : "")"
+                 @onclick="() => OnItemClick(item)"
+                 @onmouseover="() => SelectedItem = item"
+                 @onkeydown="e => HandleItemKeyDown(e, item)">
+                @if (!string.IsNullOrEmpty(item.IconClass))
+                {
+                    <i class="@item.IconClass"></i>
+                }
+                <span>@item.Text</span>
+                @if (item.HasSubmenu)
+                {
+                    <i class="fas fa-chevron-right submenu-icon"></i>
+                    <ContextMenu MenuItems="item.SubmenuItems" IsSubmenu="true"/>
+                }
+            </div>
+        }
+    }
+</div>

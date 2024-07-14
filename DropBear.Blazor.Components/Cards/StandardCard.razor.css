@@ -1,5 +1,4 @@
 ﻿
-
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -48,6 +47,13 @@
   flex-grow: 1;
 }
 
+.card-body-title {
+  color: var(--clr-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
 .card-footer {
   padding: var(--spacing-md) var(--spacing-lg);
   background-color: rgba(255, 255, 255, 0.05);
@@ -85,6 +91,11 @@
 .compact .card-title {
   font-size: 1rem;
   margin-bottom: var(--spacing-sm);
+}
+
+.compact .card-header,
+.compact .card-footer {
+  padding: var(--spacing-sm) var(--spacing-md);
 }
 
 @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 ﻿@inherits ComponentBase
 @namespace DropBear.Blazor.Components.Cards
 
-<div class="standard-card @AdditionalClasses">
+<div class="standard-card @AdditionalClasses @(IsCompact ? "compact" : "")">
     @if (!string.IsNullOrEmpty(Header) || !string.IsNullOrEmpty(IconClass))
     {
         <div class="card-header">
@@ -13,7 +13,7 @@
         </div>
     }
 
-    @if (!string.IsNullOrEmpty(ImageUrl.ToString()))
+    @if (ImageUrl != null)
     {
         <img src="@ImageUrl" alt="@ImageAlt" class="card-img-top">
     }
@@ -21,9 +21,9 @@
     <div class="card-body">
         @if (!string.IsNullOrEmpty(BodyTitle))
         {
-            <h3 class="card-title">@BodyTitle</h3>
+            <h4 class="card-body-title">@BodyTitle</h4>
         }
-        <p>@BodyContent</p>
+        @BodyContent
     </div>
 
     @if (ShowFooter)
