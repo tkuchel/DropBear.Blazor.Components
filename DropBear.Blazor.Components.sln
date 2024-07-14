@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBear.Blazor.Components", "DropBear.Blazor.Components\DropBear.Blazor.Components.csproj", "{9046B9EF-8DEC-4561-B0F2-2AD0CE455AD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9046B9EF-8DEC-4561-B0F2-2AD0CE455AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9046B9EF-8DEC-4561-B0F2-2AD0CE455AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9046B9EF-8DEC-4561-B0F2-2AD0CE455AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9046B9EF-8DEC-4561-B0F2-2AD0CE455AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

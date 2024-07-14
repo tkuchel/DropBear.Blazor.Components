@@ -1,0 +1,88 @@
+﻿.custom-card {
+    background-color: var(--var-clr-mine-shaft);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: var(--var-clr-cornflower-blue);
+    color: white;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.card-title {
+    margin: 0;
+    font-weight: 600;
+    margin-left: 15px;
+    font-size: 1.25rem;
+}
+
+.icon-rocket {
+    font-size: 1.75rem;
+    color: var(--var-clr-mustard);
+}
+
+.card-body {
+    padding: 1.75rem;
+}
+
+.card-text {
+    color: var(--var-clr-silver-sand);
+    margin-bottom: 1.75rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.custom-btn {
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.custom-btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary.custom-btn {
+    background-color: var(--var-clr-lime);
+    color: var(--var-clr-mine-shaft);
+}
+
+.btn-primary.custom-btn:hover {
+    background-color: var(--var-clr-pastel-green);
+}
+
+.btn-secondary.custom-btn {
+    background-color: var(--var-clr-persimmon);
+    color: white;
+}
+
+.btn-secondary.custom-btn:hover {
+    background-color: var(--var-clr-coral);
+}
+
+.fas {
+    font-size: 1rem;
+}

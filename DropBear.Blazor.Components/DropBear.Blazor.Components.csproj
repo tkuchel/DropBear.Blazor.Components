@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>2024.7.0</Version>
+        <PackageId>DropBear.Blazor.Components</PackageId>
+        <Authors>Terrence Kuchel (DropBear)</Authors>
+        <Company>Terrence Kuchel (DropBear)</Company>
+        <Description>Custom Blazor components and UI elements</Description>
+        <PackageTags>blazor;components;ui;dropbear</PackageTags>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Helpers\"/>
+
+    </ItemGroup>
+
+</Project>
