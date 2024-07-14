@@ -34,6 +34,8 @@
   --clr-border: #3f4147;
   --clr-admin: #7cd651;
   --clr-user: #ffd14d;
+  --clr-danger: #ff5757;
+  --clr-text-muted: #a4b1cd;
 
   /*Spacing and Border Radius*/
   --border-radius: 12px;
