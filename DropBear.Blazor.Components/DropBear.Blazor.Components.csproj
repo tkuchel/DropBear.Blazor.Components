@@ -31,4 +31,10 @@
 
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\Styles\global-styles.css">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
