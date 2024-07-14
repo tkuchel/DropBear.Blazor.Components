@@ -36,6 +36,10 @@
   --clr-user: #ffd14d;
   --clr-danger: #ff5757;
   --clr-text-muted: #a4b1cd;
+  --clr-info: #4ebafd;
+  --clr-success: #7cd651;
+  --clr-warning: #ffd14d;
+
 
   /*Spacing and Border Radius*/
   --border-radius: 12px;
