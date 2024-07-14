@@ -1,4 +1,8 @@
+#region
+
 using Microsoft.JSInterop;
+
+#endregion
 
 namespace DropBear.Blazor.Components;
 
@@ -11,26 +15,30 @@ namespace DropBear.Blazor.Components;
 
 public class ExampleJsInterop : IAsyncDisposable
 {
-    private readonly Lazy<Task<IJSObjectReference>> moduleTask;
+    private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
 
     public ExampleJsInterop(IJSRuntime jsRuntime)
     {
-        moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
+        _moduleTask = new Lazy<Task<IJSObjectReference>>(() => jsRuntime.InvokeAsync<IJSObjectReference>(
             "import", "./_content/DropBear.Blazor.Components/exampleJsInterop.js").AsTask());
     }
 
-    public async ValueTask<string> Prompt(string message)
-    {
-        var module = await moduleTask.Value;
-        return await module.InvokeAsync<string>("showPrompt", message);
-    }
+    #region IAsyncDisposable Members
 
     public async ValueTask DisposeAsync()
     {
-        if (moduleTask.IsValueCreated)
+        if (_moduleTask.IsValueCreated)
         {
-            var module = await moduleTask.Value;
-            await module.DisposeAsync();
+            var module = await _moduleTask.Value.ConfigureAwait(false);
+            await module.DisposeAsync().ConfigureAwait(false);
         }
+    }
+
+    #endregion
+
+    public async ValueTask<string> Prompt(string message)
+    {
+        var module = await _moduleTask.Value.ConfigureAwait(false);
+        return await module.InvokeAsync<string>("showPrompt", message).ConfigureAwait(false);
     }
 }

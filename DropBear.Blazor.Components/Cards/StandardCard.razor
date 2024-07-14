@@ -13,7 +13,7 @@
         </div>
     }
 
-    @if (!string.IsNullOrEmpty(ImageUrl))
+    @if (!string.IsNullOrEmpty(ImageUrl.ToString()))
     {
         <img src="@ImageUrl" alt="@ImageAlt" class="card-img-top">
     }
@@ -29,7 +29,7 @@
     @if (ShowFooter)
     {
         <div class="card-footer">
-            <button class="btn btn-primary" @onclick="OnFooterButtonClick">Action</button>
+            <button class="btn btn-primary" @onclick="OnFooterButtonClick">@FooterButtonText</button>
         </div>
     }
 </div>

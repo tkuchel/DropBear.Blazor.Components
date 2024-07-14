@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Globalization;
 using DropBear.Blazor.Components.Enums;
 using Microsoft.AspNetCore.Components;
 
@@ -32,7 +33,7 @@ public partial class PromptCard : ComponentBase
 
     private string GetCardClasses()
     {
-        return $"prompt-card {CardType.ToString().ToLower()} {(IsSubtle ? "subtle" : "")}";
+        return $"prompt-card {CardType.ToString().ToLower(CultureInfo.CurrentCulture)} {(IsSubtle ? "subtle" : "")}";
     }
 
     private string GetIconClass()
