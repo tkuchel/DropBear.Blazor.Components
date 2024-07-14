@@ -19,6 +19,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Meziantou.DotNet.CodingStandard" Version="1.0.125">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.6"/>
     </ItemGroup>
 
