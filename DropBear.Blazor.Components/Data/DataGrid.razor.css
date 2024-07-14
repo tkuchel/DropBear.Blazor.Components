@@ -1,0 +1,272 @@
+﻿.custom-datagrid {
+  background-color: var(--clr-surface);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.datagrid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--clr-surface-light);
+}
+
+.datagrid-header h2 {
+  color: var(--clr-text-light);
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.datagrid-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search-input {
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--clr-border);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--clr-text);
+  width: 250px;
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 2px rgba(78, 186, 253, 0.3);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--clr-text);
+}
+
+.btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
+}
+
+.btn-primary:hover {
+  background-color: var(--clr-secondary);
+}
+
+.btn-icon {
+  padding: 0.5rem;
+  background-color: transparent;
+  color: var(--clr-text);
+  border-radius: 50%;
+}
+
+.btn-icon:hover {
+  color: var(--clr-text-light);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.datagrid-table-wrapper {
+  overflow-x: auto;
+}
+
+.datagrid-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.datagrid-table th,
+.datagrid-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.datagrid-table th {
+  background-color: var(--clr-surface-light);
+  font-weight: 600;
+  color: var(--clr-text-light);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.sortable:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.checkbox-column {
+  width: 40px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.badge-admin {
+  background-color: var(--clr-admin);
+  color: var(--clr-surface);
+}
+
+.badge-user {
+  background-color: var(--clr-user);
+  color: var(--clr-surface);
+}
+
+.datagrid-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--clr-surface-light);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.items-per-page {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+select {
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--clr-border);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--clr-text);
+}
+
+/* Loading State */
+.datagrid-loading {
+  display: flex; /* Change to flex to show */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--clr-primary);
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: var(--clr-text);
+}
+
+.loading-text::after {
+  content: "...";
+  animation: ellipsis 1.5s infinite;
+  display: inline-block;
+  width: 20px;
+  text-align: left;
+}
+
+@keyframes ellipsis {
+  0% {
+    content: ".";
+  }
+  33% {
+    content: "..";
+  }
+  66% {
+    content: "...";
+  }
+}
+
+/* Empty State */
+.datagrid-empty {
+  display: none; /* Change to flex to show */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+}
+
+.datagrid-empty i {
+  color: var(--clr-text);
+  margin-bottom: 1rem;
+}
+
+/* Hover effect for rows */
+.datagrid-table tbody tr {
+  transition: var(--transition);
+}
+
+.datagrid-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .datagrid-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .datagrid-actions {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .datagrid-footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

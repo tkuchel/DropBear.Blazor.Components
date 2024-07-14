@@ -1,0 +1,124 @@
+﻿@inherits ComponentBase
+@namespace DropBear.Blazor.Components.Data
+@typeparam TItem
+
+<div class="custom-datagrid">
+    <div class="datagrid-header">
+        <h2>@Title</h2>
+        <div class="datagrid-actions">
+            <div class="search-wrapper">
+                <input type="text" placeholder="Search..." class="search-input" @bind-value="SearchTerm" @bind-value:event="oninput">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            @if (AllowAdd)
+            {
+                <button class="btn btn-primary" @onclick="OnAddClick"><i class="fas fa-plus"></i> Add @ItemName</button>
+            }
+        </div>
+    </div>
+
+    @if (IsLoading)
+    {
+        <div class="datagrid-loading">
+            <div class="spinner"></div>
+            <p class="loading-text">Loading data</p>
+        </div>
+    }
+    else if (!Items.Any())
+    {
+        <div class="datagrid-empty">
+            <i class="fas fa-inbox fa-3x"></i>
+            <p>No @(ItemName)s found</p>
+            @if (AllowAdd)
+            {
+                <button class="btn btn-primary" @onclick="OnAddClick">Add New @ItemName</button>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="datagrid-table-wrapper">
+            <table class="datagrid-table">
+                <thead>
+                <tr>
+                    @if (AllowSelect)
+                    {
+                        <th class="checkbox-column">
+                            <input type="checkbox" checked="@AreAllSelected" @onchange="ToggleSelectAll">
+                        </th>
+                    }
+                    @foreach (var column in Columns)
+                    {
+                        <th class="@(column.Sortable ? "sortable" : "")" @onclick="() => SortBy(column)">
+                            @column.Title
+                            @if (column.Sortable)
+                            {
+                                <i class="fas fa-sort"></i>
+                            }
+                        </th>
+                    }
+                    @if (AllowEdit || AllowDelete)
+                    {
+                        <th>Actions</th>
+                    }
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in DisplayedItems)
+                {
+                    <tr>
+                        @if (AllowSelect)
+                        {
+                            <td>
+                                <input type="checkbox" checked="@IsItemSelected(item)" @onchange="e => ToggleItemSelection(item)">
+                            </td>
+                        }
+                        @foreach (var column in Columns)
+                        {
+                            <td>@column.ValueGetter(item)</td>
+                        }
+                        @if (AllowEdit || AllowDelete)
+                        {
+                            <td class="actions">
+                                @if (AllowEdit)
+                                {
+                                    <button class="btn btn-icon" title="Edit" @onclick="() => OnEditClick(item)">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                }
+                                @if (AllowDelete)
+                                {
+                                    <button class="btn btn-icon" title="Delete" @onclick="() => OnDeleteClick(item)">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="datagrid-footer">
+            <div class="pagination">
+                <button class="btn btn-icon" title="Previous Page" @onclick="PreviousPage" disabled="@(!CanGoToPreviousPage)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <span>Page @CurrentPage of @TotalPages</span>
+                <button class="btn btn-icon" title="Next Page" @onclick="NextPage" disabled="@(!CanGoToNextPage)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="items-per-page">
+                <label for="itemsPerPage">Items per page:</label>
+                <select id="itemsPerPage" @bind="ItemsPerPage">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
+    }
+</div>

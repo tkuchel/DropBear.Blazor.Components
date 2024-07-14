@@ -14,7 +14,7 @@ The ContextMenu component in DropBear.Blazor.Components provides a customizable 
 ## Usage
 
 ```html
-<ContextMenu @ref="ContextMenu" 
+<ContextMenu @ref="ContextMenu"
              OnMenuItemClick="HandleMenuItemClick"
              BackgroundColor="#333333"
              TextColor="#ffffff"
@@ -25,42 +25,111 @@ The ContextMenu component in DropBear.Blazor.Components provides a customizable 
 </ContextMenu>
 
 @code {
-    private ContextMenu ContextMenu;
+private ContextMenu ContextMenu;
 
-    private List<ContextMenu.ContextMenuItem> _menuItems = new List<ContextMenu.ContextMenuItem>
+private List<ContextMenu.ContextMenuItem> _menuItems = new List<ContextMenu.ContextMenuItem>
     {
-        new ContextMenu.ContextMenuItem { Text = "Edit", IconClass = "fas fa-edit" },
-        new ContextMenu.ContextMenuItem { Text = "Copy", IconClass = "fas fa-copy" },
-        new ContextMenu.ContextMenuItem { IsSeparator = true },
-        new ContextMenu.ContextMenuItem { Text = "Delete", IconClass = "fas fa-trash-alt" },
-        new ContextMenu.ContextMenuItem
-        {
-            Text = "Share",
-            IconClass = "fas fa-share",
-            SubmenuItems = new List<ContextMenu.ContextMenuItem>
-            {
-                new ContextMenu.ContextMenuItem { Text = "Facebook", IconClass = "fab fa-facebook" },
-                new ContextMenu.ContextMenuItem { Text = "Twitter", IconClass = "fab fa-twitter" }
-            }
-        }
+    new ContextMenu.ContextMenuItem { Text = "Edit", IconClass = "fas fa-edit" },
+    new ContextMenu.ContextMenuItem { Text = "Copy", IconClass = "fas fa-copy" },
+    new ContextMenu.ContextMenuItem { IsSeparator = true },
+    new ContextMenu.ContextMenuItem { Text = "Delete", IconClass = "fas fa-trash-alt" },
+    new ContextMenu.ContextMenuItem
+    {
+    Text = "Share",
+    IconClass = "fas fa-share",
+    SubmenuItems = new List<ContextMenu.ContextMenuItem>
+    {
+    new ContextMenu.ContextMenuItem { Text = "Facebook", IconClass = "fab fa-facebook" },
+    new ContextMenu.ContextMenuItem { Text = "Twitter", IconClass = "fab fa-twitter" }
+    }
+    }
     };
 
     protected override void OnInitialized()
     {
-        ContextMenu.MenuItems = _menuItems;
+    ContextMenu.MenuItems = _menuItems;
     }
 
     private async Task ShowContextMenu(MouseEventArgs e)
     {
-        await ContextMenu.ShowAtPosition(e.ClientX, e.ClientY);
+    await ContextMenu.ShowAtPosition(e.ClientX, e.ClientY);
     }
 
     private void HandleMenuItemClick(ContextMenu.ContextMenuItem item)
     {
-        Console.WriteLine($"Clicked: {item.Text}");
-        // Handle the menu item click
+    Console.WriteLine($"Clicked: {item.Text}");
+    // Handle the menu item click
+    }
+    }
+```
+
+## JavaScript Interop
+
+The ContextMenu component uses JavaScript interop for positioning and event handling. The JavaScript file (`contextMenuInterop.js`) should be included in your project, typically in the `wwwroot/js` folder.
+
+```javascript
+export class ContextMenuInterop {
+    static initialize(element, dotnetHelper) {
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            dotnetHelper.invokeMethodAsync('Show', e.pageX, e.pageY);
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!element.contains(e.target)) {
+                dotnetHelper.invokeMethodAsync('Hide');
+            }
+        });
+    }
+    
+    static adjustPosition(element) {
+        const rect = element.getBoundingClientRect();
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        if (rect.right > windowWidth) {
+            element.style.left = (windowWidth - rect.width) + 'px';
+        }
+
+        if (rect.bottom > windowHeight) {
+            element.style.top = (windowHeight - rect.height) + 'px';
+        }
+    }
+
+    static focusMenu(element) {
+        element.focus();
     }
 }
+
+// Make it globally accessible
+window.ContextMenuInterop = ContextMenuInterop;
+```
+
+In your Blazor component, you can use these JavaScript functions like this:
+
+```csharp
+[Inject] private IJSRuntime JS { get; set; }
+
+protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    if (firstRender)
+    {
+        await JS.InvokeVoidAsync("ContextMenuInterop.initialize", MenuElement, DotNetObjectReference.Create(this));
+    }
+}
+
+public async Task ShowAtPosition(double left, double top)
+{
+    // Set position logic here
+    await JS.InvokeVoidAsync("ContextMenuInterop.adjustPosition", MenuElement);
+    await JS.InvokeVoidAsync("ContextMenuInterop.focusMenu", MenuElement);
+}
+```
+
+Make sure to add a script reference to your `contextMenuInterop.js` file in your `_Host.cshtml` (for Server-side Blazor) or `index.html` (for WebAssembly):
+
+```html
+<script src="_content/DropBear.Blazor.Components/js/contextMenuInterop.js"></script>
 ```
 
 ## Properties
@@ -101,17 +170,6 @@ The ContextMenu component in DropBear.Blazor.Components provides a customizable 
 
 The component uses CSS variables for easy customization. You can override these variables in your own CSS or use the component properties to change the colors.
 
-Example:
-
-```css
-:root {
-    --menu-bg: #2b2d31;
-    --menu-text: #a4b1cd;
-    --menu-highlight: rgba(78, 186, 253, 0.1);
-    --menu-highlight-text: #ffffff;
-}
-```
-
 ## Accessibility
 
 The ContextMenu component is designed to be accessible. It can be fully operated using a keyboard and provides appropriate ARIA attributes for screen readers.
@@ -123,4 +181,4 @@ This component is compatible with all modern browsers, including the latest vers
 ## Notes
 
 - Ensure that you're using Font Awesome in your project for the icons to display correctly.
-- The component uses JavaScript interop for positioning and event handling, so make sure you have the necessary JavaScript file included in your project.
+- The component uses JavaScript interop for positioning and event handling, so make sure you have included the necessary JavaScript file in your project.

@@ -1,5 +1,5 @@
-﻿window.contextMenuInterop = {
-  initialize(element, dotnetHelper) {
+﻿export class ContextMenuInterop {
+  static initialize(element, dotnetHelper) {
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
       dotnetHelper.invokeMethodAsync('Show', e.pageX, e.pageY);
@@ -10,9 +10,9 @@
         dotnetHelper.invokeMethodAsync('Hide');
       }
     });
-  },
+  }
 
-  adjustPosition(element) {
+  static adjustPosition(element) {
     const rect = element.getBoundingClientRect();
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
@@ -24,9 +24,12 @@
     if (rect.bottom > windowHeight) {
       element.style.top = (windowHeight - rect.height) + 'px';
     }
-  },
+  }
 
-  focusMenu(element) {
+  static focusMenu(element) {
     element.focus();
   }
-};
+}
+
+// Make it globally accessible
+window.ContextMenuInterop = ContextMenuInterop;
