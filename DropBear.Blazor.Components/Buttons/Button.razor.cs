@@ -12,12 +12,14 @@ public partial class Button : ComponentBase
     [Parameter] public string Variant { get; set; } = "primary";
     [Parameter] public string Size { get; set; } = "default";
     [Parameter] public bool Disabled { get; set; }
-    [Parameter] public string IconClass { get; set; }
-    [Parameter] public string Title { get; set; }
+    [Parameter] public string IconClass { get; set; } = "";
+    [Parameter] public string Title { get; set; } = "";
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public bool IsBlock { get; set; }
+
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
     private string ButtonClasses =>
         $"btn btn-{Variant} {SizeClass} {(IsBlock ? "btn-block" : "")} {(IsIconOnly ? "btn-icon-only" : "")}".Trim();
@@ -29,7 +31,7 @@ public partial class Button : ComponentBase
         _ => ""
     };
 
-    private bool IsIconOnly => !string.IsNullOrEmpty(IconClass) && ChildContent == null;
+    private bool IsIconOnly => !string.IsNullOrEmpty(IconClass) && ChildContent is null;
 
     private async Task OnClickHandler(MouseEventArgs args)
     {

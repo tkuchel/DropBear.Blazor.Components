@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Globalization;
 using DropBear.Blazor.Components.Enums;
 using Microsoft.AspNetCore.Components;
 
@@ -10,15 +11,15 @@ namespace DropBear.Blazor.Components.Messages;
 public partial class AlertMessage : ComponentBase
 {
     [Parameter] public AlertType Type { get; set; } = AlertType.Info;
-    [Parameter] public string Title { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public string Title { get; set; } = "";
+    [Parameter] public RenderFragment ChildContent { get; set; } = default!;
     [Parameter] public bool IsDismissible { get; set; } = true;
     [Parameter] public EventCallback OnDismiss { get; set; }
 
     private bool IsVisible { get; set; } = true;
 
     private string AlertClasses =>
-        $"alert alert-{Type.ToString().ToLower()} {(IsDismissible ? "" : "alert-dismissible")} {(IsVisible ? "" : "alert-hidden")}"
+        $"alert alert-{Type.ToString().ToLower(CultureInfo.CurrentCulture)} {(IsDismissible ? "" : "alert-dismissible")} {(IsVisible ? "" : "alert-hidden")}"
             .Trim();
 
     private string IconClass => Type switch

@@ -7,12 +7,10 @@ using Microsoft.AspNetCore.Components;
 
 namespace DropBear.Blazor.Components.Data;
 
-public partial class DataGrid<TItem> : ComponentBase
+public partial class DataGrid<TItem> : ComponentBase where TItem : notnull
 {
     [Parameter] public string Title { get; set; } = "Data Grid";
     [Parameter] public string ItemName { get; set; } = "Item";
-    [Parameter] public List<TItem> Items { get; set; } = new();
-    [Parameter] public List<ColumnDefinition<TItem>> Columns { get; set; } = new();
     [Parameter] public bool AllowAdd { get; set; } = true;
     [Parameter] public bool AllowEdit { get; set; } = true;
     [Parameter] public bool AllowDelete { get; set; } = true;
@@ -22,14 +20,14 @@ public partial class DataGrid<TItem> : ComponentBase
     [Parameter] public EventCallback<TItem> OnDeleteItem { get; set; }
 
     private string SearchTerm { get; set; } = "";
-    private bool IsLoading { get; } = false;
+    private bool IsLoading { get; }
     private int CurrentPage { get; set; } = 1;
     private int ItemsPerPage { get; set; } = 10;
-    private string SortColumn { get; set; }
+    private string SortColumn { get; set; } = "";
     private bool IsSortAscending { get; set; } = true;
     private Dictionary<TItem, bool> SelectedItems { get; } = new();
 
-    private bool AreAllSelected => Items.All(IsItemSelected);
+    private bool AreAllSelected => Items.TrueForAll(IsItemSelected);
 
     private IEnumerable<TItem> DisplayedItems => Items
         .Where(FilterItem)
@@ -43,13 +41,8 @@ public partial class DataGrid<TItem> : ComponentBase
 
     private bool FilterItem(TItem item)
     {
-        if (string.IsNullOrWhiteSpace(SearchTerm))
-        {
-            return true;
-        }
-
-        return Columns.Any(column =>
-            column.ValueGetter(item).ToString().Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
+        return string.IsNullOrWhiteSpace(SearchTerm) || Columns.Exists(column =>
+            (bool)column.ValueGetter(item)?.ToString()!.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
     }
 
     private Func<TItem, object> SortItems()
@@ -60,7 +53,7 @@ public partial class DataGrid<TItem> : ComponentBase
         }
 
         var column = Columns.First(c => c.Field == SortColumn);
-        return column.ValueGetter;
+        return column.ValueGetter!;
     }
 
     private void SortBy(ColumnDefinition<TItem> column)
@@ -119,7 +112,7 @@ public partial class DataGrid<TItem> : ComponentBase
 
     private void ToggleSelectAll(ChangeEventArgs e)
     {
-        var isSelected = (bool)e.Value;
+        var isSelected = (bool)(e.Value ?? false);
         foreach (var item in Items)
         {
             SelectedItems[item] = isSelected;
@@ -128,9 +121,9 @@ public partial class DataGrid<TItem> : ComponentBase
 
     private void ToggleItemSelection(TItem item)
     {
-        if (SelectedItems.ContainsKey(item))
+        if (SelectedItems.TryGetValue(item, out var value))
         {
-            SelectedItems[item] = !SelectedItems[item];
+            SelectedItems[item] = SelectedItems[item] = !value;
         }
         else
         {
@@ -142,16 +135,9 @@ public partial class DataGrid<TItem> : ComponentBase
     {
         return SelectedItems.Where(kvp => kvp.Value).Select(kvp => kvp.Key);
     }
+#pragma warning disable CA1002
+    [Parameter] public List<TItem> Items { get; set; } = [];
 
-    #region Nested type: ColumnDefinition
-
-    public class ColumnDefinition<T>
-    {
-        public string Title { get; set; }
-        public string Field { get; set; }
-        public Func<T, object> ValueGetter { get; set; }
-        public bool Sortable { get; set; } = true;
-    }
-
-    #endregion
+    [Parameter] public List<ColumnDefinition<TItem>> Columns { get; set; } = [];
+#pragma warning restore CA1002
 }

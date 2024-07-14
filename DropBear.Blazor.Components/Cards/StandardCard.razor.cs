@@ -10,7 +10,9 @@ public partial class StandardCard : ComponentBase
 {
     [Parameter] public string Header { get; set; } = "Card Header";
     [Parameter] public string IconClass { get; set; } = "fas fa-question-circle";
+#pragma warning disable CA1056
     [Parameter] public string? ImageUrl { get; set; }
+#pragma warning restore CA1056
     [Parameter] public string ImageAlt { get; set; } = "Card Image";
     [Parameter] public string BodyTitle { get; set; } = "";
     [Parameter] public RenderFragment BodyContent { get; set; } = default!;
