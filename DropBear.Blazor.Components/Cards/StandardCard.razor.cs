@@ -21,4 +21,8 @@ public partial class StandardCard : ComponentBase
     [Parameter] public string FooterButtonText { get; set; } = "Button";
     [Parameter] public string AdditionalClasses { get; set; } = "";
     [Parameter] public bool IsCompact { get; set; }
+    [Parameter] public bool IsLightMode { get; set; }
+
+    private string CardClasses =>
+        $"standard-card {AdditionalClasses} {(IsCompact ? "compact" : "")} {(IsLightMode ? "light-mode" : "")}".Trim();
 }

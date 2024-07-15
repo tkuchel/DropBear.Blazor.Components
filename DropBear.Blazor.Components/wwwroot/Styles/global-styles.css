@@ -2,7 +2,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
 :root {
-  /*Primary Colors*/
+  /* Primary Colors */
   --var-clr-mine-shaft: #333333;
   --var-clr-silver-sand: #bbbec3;
   --var-clr-viking: #62dbc8;
@@ -21,32 +21,56 @@
   --var-clr-rock-blue: #a4b1cd;
   --var-clr-confirmation: #9b59b6;
 
+  /* Dark mode colors */
+  --clr-background: var(--var-clr-dark-background);
+  --clr-card-bg: var(--var-clr-mine-shaft);
+  --clr-heading: var(--var-clr-silver-sand);
+  --clr-text: var(--var-clr-rock-blue);
+  --clr-primary: var(--var-clr-malibu);
+  --clr-secondary: var(--var-clr-cornflower-blue);
+  --clr-border: var(--var-clr-silver-sand);
+
+  /* Light mode colors */
+  --clr-light-background: var(--var-clr-silver-sand);
+  --clr-light-card-bg: #ffffff; /* Keeping white for better contrast */
+  --clr-light-heading: var(--var-clr-mine-shaft);
+  --clr-light-text: var(--var-clr-mine-shaft);
+  --clr-light-primary: var(--var-clr-viking);
+  --clr-light-secondary: var(--var-clr-cornflower-blue);
+  --clr-light-border: var(--var-clr-silver-sand);
+
+  /* Shared variables */
+  --clr-success: var(--var-clr-pastel-green);
+  --clr-warning: var(--var-clr-mustard);
+  --clr-error: var(--var-clr-persimmon);
+
+  /* Header and footer background colors */
+  --clr-header-bg: rgba(255, 255, 255, 0.05);
+  --clr-footer-bg: rgba(255, 255, 255, 0.05);
+  --clr-light-header-bg: rgba(0, 0, 0, 0.05);
+  --clr-light-footer-bg: rgba(0, 0, 0, 0.05);
+
+  /* Spacing variables */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1rem;
+
+  /* Other variables */
+  --border-radius: 8px;
+
   /*Additional Colors*/
-  --clr-background: #1e1f22;
-  --clr-card-bg: #2b2d31;
-  --clr-text: #a4b1cd;
-  --clr-heading: #ffffff;
-  --clr-primary: #4ebafd;
-  --clr-secondary: #8552f8;
+
   --clr-surface: #2b2d31;
   --clr-surface-light: #3f4147;
   --clr-text-light: #ffffff;
-  --clr-border: #3f4147;
   --clr-admin: #7cd651;
   --clr-user: #ffd14d;
   --clr-danger: #ff5757;
   --clr-text-muted: #a4b1cd;
   --clr-info: #4ebafd;
-  --clr-success: #7cd651;
-  --clr-warning: #ffd14d;
-
 
   /*Spacing and Border Radius*/
-  --border-radius: 12px;
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 0.75rem;
-  --spacing-lg: 1rem;
   --transition: all 0.3s ease;
 
   /*Context Menu Colors*/
