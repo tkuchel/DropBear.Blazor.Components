@@ -8,6 +8,10 @@ h2 {
   margin-top: 2rem;
 }
 
+.pad-left-5 {
+  padding-left: 5px;
+}
+
 .button-group {
   display: flex;
   gap: 1rem;
@@ -30,6 +34,11 @@ h2 {
   text-align: center;
   line-height: 1;
   min-height: 2.5rem;
+}
+
+.btn-text {
+  background-color: transparent;
+  color: var(--clr-text);
 }
 
 .btn:hover {
