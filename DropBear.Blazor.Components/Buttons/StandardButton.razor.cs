@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace DropBear.Blazor.Components.Buttons;
 
-public partial class Button : ComponentBase
+public partial class StandardButton : ComponentBase
 {
     [Parameter] public string Variant { get; set; } = "primary";
     [Parameter] public string Size { get; set; } = "default";
