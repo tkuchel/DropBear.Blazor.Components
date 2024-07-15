@@ -10,58 +10,63 @@ The ContextMenu component in DropBear.Blazor.Components provides a customizable 
 - Animations for smooth appearance and disappearance
 - Custom styling options
 - Accessibility support
+- Nested submenus support
 
 ## Usage
 
 ```html
 <ContextMenu @ref="ContextMenu"
-             OnMenuItemClick="HandleMenuItemClick"
-             BackgroundColor="#333333"
-             TextColor="#ffffff"
-             HighlightColor="#4ebafd">
+             OnMenuItemClick="HandleMenuItemClick">
     <div @oncontextmenu="ShowContextMenu" @oncontextmenu:preventDefault>
         Right-click me!
     </div>
 </ContextMenu>
 
 @code {
-private ContextMenu ContextMenu;
+    private ContextMenu ContextMenu;
 
-private List<ContextMenu.ContextMenuItem> _menuItems = new List<ContextMenu.ContextMenuItem>
+    private List<ContextMenuItem> _menuItems = new List<ContextMenuItem>
     {
-    new ContextMenu.ContextMenuItem { Text = "Edit", IconClass = "fas fa-edit" },
-    new ContextMenu.ContextMenuItem { Text = "Copy", IconClass = "fas fa-copy" },
-    new ContextMenu.ContextMenuItem { IsSeparator = true },
-    new ContextMenu.ContextMenuItem { Text = "Delete", IconClass = "fas fa-trash-alt" },
-    new ContextMenu.ContextMenuItem
-    {
-    Text = "Share",
-    IconClass = "fas fa-share",
-    SubmenuItems = new List<ContextMenu.ContextMenuItem>
-    {
-    new ContextMenu.ContextMenuItem { Text = "Facebook", IconClass = "fab fa-facebook" },
-    new ContextMenu.ContextMenuItem { Text = "Twitter", IconClass = "fab fa-twitter" }
-    }
-    }
+        new ContextMenuItem { Text = "Edit", IconClass = "fas fa-edit" },
+        new ContextMenuItem { Text = "Copy", IconClass = "fas fa-copy" },
+        new ContextMenuItem { IsSeparator = true },
+        new ContextMenuItem { Text = "Delete", IconClass = "fas fa-trash-alt" },
+        new ContextMenuItem
+        {
+            Text = "Share",
+            IconClass = "fas fa-share",
+            SubmenuItems = new List<ContextMenuItem>
+            {
+                new ContextMenuItem { Text = "Facebook", IconClass = "fab fa-facebook" },
+                new ContextMenuItem { Text = "Twitter", IconClass = "fab fa-twitter" }
+            }
+        }
     };
 
     protected override void OnInitialized()
     {
-    ContextMenu.MenuItems = _menuItems;
+        ContextMenu.MenuItems = _menuItems;
     }
 
     private async Task ShowContextMenu(MouseEventArgs e)
     {
-    await ContextMenu.ShowAtPosition(e.ClientX, e.ClientY);
+        await ContextMenu.ShowAtPosition(e.ClientX, e.ClientY);
     }
 
-    private void HandleMenuItemClick(ContextMenu.ContextMenuItem item)
+    private void HandleMenuItemClick(ContextMenuItem item)
     {
-    Console.WriteLine($"Clicked: {item.Text}");
-    // Handle the menu item click
+        Console.WriteLine($"Clicked: {item.Text}");
+        // Handle the menu item click
     }
-    }
+}
 ```
+
+## Components
+
+The ContextMenu feature consists of two main components:
+
+1. `ContextMenu.razor`: The main component that handles the top-level menu.
+2. `ContextSubmenu.razor`: A separate component for handling nested submenus.
 
 ## JavaScript Interop
 
@@ -105,27 +110,6 @@ export class ContextMenuInterop {
 window.ContextMenuInterop = ContextMenuInterop;
 ```
 
-In your Blazor component, you can use these JavaScript functions like this:
-
-```csharp
-[Inject] private IJSRuntime JS { get; set; }
-
-protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-    if (firstRender)
-    {
-        await JS.InvokeVoidAsync("ContextMenuInterop.initialize", MenuElement, DotNetObjectReference.Create(this));
-    }
-}
-
-public async Task ShowAtPosition(double left, double top)
-{
-    // Set position logic here
-    await JS.InvokeVoidAsync("ContextMenuInterop.adjustPosition", MenuElement);
-    await JS.InvokeVoidAsync("ContextMenuInterop.focusMenu", MenuElement);
-}
-```
-
 Make sure to add a script reference to your `contextMenuInterop.js` file in your `_Host.cshtml` (for Server-side Blazor) or `index.html` (for WebAssembly):
 
 ```html
@@ -138,9 +122,8 @@ Make sure to add a script reference to your `contextMenuInterop.js` file in your
 |----------|------|---------|-------------|
 | MenuItems | List<ContextMenuItem> | [] | The list of menu items to display |
 | OnMenuItemClick | EventCallback<ContextMenuItem> | - | Event callback for when a menu item is clicked |
-| BackgroundColor | string | "#2b2d31" | The background color of the menu |
-| TextColor | string | "#a4b1cd" | The text color of the menu items |
-| HighlightColor | string | "#4ebafd" | The highlight color for selected or hovered items |
+| IsVisible | bool | false | Determines if the menu is visible |
+| IsSubmenu | bool | false | Indicates if this menu is a submenu |
 
 ## ContextMenuItem Properties
 
@@ -150,6 +133,7 @@ Make sure to add a script reference to your `contextMenuInterop.js` file in your
 | IconClass | string | The Font Awesome icon class for the item |
 | IsSeparator | bool | If true, renders a separator instead of a clickable item |
 | SubmenuItems | List<ContextMenuItem> | A list of submenu items |
+| HasSubmenu | bool | Indicates if this item has a submenu |
 
 ## Methods
 
@@ -168,7 +152,28 @@ Make sure to add a script reference to your `contextMenuInterop.js` file in your
 
 ## Styling
 
-The component uses CSS variables for easy customization. You can override these variables in your own CSS or use the component properties to change the colors.
+The component uses CSS variables for easy customization. You can override these variables in your own CSS file:
+
+```css
+:root {
+    --context-menu-bg: #2b2d31;
+    --context-menu-text: #ffffff;
+    --context-menu-hover-bg: #3a3d42;
+    --context-menu-hover-text: #ffffff;
+    --context-menu-disabled-text: #8e9297;
+    --context-menu-separator: #40444b;
+    --context-menu-icon-color: #b9bbbe;
+    --context-menu-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --context-menu-border-radius: 4px;
+    --context-menu-padding: 8px 0;
+    --context-menu-item-padding: 8px 12px;
+    --context-menu-transition: all 0.2s ease;
+    --context-menu-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --context-menu-font-size: 14px;
+    --context-menu-min-width: 180px;
+    --context-menu-z-index: 1000;
+}
+```
 
 ## Accessibility
 
@@ -182,3 +187,4 @@ This component is compatible with all modern browsers, including the latest vers
 
 - Ensure that you're using Font Awesome in your project for the icons to display correctly.
 - The component uses JavaScript interop for positioning and event handling, so make sure you have included the necessary JavaScript file in your project.
+- The ContextSubmenu component is used internally to handle nested submenus, providing a seamless experience for multi-level menus.

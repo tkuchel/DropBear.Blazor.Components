@@ -6,33 +6,36 @@ using DropBear.Blazor.Components.Messages;
 
 namespace DropBear.Blazor.Components.Services;
 
-public class AlertService
+public sealed class AlertService
 {
-    private readonly List<AlertMessage> _alerts = new();
+    private readonly List<AlertMessage> _alerts = [];
+
+    public EventHandler<AlertEventArgs>? OnChange { get; set; } = default!;
 
     public IReadOnlyCollection<AlertMessage> Alerts => _alerts.AsReadOnly();
-    public event Action OnChange;
 
     public void RegisterAlert(AlertMessage alert)
     {
-        if (!_alerts.Contains(alert))
+        if (_alerts.Contains(alert))
         {
-            _alerts.Add(alert);
-            OnChange?.Invoke();
+            return;
         }
+
+        _alerts.Add(alert);
+        OnChange?.Invoke(this, new AlertEventArgs());
     }
 
     public void RemoveAlert(AlertMessage alert)
     {
         if (_alerts.Remove(alert))
         {
-            OnChange?.Invoke();
+            OnChange?.Invoke(this, new AlertEventArgs());
         }
     }
 
     public void Clear()
     {
         _alerts.Clear();
-        OnChange?.Invoke();
+        OnChange?.Invoke(this, new AlertEventArgs());
     }
 }

@@ -1,15 +1,19 @@
-﻿.context-menu {
+﻿
+
+.context-menu {
   position: fixed;
-  background-color: var(--menu-bg, #2b2d31);
-  color: var(--menu-text, #a4b1cd);
-  border-radius: 8px;
-  padding: 4px;
-  min-width: 200px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  z-index: 1000;
+  background-color: var(--context-menu-bg);
+  color: var(--context-menu-text);
+  border-radius: var(--context-menu-border-radius);
+  padding: var(--context-menu-padding);
+  min-width: var(--context-menu-min-width);
+  box-shadow: var(--context-menu-shadow);
+  z-index: var(--context-menu-z-index);
+  font-family: var(--context-menu-font-family);
+  font-size: var(--context-menu-font-size);
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.1s, transform 0.1s;
+  transition: var(--context-menu-transition);
 }
 
 .context-menu.active {
@@ -20,28 +24,32 @@
 .context-menu-item {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
+  padding: var(--context-menu-item-padding);
   cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.2s, color 0.2s;
+  transition: var(--context-menu-transition);
 }
 
-.context-menu-item:hover,
-.context-menu-item.selected {
-  background-color: var(--menu-highlight, rgba(78, 186, 253, 0.1));
-  color: var(--menu-highlight-text, #ffffff);
+.context-menu-item:hover {
+  background-color: var(--context-menu-hover-bg);
+  color: var(--context-menu-hover-text);
 }
 
-.context-menu-item i {
-  margin-right: 8px;
-  width: 16px;
-  text-align: center;
+.context-menu-item.disabled {
+  color: var(--context-menu-disabled-text);
+  cursor: default;
 }
 
 .context-menu-separator {
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--context-menu-separator);
   margin: 4px 0;
+}
+
+.context-menu-item i {
+  margin-right: 8px;
+  color: var(--context-menu-icon-color);
+  width: 16px;
+  text-align: center;
 }
 
 .context-menu-item.has-submenu::after {
@@ -51,32 +59,42 @@
   font-size: 0.8em;
 }
 
-.menu-enter {
-  animation: fadeIn 0.2s ease-out forwards;
+.context-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: var(--context-menu-bg);
+  border-radius: var(--context-menu-border-radius);
+  box-shadow: var(--context-menu-shadow);
+  display: none;
+  min-width: var(--context-menu-min-width);
+  z-index: calc(var(--context-menu-z-index) + 1);
 }
 
-.menu-leave {
-  animation: fadeOut 0.2s ease-in forwards;
+.context-menu-item.has-submenu:hover > .context-submenu {
+  display: block;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
+.context-menu-item {
+  animation: fadeIn 0.2s ease-out forwards;
+  opacity: 0;
+}
+
+.context-menu-item:nth-child(1) { animation-delay: 0.05s; }
+.context-menu-item:nth-child(2) { animation-delay: 0.1s; }
+.context-menu-item:nth-child(3) { animation-delay: 0.15s; }
+.context-menu-item:nth-child(4) { animation-delay: 0.2s; }
+.context-menu-item:nth-child(5) { animation-delay: 0.25s; }
+
+.context-menu-item i {
+  transition: transform 0.2s;
+}
+
+.context-menu-item:hover i {
+  transform: scale(1.2);
 }

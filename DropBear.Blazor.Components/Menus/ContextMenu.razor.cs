@@ -61,13 +61,19 @@ public abstract partial class ContextMenu : ComponentBase
         StateHasChanged();
     }
 
-    private async Task OnItemClick(ContextMenuItem? item)
+    private async Task OnItemClick(ContextMenuItem item)
     {
-        if (item is not null && !item.HasSubmenu)
+        if (!item.HasSubmenu)
         {
             await OnMenuItemClick.InvokeAsync(item);
             Hide();
         }
+    }
+
+    private async Task OnSubmenuItemClick(ContextMenuItem item)
+    {
+        await OnMenuItemClick.InvokeAsync(item);
+        Hide();
     }
 
     private async Task HandleKeyDown(KeyboardEventArgs e)
