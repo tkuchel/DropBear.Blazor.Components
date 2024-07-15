@@ -1,4 +1,16 @@
-﻿.alert {
+﻿.alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 1000;
+}
+
+.alert-container > :not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.alert {
   background-color: var(--clr-surface, #2b2d31);
   border-radius: var(--border-radius, 8px);
   padding: 1rem;
@@ -61,6 +73,7 @@
 }
 
 .alert-info {
+  --alert-color: var(--clr-info, #4ebafd);
   border-left: 4px solid var(--clr-info, #4ebafd);
 }
 
@@ -70,6 +83,7 @@
 }
 
 .alert-success {
+  --alert-color: var(--clr-success, #7cd651);
   border-left: 4px solid var(--clr-success, #7cd651);
 }
 
@@ -79,6 +93,7 @@
 }
 
 .alert-warning {
+  --alert-color: var(--clr-warning, #ffd14d);
   border-left: 4px solid var(--clr-warning, #ffd14d);
 }
 
@@ -88,12 +103,21 @@
 }
 
 .alert-danger {
+  --alert-color: var(--clr-danger, #ff5757);
   border-left: 4px solid var(--clr-danger, #ff5757);
 }
 
 .alert-danger .alert-icon {
   color: var(--clr-danger, #ff5757);
   background-color: rgba(255, 87, 87, 0.1);
+}
+
+.alert-low {
+  opacity: 0.7;
+}
+
+.alert-high {
+  box-shadow: 0 0 0 4px rgba(var(--alert-color), 0.3);
 }
 
 .alert-dismissible .alert-close {
