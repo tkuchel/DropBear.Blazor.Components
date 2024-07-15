@@ -41,8 +41,16 @@ public partial class DataGrid<TItem> : ComponentBase where TItem : notnull
 
     private bool FilterItem(TItem item)
     {
-        return string.IsNullOrWhiteSpace(SearchTerm) || Columns.Exists(column =>
-            (bool)column.ValueGetter(item)?.ToString()!.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
+        if (string.IsNullOrWhiteSpace(SearchTerm))
+        {
+            return true;
+        }
+
+        return Columns.Exists(column =>
+        {
+            var value = column.ValueGetter(item);
+            return value?.ToString()?.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase) is true;
+        });
     }
 
     private Func<TItem, object> SortItems()
