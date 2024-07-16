@@ -27,6 +27,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="wwwroot\JS\AlertMessage.js" />
+      <None Include="wwwroot\JS\Snackbar.js" />
       <None Include="wwwroot\Styles\global-styles.css">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
