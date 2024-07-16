@@ -177,3 +177,48 @@
 .light-mode .btn-secondary:hover {
   background-color: #5a6268;
 }
+
+/* Size variants */
+.modal-content.small {
+  max-width: 300px;
+}
+
+.modal-content.medium {
+  max-width: 500px;
+}
+
+.modal-content.large {
+  max-width: 800px;
+}
+
+/* Transition variants */
+.modal.fade .modal-content {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal.slide .modal-content {
+  transition: transform 0.3s ease;
+}
+
+.modal.zoom .modal-content {
+  transition: transform 0.3s ease;
+}
+
+.modal.fade:not(.active) .modal-content {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.modal.slide:not(.active) .modal-content {
+  transform: translateY(-50px);
+}
+
+.modal.zoom:not(.active) .modal-content {
+  transform: scale(0.5);
+}
+
+/* Scrollable content */
+.modal.scrollable .modal-body {
+  max-height: 50vh;
+  overflow-y: auto;
+}
