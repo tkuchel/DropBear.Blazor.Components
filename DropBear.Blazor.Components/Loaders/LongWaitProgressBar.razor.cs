@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace DropBear.Blazor.Components.Loaders;
 
-public partial class LongWaitProgresBar : ComponentBase
+public partial class LongWaitProgressBar : ComponentBase
 {
     [Parameter] public string Title { get; set; } = "Long Wait Progress Bar";
     [Parameter] public string ProcessingText { get; set; } = "Processing your request";
