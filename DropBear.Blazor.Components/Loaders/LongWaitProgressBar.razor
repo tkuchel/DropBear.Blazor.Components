@@ -2,12 +2,10 @@
 @namespace DropBear.Blazor.Components.Loaders
 
 <div class="loading-progress-container">
-    <div class="loading-card @(IsCompact ? "compact" : "")" style="@CardStyle">
+    <div class="loading-card" style="@CardStyle">
         @if (ShowTitle)
         {
-        <h3>
-            <i class="@IconClass"></i> @Title
-        </h3>
+        <h3><i class="@IconClass"></i> @Title</h3>
         }
         <div class="progress-container">
             <div class="progress-bar" style="width: @(Progress)%;">
@@ -19,9 +17,11 @@
         </div>
         @if (ShowProcessingText)
         {
-        <p class="processing-text">
-            @ProcessingText<span class="dots">...</span>
-        </p>
+        <p class="processing-text">@ProcessingText<span class="dots"></span></p>
+        }
+        @if (ShowCancelButton)
+        {
+        <button class="cancel-button" @onclick="HandleCancelClick">@CancelButtonText</button>
         }
     </div>
 </div>

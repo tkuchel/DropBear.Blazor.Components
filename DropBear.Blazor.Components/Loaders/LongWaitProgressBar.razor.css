@@ -126,3 +126,26 @@ p {
   content: ".";
   animation: ellipsis 1.5s infinite;
 }
+
+
+.cancel-button {
+  margin-top: var(--spacing-md);
+  background-color: var(--clr-error, #ff5757);
+  color: var(--clr-text, #ffffff);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: var(--clr-error-hover, #ff7a7a);
+}
+
+.cancel-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 87, 87, 0.5);
+}
