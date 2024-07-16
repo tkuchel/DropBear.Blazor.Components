@@ -1,6 +1,7 @@
 # AlertMessage Component and AlertService
 
-The AlertMessage component and AlertService in DropBear.Blazor.Components provide a flexible and powerful system for displaying and managing alerts in your Blazor applications.
+The AlertMessage component and AlertService in DropBear.Blazor.Components provide a flexible and powerful system for
+displaying and managing alerts in your Blazor applications.
 
 ## Features
 
@@ -79,28 +80,29 @@ builder.Services.AddScoped<AlertService>();
 
 ## AlertMessage Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| Type | AlertType | Info | The type of alert (Info, Success, Warning, Danger) |
-| Severity | AlertSeverity | Normal | The severity level of the alert (Low, Normal, High) |
-| Title | string | null | The title of the alert |
-| ChildContent | RenderFragment | null | The main content of the alert |
-| IsDismissible | bool | true | Whether the alert can be dismissed by the user |
-| OnDismiss | EventCallback | null | Event callback when the alert is dismissed |
-| CustomIconClass | string | null | Custom icon class (e.g., "fas fa-bell") |
-| AutoDismissAfter | int | 0 | Time in milliseconds after which the alert auto-dismisses (0 means no auto-dismiss) |
+| Property         | Type           | Default | Description                                                                         |
+|------------------|----------------|---------|-------------------------------------------------------------------------------------|
+| Type             | AlertType      | Info    | The type of alert (Info, Success, Warning, Danger)                                  |
+| Severity         | AlertSeverity  | Normal  | The severity level of the alert (Low, Normal, High)                                 |
+| Title            | string         | null    | The title of the alert                                                              |
+| ChildContent     | RenderFragment | null    | The main content of the alert                                                       |
+| IsDismissible    | bool           | true    | Whether the alert can be dismissed by the user                                      |
+| OnDismiss        | EventCallback  | null    | Event callback when the alert is dismissed                                          |
+| CustomIconClass  | string         | null    | Custom icon class (e.g., "fas fa-bell")                                             |
+| AutoDismissAfter | int            | 0       | Time in milliseconds after which the alert auto-dismisses (0 means no auto-dismiss) |
 
 ## AlertService Methods
 
-| Method | Description |
-|--------|-------------|
-| RegisterAlert(AlertMessage alert) | Adds a new alert to the service |
-| RemoveAlert(AlertMessage alert) | Removes the specified alert from the service |
-| Clear() | Removes all alerts from the service |
+| Method                            | Description                                  |
+|-----------------------------------|----------------------------------------------|
+| RegisterAlert(AlertMessage alert) | Adds a new alert to the service              |
+| RemoveAlert(AlertMessage alert)   | Removes the specified alert from the service |
+| Clear()                           | Removes all alerts from the service          |
 
 ## Styling
 
-The AlertMessage component comes with built-in styles. You can further customize the appearance by overriding the CSS variables or adding your own classes.
+The AlertMessage component comes with built-in styles. You can further customize the appearance by overriding the CSS
+variables or adding your own classes.
 
 ```css
 :root {
@@ -173,12 +175,16 @@ To style the alert container, you can add the following CSS:
 
 ## Accessibility
 
-The AlertMessage component is designed with accessibility in mind. It uses appropriate ARIA attributes and ensures that alerts can be dismissed using the keyboard.
+The AlertMessage component is designed with accessibility in mind. It uses appropriate ARIA attributes and ensures that
+alerts can be dismissed using the keyboard.
 
 ## Browser Support
 
-This component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and Edge.
+This component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and
+Edge.
 
 ## Conclusion
 
-The AlertMessage component and AlertService provide a comprehensive solution for managing and displaying alerts in your Blazor applications. By leveraging these tools, you can create informative, visually appealing, and user-friendly notifications that enhance the overall user experience of your application.
+The AlertMessage component and AlertService provide a comprehensive solution for managing and displaying alerts in your
+Blazor applications. By leveraging these tools, you can create informative, visually appealing, and user-friendly
+notifications that enhance the overall user experience of your application.

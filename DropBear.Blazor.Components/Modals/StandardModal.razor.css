@@ -1,0 +1,124 @@
+﻿.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--clr-overlay, rgba(0, 0, 0, 0.7));
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--clr-surface, #2b2d31);
+  border-radius: var(--border-radius, 12px);
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+  animation: modalEnter 0.3s forwards;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--clr-surface-light, #3a3d44);
+  border-bottom: 1px solid var(--clr-surface-lighter, #454950);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--clr-text, #ffffff);
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--clr-text-muted, #a4b1cd);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--clr-text, #ffffff);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  background-color: var(--clr-surface, #2b2d31);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background-color: var(--clr-surface-light, #3a3d44);
+  border-top: 1px solid var(--clr-surface-lighter, #454950);
+}
+
+.btn {
+  font-family: var(--font-family, 'Poppins', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius, 12px);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background-color: var(--clr-primary, #4ebafd);
+  color: var(--clr-surface, #2b2d31);
+}
+
+.btn-primary:hover {
+  background-color: var(--clr-secondary, #8552f8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background-color: var(--clr-surface-light, #3a3d44);
+  color: var(--clr-text, #ffffff);
+}
+
+.btn-secondary:hover {
+  background-color: var(--clr-surface-lighter, #454950);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

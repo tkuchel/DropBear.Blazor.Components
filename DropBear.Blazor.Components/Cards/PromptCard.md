@@ -1,6 +1,7 @@
 ﻿# PromptCard Component
 
-The PromptCard component is a versatile and customizable Blazor component for displaying various types of prompts, alerts, and confirmations in your application.
+The PromptCard component is a versatile and customizable Blazor component for displaying various types of prompts,
+alerts, and confirmations in your application.
 
 ## Features
 
@@ -72,34 +73,34 @@ private void HandleCancel()
 
 ## Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| Title | string | "Prompt" | The title of the prompt card |
-| Content | string | "This is a prompt message." | The main content of the prompt card |
-| CardType | PromptType | PromptType.Information | The type of the prompt (Information, Warning, Error, Success, Confirmation) |
-| IsVisible | bool | false | Controls the visibility of the prompt card |
-| ShowConfirmButton | bool | true | Controls the visibility of the confirm button |
-| ShowCancelButton | bool | true | Controls the visibility of the cancel button |
-| ConfirmText | string | "Confirm" | The text for the confirm button |
-| CancelText | string | "Cancel" | The text for the cancel button |
-| ConfirmIcon | string | "fas fa-check" | The icon class for the confirm button |
-| CancelIcon | string | "fas fa-times" | The icon class for the cancel button |
-| IsSubtle | bool | false | Creates a more subdued version of the card |
-| IsLightMode | bool | false | Switches the card to light mode |
+| Property          | Type       | Default                     | Description                                                                 |
+|-------------------|------------|-----------------------------|-----------------------------------------------------------------------------|
+| Title             | string     | "Prompt"                    | The title of the prompt card                                                |
+| Content           | string     | "This is a prompt message." | The main content of the prompt card                                         |
+| CardType          | PromptType | PromptType.Information      | The type of the prompt (Information, Warning, Error, Success, Confirmation) |
+| IsVisible         | bool       | false                       | Controls the visibility of the prompt card                                  |
+| ShowConfirmButton | bool       | true                        | Controls the visibility of the confirm button                               |
+| ShowCancelButton  | bool       | true                        | Controls the visibility of the cancel button                                |
+| ConfirmText       | string     | "Confirm"                   | The text for the confirm button                                             |
+| CancelText        | string     | "Cancel"                    | The text for the cancel button                                              |
+| ConfirmIcon       | string     | "fas fa-check"              | The icon class for the confirm button                                       |
+| CancelIcon        | string     | "fas fa-times"              | The icon class for the cancel button                                        |
+| IsSubtle          | bool       | false                       | Creates a more subdued version of the card                                  |
+| IsLightMode       | bool       | false                       | Switches the card to light mode                                             |
 
 ## Events
 
-| Event | Description |
-|-------|-------------|
+| Event          | Description                                  |
+|----------------|----------------------------------------------|
 | OnConfirmClick | Triggered when the confirm button is clicked |
-| OnCancelClick | Triggered when the cancel button is clicked |
+| OnCancelClick  | Triggered when the cancel button is clicked  |
 
 ## Methods
 
-| Method | Description |
-|--------|-------------|
+| Method     | Description            |
+|------------|------------------------|
 | ShowCard() | Makes the card visible |
-| HideCard() | Hides the card |
+| HideCard() | Hides the card         |
 
 ## Customization Examples
 
@@ -162,7 +163,8 @@ private void HandleCancel()
 
 ## Styling
 
-The PromptCard component uses CSS variables for easy customization. You can override these variables in your own CSS to change the colors and styles of the cards.
+The PromptCard component uses CSS variables for easy customization. You can override these variables in your own CSS to
+change the colors and styles of the cards.
 
 Example:
 
@@ -176,19 +178,24 @@ Example:
 }
 ```
 
-For more advanced styling, you can create your own CSS classes and apply them to the PromptCard using the `class` attribute.
+For more advanced styling, you can create your own CSS classes and apply them to the PromptCard using the `class`
+attribute.
 
 ## Accessibility
 
-The PromptCard component is designed with accessibility in mind. It uses semantic HTML and ARIA attributes to ensure that it's usable by people with disabilities. The component traps focus when visible, allowing users to navigate through the card using the keyboard.
+The PromptCard component is designed with accessibility in mind. It uses semantic HTML and ARIA attributes to ensure
+that it's usable by people with disabilities. The component traps focus when visible, allowing users to navigate through
+the card using the keyboard.
 
 ## Browser Support
 
-The PromptCard component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and Edge.
+The PromptCard component is compatible with all modern browsers, including the latest versions of Chrome, Firefox,
+Safari, and Edge.
 
 ## Contributing
 
-If you find any issues or have suggestions for improvements, please file an issue on our GitHub repository or submit a pull request.
+If you find any issues or have suggestions for improvements, please file an issue on our GitHub repository or submit a
+pull request.
 
 ## License
 

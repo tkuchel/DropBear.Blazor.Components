@@ -1,6 +1,7 @@
 # Button Component
 
-The Button component in DropBear.Blazor.Components provides a flexible and customizable button for your Blazor applications.
+The Button component in DropBear.Blazor.Components provides a flexible and customizable button for your Blazor
+applications.
 
 ## Features
 
@@ -31,21 +32,22 @@ The Button component in DropBear.Blazor.Components provides a flexible and custo
 
 ## Parameters
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| Variant | string | "primary" | The style variant of the button (primary, secondary, outline, danger) |
-| Size | string | "default" | The size of the button (sm, default, lg) |
-| Disabled | bool | false | Whether the button is disabled |
-| IconClass | string | "" | The class for the icon (e.g., "fas fa-edit") |
-| Title | string | "" | The title attribute for the button |
-| Type | string | "button" | The type attribute for the button (button, submit, reset) |
-| IsBlock | bool | false | Whether the button should be a block-level element |
-| OnClick | EventCallback<MouseEventArgs> | - | Event callback for when the button is clicked |
-| ChildContent | RenderFragment | null | The content to be displayed inside the button |
+| Parameter    | Type                          | Default   | Description                                                           |
+|--------------|-------------------------------|-----------|-----------------------------------------------------------------------|
+| Variant      | string                        | "primary" | The style variant of the button (primary, secondary, outline, danger) |
+| Size         | string                        | "default" | The size of the button (sm, default, lg)                              |
+| Disabled     | bool                          | false     | Whether the button is disabled                                        |
+| IconClass    | string                        | ""        | The class for the icon (e.g., "fas fa-edit")                          |
+| Title        | string                        | ""        | The title attribute for the button                                    |
+| Type         | string                        | "button"  | The type attribute for the button (button, submit, reset)             |
+| IsBlock      | bool                          | false     | Whether the button should be a block-level element                    |
+| OnClick      | EventCallback<MouseEventArgs> | -         | Event callback for when the button is clicked                         |
+| ChildContent | RenderFragment                | null      | The content to be displayed inside the button                         |
 
 ## Styling
 
-The Button component uses CSS variables for easy customization. You can override these variables in your own CSS to change the appearance of the buttons:
+The Button component uses CSS variables for easy customization. You can override these variables in your own CSS to
+change the appearance of the buttons:
 
 ```css
 :root {
@@ -118,8 +120,11 @@ The Button component is designed with accessibility in mind:
 
 ## Browser Support
 
-This component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and Edge.
+This component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and
+Edge.
 
 ## Conclusion
 
-The Button component provides a versatile and customizable way to create buttons in your Blazor application. By leveraging its various parameters and styling options, you can create consistent and attractive buttons that enhance your user interface.
+The Button component provides a versatile and customizable way to create buttons in your Blazor application. By
+leveraging its various parameters and styling options, you can create consistent and attractive buttons that enhance
+your user interface.

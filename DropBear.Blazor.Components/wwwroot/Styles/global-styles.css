@@ -63,12 +63,14 @@
 
   --clr-surface: #2b2d31;
   --clr-surface-light: #3f4147;
+  --clr-surface-lighter: #454950;
   --clr-text-light: #ffffff;
   --clr-admin: #7cd651;
   --clr-user: #ffd14d;
   --clr-danger: #ff5757;
   --clr-text-muted: #a4b1cd;
   --clr-info: #4ebafd;
+  --clr-overlay: rgba(0, 0, 0, 0.7);
 
   /*Spacing and Border Radius*/
   --transition: all 0.3s ease;

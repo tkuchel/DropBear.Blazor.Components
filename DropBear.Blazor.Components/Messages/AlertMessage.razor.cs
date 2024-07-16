@@ -2,7 +2,7 @@
 
 using System.Globalization;
 using DropBear.Blazor.Components.Enums;
-using DropBear.Blazor.Components.Services;
+using DropBear.Blazor.Components.Services.AlertMessage;
 using Microsoft.AspNetCore.Components;
 using Timer = System.Timers.Timer;
 

@@ -1,6 +1,7 @@
 ﻿# StandardCard Component
 
-The StandardCard component is a flexible and reusable Blazor component for displaying various types of content in a card format.
+The StandardCard component is a flexible and reusable Blazor component for displaying various types of content in a card
+format.
 
 ## Features
 
@@ -52,17 +53,17 @@ private void HandleFooterButtonClick()
 
 ## Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| Header | string | null | The header text of the card |
-| IconClass | string | null | The icon class for an optional icon in the header |
-| ImageUrl | string | null | The URL for an optional image at the top of the card |
-| ImageAlt | string | null | The alt text for the image |
-| BodyTitle | string | null | The title text within the body of the card |
-| BodyContent | RenderFragment | null | The main content of the card |
-| ShowFooter | bool | false | Controls the visibility of the footer section |
-| OnFooterButtonClick | EventCallback | null | The event triggered when the footer button is clicked |
-| AdditionalClasses | string | null | Additional CSS classes for customization |
+| Property            | Type           | Default | Description                                           |
+|---------------------|----------------|---------|-------------------------------------------------------|
+| Header              | string         | null    | The header text of the card                           |
+| IconClass           | string         | null    | The icon class for an optional icon in the header     |
+| ImageUrl            | string         | null    | The URL for an optional image at the top of the card  |
+| ImageAlt            | string         | null    | The alt text for the image                            |
+| BodyTitle           | string         | null    | The title text within the body of the card            |
+| BodyContent         | RenderFragment | null    | The main content of the card                          |
+| ShowFooter          | bool           | false   | Controls the visibility of the footer section         |
+| OnFooterButtonClick | EventCallback  | null    | The event triggered when the footer button is clicked |
+| AdditionalClasses   | string         | null    | Additional CSS classes for customization              |
 
 ## Customization Examples
 
@@ -102,7 +103,8 @@ private void HandleFooterButtonClick()
 
 ## Styling
 
-The StandardCard component uses CSS variables for easy customization. You can override these variables in your own CSS to change the colors and styles of the cards.
+The StandardCard component uses CSS variables for easy customization. You can override these variables in your own CSS
+to change the colors and styles of the cards.
 
 Example:
 
@@ -122,19 +124,23 @@ Example:
 }
 ```
 
-For more advanced styling, you can create your own CSS classes and apply them to the StandardCard using the `AdditionalClasses` parameter.
+For more advanced styling, you can create your own CSS classes and apply them to the StandardCard using
+the `AdditionalClasses` parameter.
 
 ## Accessibility
 
-The StandardCard component is designed with accessibility in mind. It uses semantic HTML and ARIA attributes to ensure that it's usable by people with disabilities.
+The StandardCard component is designed with accessibility in mind. It uses semantic HTML and ARIA attributes to ensure
+that it's usable by people with disabilities.
 
 ## Browser Support
 
-The StandardCard component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and Edge.
+The StandardCard component is compatible with all modern browsers, including the latest versions of Chrome, Firefox,
+Safari, and Edge.
 
 ## Contributing
 
-If you find any issues or have suggestions for improvements, please file an issue on our GitHub repository or submit a pull request.
+If you find any issues or have suggestions for improvements, please file an issue on our GitHub repository or submit a
+pull request.
 
 ## License
 

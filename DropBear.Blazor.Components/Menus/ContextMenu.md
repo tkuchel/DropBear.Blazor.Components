@@ -1,6 +1,7 @@
 ﻿# ContextMenu Component
 
-The ContextMenu component in DropBear.Blazor.Components provides a customizable right-click menu for your Blazor applications.
+The ContextMenu component in DropBear.Blazor.Components provides a customizable right-click menu for your Blazor
+applications.
 
 ## Features
 
@@ -70,7 +71,8 @@ The ContextMenu feature consists of two main components:
 
 ## JavaScript Interop
 
-The ContextMenu component uses JavaScript interop for positioning and event handling. The JavaScript file (`contextMenuInterop.js`) should be included in your project, typically in the `wwwroot/js` folder.
+The ContextMenu component uses JavaScript interop for positioning and event handling. The JavaScript
+file (`contextMenuInterop.js`) should be included in your project, typically in the `wwwroot/js` folder.
 
 ```javascript
 export class ContextMenuInterop {
@@ -110,7 +112,8 @@ export class ContextMenuInterop {
 window.ContextMenuInterop = ContextMenuInterop;
 ```
 
-Make sure to add a script reference to your `contextMenuInterop.js` file in your `_Host.cshtml` (for Server-side Blazor) or `index.html` (for WebAssembly):
+Make sure to add a script reference to your `contextMenuInterop.js` file in your `_Host.cshtml` (for Server-side Blazor)
+or `index.html` (for WebAssembly):
 
 ```html
 <script src="_content/DropBear.Blazor.Components/js/contextMenuInterop.js"></script>
@@ -118,29 +121,29 @@ Make sure to add a script reference to your `contextMenuInterop.js` file in your
 
 ## Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| MenuItems | List<ContextMenuItem> | [] | The list of menu items to display |
-| OnMenuItemClick | EventCallback<ContextMenuItem> | - | Event callback for when a menu item is clicked |
-| IsVisible | bool | false | Determines if the menu is visible |
-| IsSubmenu | bool | false | Indicates if this menu is a submenu |
+| Property        | Type                           | Default | Description                                    |
+|-----------------|--------------------------------|---------|------------------------------------------------|
+| MenuItems       | List<ContextMenuItem>          | []      | The list of menu items to display              |
+| OnMenuItemClick | EventCallback<ContextMenuItem> | -       | Event callback for when a menu item is clicked |
+| IsVisible       | bool                           | false   | Determines if the menu is visible              |
+| IsSubmenu       | bool                           | false   | Indicates if this menu is a submenu            |
 
 ## ContextMenuItem Properties
 
-| Property | Type | Description |
-|----------|------|-------------|
-| Text | string | The text to display for the menu item |
-| IconClass | string | The Font Awesome icon class for the item |
-| IsSeparator | bool | If true, renders a separator instead of a clickable item |
-| SubmenuItems | List<ContextMenuItem> | A list of submenu items |
-| HasSubmenu | bool | Indicates if this item has a submenu |
+| Property     | Type                  | Description                                              |
+|--------------|-----------------------|----------------------------------------------------------|
+| Text         | string                | The text to display for the menu item                    |
+| IconClass    | string                | The Font Awesome icon class for the item                 |
+| IsSeparator  | bool                  | If true, renders a separator instead of a clickable item |
+| SubmenuItems | List<ContextMenuItem> | A list of submenu items                                  |
+| HasSubmenu   | bool                  | Indicates if this item has a submenu                     |
 
 ## Methods
 
-| Method | Description |
-|--------|-------------|
+| Method                                  | Description                                                 |
+|-----------------------------------------|-------------------------------------------------------------|
 | ShowAtPosition(double left, double top) | Programmatically show the menu at the specified coordinates |
-| Hide() | Programmatically hide the menu |
+| Hide()                                  | Programmatically hide the menu                              |
 
 ## Keyboard Navigation
 
@@ -177,14 +180,18 @@ The component uses CSS variables for easy customization. You can override these 
 
 ## Accessibility
 
-The ContextMenu component is designed to be accessible. It can be fully operated using a keyboard and provides appropriate ARIA attributes for screen readers.
+The ContextMenu component is designed to be accessible. It can be fully operated using a keyboard and provides
+appropriate ARIA attributes for screen readers.
 
 ## Browser Support
 
-This component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and Edge.
+This component is compatible with all modern browsers, including the latest versions of Chrome, Firefox, Safari, and
+Edge.
 
 ## Notes
 
 - Ensure that you're using Font Awesome in your project for the icons to display correctly.
-- The component uses JavaScript interop for positioning and event handling, so make sure you have included the necessary JavaScript file in your project.
-- The ContextSubmenu component is used internally to handle nested submenus, providing a seamless experience for multi-level menus.
+- The component uses JavaScript interop for positioning and event handling, so make sure you have included the necessary
+  JavaScript file in your project.
+- The ContextSubmenu component is used internally to handle nested submenus, providing a seamless experience for
+  multi-level menus.
