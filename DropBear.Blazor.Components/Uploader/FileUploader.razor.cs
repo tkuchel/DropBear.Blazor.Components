@@ -23,9 +23,10 @@ public partial class FileUploader : ComponentBase
         _dragOver = false;
         await HandleDroppedFiles(e);
     }
-
+#pragma warning disable IDE0060
     private async Task HandleDroppedFiles(DragEventArgs e)
     {
+#pragma warning restore IDE0060
         var files = await JSRuntime.InvokeAsync<string[]>("getFilesFromDataTransfer", null);
         foreach (var file in files)
         {
@@ -153,13 +154,13 @@ public partial class FileUploader : ComponentBase
     #endregion
 
     #region Nested type: FileInfo
-
+#pragma warning disable CA1812
     private sealed class FileInfo
     {
         public string Name { get; set; } = string.Empty;
         public long Size { get; set; }
         public string Type { get; set; } = string.Empty;
     }
-
+#pragma warning restore CA1812
     #endregion
 }
