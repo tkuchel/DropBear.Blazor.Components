@@ -14,9 +14,8 @@ public partial class ShortWaitSpinner : ComponentBase
     [Parameter] public bool ShowTitle { get; set; } = true;
     [Parameter] public bool ShowLoadingText { get; set; } = true;
     [Parameter] public bool IsCompact { get; set; }
-    [Parameter] public string SpinnerColor { get; set; } = "#4ebafd";
     [Parameter] public int SpinnerSize { get; set; } = 50;
 
-    private string SpinnerStyle => $"width: {SpinnerSize}px; height: {SpinnerSize}px; border-color: {SpinnerColor};";
+    private string SpinnerStyle => $"width: {SpinnerSize}px; height: {SpinnerSize}px;";
     private string CardStyle => IsCompact ? "padding: 0.75rem;" : "";
 }
