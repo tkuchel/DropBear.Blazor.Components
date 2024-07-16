@@ -6,6 +6,9 @@
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  padding: 2rem;
 }
 
 .loading-card {
