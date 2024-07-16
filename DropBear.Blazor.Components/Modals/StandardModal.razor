@@ -1,21 +1,24 @@
 ﻿@inherits ComponentBase
 @namespace DropBear.Blazor.Components.Modals
 
-<div class="modal @(IsVisible ? "active" : "")" @onclick="CloseClick">
-    <div class="modal-content" @onclick:stopPropagation>
-        <div class="modal-header">
-            <h2>@Title</h2>
-            <button class="modal-close" @onclick="OnClose">&times;</button>
-        </div>
-        <div class="modal-body">
-            @BodyContent
-        </div>
-        <div class="modal-footer">
-            @if (ShowCancelButton)
-            {
-                <button class="btn btn-secondary" @onclick="OnCancel">@CancelText</button>
-            }
-            <button class="btn btn-primary" @onclick="OnConfirm">@ConfirmText</button>
+@if (IsVisible)
+{
+    <div class="modal @(IsVisible ? "active" : "") @(LightMode ? "light-mode" : "")">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>@Title</h2>
+                <button class="modal-close" @onclick="CloseClick">&times;</button>
+            </div>
+            <div class="modal-body">
+                @BodyContent
+            </div>
+            <div class="modal-footer">
+                @if (!LightMode || ShowCancelButton)
+                {
+                    <button class="btn btn-secondary" @onclick="CancelClick">@CancelText</button>
+                }
+                <button class="btn btn-primary" @onclick="ConfirmClick">@ConfirmText</button>
+            </div>
         </div>
     </div>
-</div>
+}

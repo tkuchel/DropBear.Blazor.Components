@@ -17,6 +17,7 @@ public partial class StandardModal : ComponentBase
     [Parameter] public EventCallback OnConfirm { get; set; }
     [Parameter] public EventCallback OnCancel { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public bool LightMode { get; set; } = false;
 
     private bool IsVisible { get; set; }
 
@@ -32,9 +33,28 @@ public partial class StandardModal : ComponentBase
 
     private async Task CloseClick()
     {
-        if (CloseOnBackdropClick)
+        if (CloseOnBackdropClick || LightMode)
         {
             await OnClose.InvokeAsync();
+            Hide();
+        }
+    }
+
+    private async Task ConfirmClick()
+    {
+        await OnConfirm.InvokeAsync();
+        if (LightMode)
+        {
+            Hide();
+        }
+    }
+
+    private async Task CancelClick()
+    {
+        await OnCancel.InvokeAsync();
+        if (LightMode)
+        {
+            Hide();
         }
     }
 }
