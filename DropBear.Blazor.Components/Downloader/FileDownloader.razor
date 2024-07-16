@@ -1,0 +1,29 @@
+﻿@using System.Timers
+@inherits ComponentBase
+@namespace DropBear.Blazor.Components.Downloader
+<div class="file-downloader">
+    <div class="file-downloader__item">
+        <div class="file-downloader__name">@FileName</div>
+        <div class="file-downloader__info">@FileType - @FileSize</div>
+        <div class="file-downloader__progress">
+            <div class="file-downloader__progress-bar" style="width: @(_progress)%"></div>
+        </div>
+        <button class="file-downloader__button" @onclick="StartDownload" disabled="@_isDownloading">
+            @if (_isDownloading)
+            {
+            <i class="fas fa-spinner file-downloader__spinner"></i>
+            <span>Downloading...</span>
+            }
+            else if (_isCompleted)
+            {
+            <i class="fas fa-check"></i>
+            <span>Downloaded</span>
+            }
+            else
+            {
+            <i class="fas fa-download"></i>
+            <span>Download</span>
+            }
+        </button>
+    </div>
+</div>

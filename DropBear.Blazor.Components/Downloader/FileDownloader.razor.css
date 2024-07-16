@@ -1,0 +1,88 @@
+﻿.file-downloader {
+  background-color: var(--clr-surface);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  width: 350px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.file-downloader__item {
+  background-color: var(--clr-surface-light);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.file-downloader__item:hover {
+  background-color: var(--clr-surface-lighter);
+}
+
+.file-downloader__name {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.file-downloader__info {
+  font-size: 0.9rem;
+  color: var(--clr-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.file-downloader__progress {
+  width: 100%;
+  height: 4px;
+  background-color: var(--clr-surface-lighter);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.file-downloader__progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: var(--clr-primary);
+  transition: width 0.3s ease;
+}
+
+.file-downloader__button {
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-downloader__button:hover {
+  background-color: var(--clr-secondary);
+}
+
+.file-downloader__button:disabled {
+  background-color: var(--clr-surface-lighter);
+  cursor: not-allowed;
+}
+
+.file-downloader__button i {
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.file-downloader__spinner {
+  animation: spin 1s linear infinite;
+}
