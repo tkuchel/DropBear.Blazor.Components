@@ -27,7 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="wwwroot\JS\AlertMessage.js" />
       <None Include="wwwroot\JS\ContextMenu.js" />
       <None Include="wwwroot\JS\FileUploader.js" />
       <None Include="wwwroot\JS\Snackbar.js" />

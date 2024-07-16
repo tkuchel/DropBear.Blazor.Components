@@ -1,4 +1,4 @@
-﻿export class ContextMenuInterop {
+﻿class ContextMenuInterop {
   static initialize(element, dotnetHelper) {
     document.addEventListener('contextmenu', function (e) {
       e.preventDefault();
