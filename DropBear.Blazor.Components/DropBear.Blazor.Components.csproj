@@ -27,10 +27,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="wwwroot\JS\ContextMenu.js" />
-      <None Include="wwwroot\JS\FileUploader.js" />
-      <None Include="wwwroot\JS\Snackbar.js" />
-      <None Include="wwwroot\Styles\global-styles.css">
+      <None Include="wwwroot\scripts\ContextMenu.js" />
+      <None Include="wwwroot\scripts\FileUploader.js" />
+      <None Include="wwwroot\scripts\Snackbar.js" />
+      <None Include="wwwroot\styles\global-styles.css">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
