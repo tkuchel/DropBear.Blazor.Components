@@ -51,6 +51,9 @@
   --clr-light-header-bg: rgba(0, 0, 0, 0.05);
   --clr-light-footer-bg: rgba(0, 0, 0, 0.05);
 
+  /*Card background colors*/
+  --clr-card-bg: var(--clr-surface);
+
   /* Global variables */
   --border-radius: 8px;
   --transition: all 0.3s ease;
