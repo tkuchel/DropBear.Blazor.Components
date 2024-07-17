@@ -1,6 +1,6 @@
 ﻿namespace DropBear.Blazor.Components.Data;
 
-public abstract class ColumnDefinition<T>
+public class ColumnDefinition<T>
 {
     public string Title { get; set; } = "";
     public string Field { get; set; } = "";
