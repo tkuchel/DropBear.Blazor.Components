@@ -1,9 +1,16 @@
-﻿namespace DropBear.Blazor.Components.Data;
+﻿#region
 
-public class ColumnDefinition<T>
+using Microsoft.AspNetCore.Components;
+
+#endregion
+
+namespace DropBear.Blazor.Components.Data;
+
+public class ColumnDefinition<TItem>
 {
-    public string Title { get; set; } = "";
-    public string Field { get; set; } = "";
-    public string IconClass { get; set; } = "";
-    public Func<T, object?> ValueGetter { get; set; } = item => item;
+    public string Title { get; set; } = string.Empty;
+    public string Field { get; set; } = string.Empty;
+    public string IconClass { get; set; } = string.Empty;
+    public Func<TItem, object?> ValueGetter { get; set; } = _ => null;
+    public RenderFragment<TItem>? CellTemplate { get; set; }
 }

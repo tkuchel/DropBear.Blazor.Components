@@ -25,6 +25,9 @@ public partial class StandardDataGrid<TItem>
     [Parameter] public EventCallback<TItem> OnEditClick { get; set; }
     [Parameter] public EventCallback<TItem> OnDeleteClick { get; set; }
     [Parameter] public EventCallback<List<TItem>> OnSelectionChanged { get; set; }
+    [Parameter] public RenderFragment? EmptyTemplate { get; set; }
+    [Parameter] public RenderFragment? LoadingTemplate { get; set; }
+    [Parameter] public bool IsLoading { get; set; }
 
     private string SearchTerm { get; set; } = "";
     private int CurrentPage { get; set; } = 1;
@@ -37,37 +40,45 @@ public partial class StandardDataGrid<TItem>
     {
         get
         {
-            if (Items is not null)
+            if (Items is null || !Items.Any())
             {
-                return Items
-                    .Where(item => Columns is not null && (string.IsNullOrEmpty(SearchTerm) || Columns.Exists(c =>
-                        c.ValueGetter(item)!.ToString()!.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))))
-                    .OrderBy(
-                        item =>
-                        {
-                            return Columns?.First(c => c.Field == SortColumn).ValueGetter(item);
-                        })
-                    .Skip((CurrentPage - 1) * ItemsPerPage)
-                    .Take(ItemsPerPage);
+                return Array.Empty<TItem>();
             }
 
-            return Array.Empty<TItem>();
+            var query = Items.AsEnumerable();
+
+            // Apply search filter
+            if (!string.IsNullOrEmpty(SearchTerm) && Columns is not null && Columns.Count is not 0)
+            {
+                query = query.Where(item => Columns.Exists(c =>
+                {
+                    var value = c.ValueGetter(item);
+                    return value is not null &&
+                           value.ToString()!.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase);
+                }));
+            }
+
+            // Apply sorting
+            if (!string.IsNullOrEmpty(SortColumn) && Columns is not null)
+            {
+                var sortColumn = Columns.Find(c => c.Field == SortColumn);
+                if (sortColumn is not null)
+                {
+                    query = IsSortAscending
+                        ? query.OrderBy(item => sortColumn.ValueGetter(item) ?? string.Empty)
+                        : query.OrderByDescending(item => sortColumn.ValueGetter(item) ?? string.Empty);
+                }
+            }
+
+            // Apply pagination
+            return query
+                .Skip((CurrentPage - 1) * ItemsPerPage)
+                .Take(ItemsPerPage)
+                .ToList();
         }
     }
 
-    private int TotalPages
-    {
-        get
-        {
-            if (Items is not null)
-            {
-                return (int)Math.Ceiling(Items.Count() / (double)ItemsPerPage);
-            }
-
-            return 0;
-        }
-    }
-
+    private int TotalPages => Items is null ? 0 : (int)Math.Ceiling(Items.Count() / (double)ItemsPerPage);
     private bool CanGoToPreviousPage => CurrentPage > 1;
     private bool CanGoToNextPage => CurrentPage < TotalPages;
 
@@ -77,14 +88,11 @@ public partial class StandardDataGrid<TItem>
         set
         {
             SelectedItems.Clear();
-            if (value)
+            if (value && Items is not null)
             {
-                if (Items is not null)
+                foreach (var item in Items)
                 {
-                    foreach (var item in Items)
-                    {
-                        SelectedItems.Add(item);
-                    }
+                    SelectedItems.Add(item);
                 }
             }
 
@@ -143,6 +151,14 @@ public partial class StandardDataGrid<TItem>
         if (CanGoToNextPage)
         {
             CurrentPage++;
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (Items is not null && !Items.Any())
+        {
+            CurrentPage = 1;
         }
     }
 }
