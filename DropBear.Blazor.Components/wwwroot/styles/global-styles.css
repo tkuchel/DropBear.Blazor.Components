@@ -21,14 +21,19 @@
   --var-clr-rock-blue: #a4b1cd;
   --var-clr-confirmation: #9b59b6;
 
-  /* Dark mode colors */
-  --clr-background: var(--var-clr-dark-background);
-  --clr-card-bg: var(--var-clr-mine-shaft);
-  --clr-heading: var(--var-clr-silver-sand);
-  --clr-text: var(--var-clr-rock-blue);
-  --clr-primary: var(--var-clr-malibu);
-  --clr-secondary: var(--var-clr-cornflower-blue);
-  --clr-border: var(--var-clr-silver-sand);
+  /* Theme variables - default to dark theme */
+  --clr-background: #1e1f22;
+  --clr-surface: #2b2d31;
+  --clr-surface-light: #3a3d44;
+  --clr-surface-lighter: #454950;
+  --clr-primary: #4ebafd;
+  --clr-secondary: #8552f8;
+  --clr-success: #7cd651;
+  --clr-warning: #ffd14d;
+  --clr-error: #ff5757;
+  --clr-text: #ffffff;
+  --clr-text-muted: #a4b1cd;
+  --clr-overlay: rgba(0, 0, 0, 0.7);
 
   /* Light mode colors */
   --clr-light-background: var(--var-clr-silver-sand);
@@ -39,10 +44,6 @@
   --clr-light-secondary: var(--var-clr-cornflower-blue);
   --clr-light-border: var(--var-clr-silver-sand);
 
-  /* Shared variables */
-  --clr-success: var(--var-clr-pastel-green);
-  --clr-warning: var(--var-clr-mustard);
-  --clr-error: var(--var-clr-persimmon);
 
   /* Header and footer background colors */
   --clr-header-bg: rgba(255, 255, 255, 0.05);
@@ -50,30 +51,21 @@
   --clr-light-header-bg: rgba(0, 0, 0, 0.05);
   --clr-light-footer-bg: rgba(0, 0, 0, 0.05);
 
-  /* Spacing variables */
+  /* Global variables */
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 0.75rem;
   --spacing-lg: 1rem;
-
-  /* Other variables */
-  --border-radius: 12px;
+  --spacing-xl: 1.5rem;
 
   /*Additional Colors*/
-
-  --clr-surface: #2b2d31;
-  --clr-surface-light: #3f4147;
-  --clr-surface-lighter: #454950;
   --clr-text-light: #ffffff;
   --clr-admin: #7cd651;
   --clr-user: #ffd14d;
   --clr-danger: #ff5757;
-  --clr-text-muted: #a4b1cd;
   --clr-info: #4ebafd;
-  --clr-overlay: rgba(0, 0, 0, 0.7);
-
-  /*Spacing and Border Radius*/
-  --transition: all 0.3s ease;
 
   /*Context Menu Colors*/
   --context-menu-bg: #2b2d31;
@@ -100,4 +92,6 @@ body {
   color: var(--var-clr-mine-shaft);
   line-height: 1.6;
   padding: 2rem;
+  font-size: 14px;
+  margin: 0;
 }
