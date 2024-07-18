@@ -31,7 +31,7 @@ h2 {
   border-radius: var(--border-radius);
   border: none;
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--transition), transform 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -42,11 +42,11 @@ h2 {
 
 .btn-text {
   background-color: transparent;
-  color: var(--var-clr-mine-shaft);
+  color: var(--clr-text);
 }
 
 .btn:hover {
-  filter: brightness(1.1);
+  transform: scale(1.05);
 }
 
 .btn:focus {
@@ -64,9 +64,19 @@ h2 {
   color: var(--clr-surface);
 }
 
+.btn-primary:hover {
+  background-color: var(--clr-primary-hover);
+  filter: brightness(1.1);
+}
+
 .btn-secondary {
   background-color: var(--clr-secondary);
   color: var(--clr-surface);
+}
+
+.btn-secondary:hover {
+  background-color: var(--clr-secondary-hover);
+  filter: brightness(1.1);
 }
 
 .btn-outline {
@@ -78,11 +88,17 @@ h2 {
 .btn-outline:hover {
   background-color: var(--clr-primary);
   color: var(--clr-surface);
+  filter: brightness(1.1);
 }
 
 .btn-danger {
   background-color: var(--clr-danger);
   color: var(--clr-surface);
+}
+
+.btn-danger:hover {
+  background-color: var(--clr-danger-hover);
+  filter: brightness(1.1);
 }
 
 .btn-icon {
@@ -94,6 +110,11 @@ h2 {
   border-radius: 50%;
   background-color: var(--clr-surface);
   color: var(--clr-text);
+}
+
+.btn-icon-only:hover {
+  background-color: var(--clr-surface-hover);
+  filter: brightness(1.1);
 }
 
 .btn-sm {

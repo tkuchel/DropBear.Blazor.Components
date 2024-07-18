@@ -20,7 +20,7 @@
 }
 
 .prompt-card {
-  background-color: var(--var-clr-mine-shaft);
+  background-color: var(--clr-mine-shaft);
   border: none;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -52,7 +52,7 @@
 }
 
 .card-text {
-  color: var(--var-clr-silver-sand);
+  color: var(--clr-silver-sand);
   margin-bottom: 1.75rem;
   font-weight: 300;
   line-height: 1.6;
@@ -81,61 +81,61 @@
 
 /* PromptType specific styles */
 .prompt-card.information {
-  border-top: 4px solid var(--var-clr-malibu);
+  border-top: 4px solid var(--clr-malibu);
 }
 
 .prompt-card.warning {
-  border-top: 4px solid var(--var-clr-mustard);
+  border-top: 4px solid var(--clr-mustard);
 }
 
 .prompt-card.error {
-  border-top: 4px solid var(--var-clr-persimmon);
+  border-top: 4px solid var(--clr-persimmon);
 }
 
 .prompt-card.success {
-  border-top: 4px solid var(--var-clr-pastel-green);
+  border-top: 4px solid var(--clr-pastel-green);
 }
 
 .information .card-header i {
-  color: var(--var-clr-malibu);
+  color: var(--clr-malibu);
 }
 
 .warning .card-header i {
-  color: var(--var-clr-mustard);
+  color: var(--clr-mustard);
 }
 
 .error .card-header i {
-  color: var(--var-clr-persimmon);
+  color: var(--clr-persimmon);
 }
 
 .success .card-header i {
-  color: var(--var-clr-pastel-green);
+  color: var(--clr-pastel-green);
 }
 
 /* Button styles */
 .information .btn-primary {
-  background-color: var(--var-clr-malibu);
-  color: var(--var-clr-mine-shaft);
+  background-color: var(--clr-malibu);
+  color: var(--clr-mine-shaft);
 }
 
 .warning .btn-primary {
-  background-color: var(--var-clr-mustard);
-  color: var(--var-clr-mine-shaft);
+  background-color: var(--clr-mustard);
+  color: var(--clr-mine-shaft);
 }
 
 .error .btn-primary {
-  background-color: var(--var-clr-persimmon);
+  background-color: var(--clr-persimmon);
   color: white;
 }
 
 .success .btn-primary {
-  background-color: var(--var-clr-pastel-green);
-  color: var(--var-clr-mine-shaft);
+  background-color: var(--clr-pastel-green);
+  color: var(--clr-mine-shaft);
 }
 
 .btn-secondary {
   background-color: rgba(255, 255, 255, 0.1);
-  color: var(--var-clr-silver-sand);
+  color: var(--clr-silver-sand);
 }
 
 .btn-secondary:hover {

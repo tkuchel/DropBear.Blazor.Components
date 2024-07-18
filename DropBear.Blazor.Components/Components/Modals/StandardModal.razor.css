@@ -78,7 +78,7 @@
 }
 
 .btn {
-  font-family: var(--font-family, 'Poppins', sans-serif);
+  font-family: var(--font-family, 'Poppins', sans-serif), sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.6rem 1.2rem;
