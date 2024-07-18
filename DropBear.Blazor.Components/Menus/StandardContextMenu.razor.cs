@@ -30,9 +30,18 @@ public partial class StandardContextMenu : ComponentBase
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && !IsSubmenu)
+        if (firstRender)
         {
-            await JS.InvokeVoidAsync("contextMenuInterop.initialize", _menuElement, DotNetObjectReference.Create(this));
+            try
+            {
+                await JS.InvokeVoidAsync("ContextMenuInterop.initialize", _menuElement,
+                    DotNetObjectReference.Create(this));
+            }
+            catch (JSException ex)
+            {
+                await Console.Error.WriteLineAsync($"Failed to initialize context menu: {ex.Message}");
+                // Handle the error appropriately
+            }
         }
     }
 

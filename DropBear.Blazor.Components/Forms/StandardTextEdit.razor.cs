@@ -14,16 +14,16 @@ public partial class StandardTextEdit : InputBase<string>
     [Parameter] public string Label { get; set; } = string.Empty;
     [Parameter] public string Placeholder { get; set; } = string.Empty;
     [Parameter] public string Type { get; set; } = "text";
-    [Parameter] public bool IsDisabled { get; set; }
-    [Parameter] public bool IsError { get; set; }
-    [Parameter] public bool IsValid { get; set; }
+    [Parameter] public bool IsDisabled { get; set; } = false;
+    [Parameter] public bool IsError { get; set; } = false;
+    [Parameter] public bool IsValid { get; set; } = false;
     [Parameter] public string ErrorMessage { get; set; } = string.Empty;
     [Parameter] public string ValidMessage { get; set; } = string.Empty;
-    [Parameter] public bool ShowIcon { get; set; }
+    [Parameter] public bool ShowIcon { get; set; } = false;
     [Parameter] public string IconClass { get; set; } = "fas fa-user";
-    [Parameter] public bool ShowCharacterCount { get; set; }
-    [Parameter] public int? MaxLength { get; set; }
-    [Parameter] public bool IsLightMode { get; set; }
+    [Parameter] public bool ShowCharacterCount { get; set; } = false;
+    [Parameter] public int? MaxLength { get; set; } = null;
+    [Parameter] public bool IsLightMode { get; set; } = false;
     [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
     [Parameter] public EventCallback<FocusEventArgs> OnBlur { get; set; }
     [Parameter] public EventCallback OnIconClick { get; set; }
@@ -36,7 +36,7 @@ public partial class StandardTextEdit : InputBase<string>
             classes.Add("light-mode");
         }
 
-        return string.Join(" ", classes);
+        return string.Join(' ', classes);
     }
 
     private string GetInputClasses()
@@ -52,7 +52,7 @@ public partial class StandardTextEdit : InputBase<string>
             classes.Add("valid");
         }
 
-        return string.Join(" ", classes);
+        return string.Join(' ', classes);
     }
 
     private async Task OnFocusHandler(FocusEventArgs args)
@@ -70,10 +70,10 @@ public partial class StandardTextEdit : InputBase<string>
         await OnIconClick.InvokeAsync();
     }
 
-    protected override bool TryParseValueFromString(string value, out string result, out string validationErrorMessage)
+    protected override bool TryParseValueFromString(string? value, out string result, out string validationErrorMessage)
     {
-        result = value;
-        validationErrorMessage = null;
+        result = value ?? string.Empty;
+        validationErrorMessage = string.Empty;
         return true;
     }
 }
