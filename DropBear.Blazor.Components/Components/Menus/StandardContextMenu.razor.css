@@ -1,52 +1,54 @@
 ﻿
 .context-menu {
   position: fixed;
-  background-color: var(--context-menu-bg);
-  color: var(--context-menu-text);
-  border-radius: var(--context-menu-border-radius);
-  padding: var(--context-menu-padding);
-  min-width: var(--context-menu-min-width);
-  box-shadow: var(--context-menu-shadow);
-  z-index: var(--context-menu-z-index);
-  font-family: var(--context-menu-font-family);
-  font-size: var(--context-menu-font-size);
+  background-color: var(--context-menu-bg, #2b2d31);
+  color: var(--context-menu-text, #a4b1cd);
+  border-radius: var(--context-menu-border-radius, 4px);
+  padding: var(--context-menu-padding, 8px 0);
+  min-width: var(--context-menu-min-width, 180px);
+  box-shadow: var(--context-menu-shadow, 0 2px 10px rgba(0, 0, 0, 0.1));
+  z-index: var(--context-menu-z-index, 1000);
+  font-family: var(--context-menu-font-family, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif), sans-serif;
+  font-size: var(--context-menu-font-size, 14px);
   opacity: 0;
+  visibility: hidden;
   transform: scale(0.95);
-  transition: var(--context-menu-transition);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
 
 .context-menu.active {
   opacity: 1;
+  visibility: visible;
   transform: scale(1);
 }
 
 .context-menu-item {
   display: flex;
   align-items: center;
-  padding: var(--context-menu-item-padding);
+  padding: var(--context-menu-item-padding, 8px 12px);
   cursor: pointer;
-  transition: var(--context-menu-transition);
+  transition: background-color 0.2s ease;
 }
 
 .context-menu-item:hover {
-  background-color: var(--context-menu-hover-bg);
-  color: var(--context-menu-hover-text);
+  background-color: var(--context-menu-hover-bg, #3a3d42);
+  color: var(--context-menu-hover-text, #ffffff);
 }
 
 .context-menu-item.disabled {
-  color: var(--context-menu-disabled-text);
+  color: var(--context-menu-disabled-text, #8e9297);
   cursor: default;
 }
 
 .context-menu-separator {
   height: 1px;
-  background-color: var(--context-menu-separator);
+  background-color: var(--context-menu-separator, #40444b);
   margin: 4px 0;
 }
 
 .context-menu-item i {
   margin-right: 8px;
-  color: var(--context-menu-icon-color);
+  color: var(--context-menu-icon-color, #b9bbbe);
   width: 16px;
   text-align: center;
 }

@@ -8,18 +8,18 @@
 </CascadingValue>
 
 <div @ref="_menuElement"
-     class="context-menu @(IsVisible ? "visible" : "hidden")"
-     style="left: @(_left)px; top: @(_top)px;"
+     class="context-menu @(IsVisible ? "active" : "")"
+     style="left: @(_left)px; top: @(_top)px; background-color: @BackgroundColor; color: @TextColor;"
      @onclick:stopPropagation>
     @foreach (var item in MenuItems)
     {
         if (item.IsSeparator)
         {
-            <div class="menu-separator"></div>
+            <div class="context-menu-separator"></div>
         }
         else
         {
-            <div class="menu-item" @onclick="() => OnItemClick(item)">
+            <div class="context-menu-item @(item.HasSubmenu ? "has-submenu" : "")" @onclick="() => OnItemClick(item)">
                 @if (!string.IsNullOrEmpty(item.IconClass))
                 {
                     <i class="@item.IconClass"></i>
