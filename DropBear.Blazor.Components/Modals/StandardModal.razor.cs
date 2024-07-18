@@ -35,7 +35,7 @@ public partial class StandardModal : ComponentBase
     {
         IsVisible = true;
         await Task.Delay(10); // Allow time for the DOM to update
-        await JsRuntime.InvokeVoidAsync("standardModal.show", _modalElement);
+        await JsRuntime.InvokeVoidAsync("StandardModal.show", _modalElement);
     }
 
     public void Show()
@@ -46,7 +46,7 @@ public partial class StandardModal : ComponentBase
     // ReSharper disable once MemberCanBePrivate.Global
     public async Task HideAsync()
     {
-        await JsRuntime.InvokeVoidAsync("standardModal.hide", _modalElement);
+        await JsRuntime.InvokeVoidAsync("StandardModal.hide", _modalElement);
         IsVisible = false;
     }
 
@@ -86,7 +86,7 @@ public partial class StandardModal : ComponentBase
     {
         if (firstRender)
         {
-            await JsRuntime.InvokeVoidAsync("standardModal.initialize", _modalElement);
+            await JsRuntime.InvokeVoidAsync("StandardModal.initialize", _modalElement);
         }
     }
 }

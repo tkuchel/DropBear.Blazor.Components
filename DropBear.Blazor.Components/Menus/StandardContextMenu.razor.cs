@@ -53,8 +53,8 @@ public partial class StandardContextMenu : ComponentBase
         IsVisible = true;
         StateHasChanged();
         await Task.Delay(10); // Allow time for the menu to render
-        await JS.InvokeVoidAsync("contextMenuInterop.adjustPosition", _menuElement);
-        await JS.InvokeVoidAsync("contextMenuInterop.focusMenu", _menuElement);
+        await JS.InvokeVoidAsync("ContextMenuInterop.adjustPosition", _menuElement);
+        await JS.InvokeVoidAsync("ContextMenuInterop.focusMenu", _menuElement);
     }
 
     public async Task ShowAtPosition(double left, double top)
