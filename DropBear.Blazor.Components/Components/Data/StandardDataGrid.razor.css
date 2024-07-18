@@ -214,19 +214,43 @@
 }
 
 .datagrid-row.selected .datagrid-cell {
-  background-color: rgba(78, 186, 253, 0.2);
+  background-color: rgba(78, 186, 253, 0.2) !important;
+  position: relative;
 }
 
 .datagrid-row.selected:hover .datagrid-cell {
-  background-color: rgba(78, 186, 253, 0.3);
+  background-color: rgba(78, 186, 253, 0.3) !important;
+}
+
+/* Ensure the selection style overrides striped row styles */
+.datagrid-row:nth-child(even).selected .datagrid-cell,
+.datagrid-row:nth-child(odd).selected .datagrid-cell {
+  background-color: rgba(78, 186, 253, 0.2) !important;
+}
+
+/* Add a left border to visually indicate selected rows */
+.datagrid-row.selected .datagrid-cell:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--clr-primary);
+}
+
+/* Ensure hover effects don't override selection */
+.datagrid-row.selected:hover .datagrid-cell,
+.datagrid-row:hover .datagrid-cell {
+  background-color: rgba(78, 186, 253, 0.3) !important;
 }
 
 .theme-light .datagrid-row.selected .datagrid-cell {
-  background-color: rgba(78, 186, 253, 0.15);
+  background-color: rgba(78, 186, 253, 0.15) !important;
 }
 
 .theme-light .datagrid-row.selected:hover .datagrid-cell {
-  background-color: rgba(78, 186, 253, 0.25);
+  background-color: rgba(78, 186, 253, 0.25) !important;
 }
 
 .btn-icon {
