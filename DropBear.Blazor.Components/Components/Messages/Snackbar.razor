@@ -2,9 +2,9 @@
 @using Microsoft.JSInterop
 @inherits ComponentBase
 
-namespace DropBear.Blazor.Components.Components.Messages;
+@namespace DropBear.Blazor.Components.Components.Messages;
 
-<div class="snackbar-container" @ref="_snackbarContainerRef">
+<div class="snackbar-container">
     @foreach (var snackbar in _activeSnackbars)
     {
         <div class="snackbar @snackbar.Type.ToString().ToLower()" @key="snackbar.Id" data-snackbar-id="@snackbar.Id">

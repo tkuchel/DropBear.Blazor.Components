@@ -12,17 +12,12 @@ namespace DropBear.Blazor.Components.Components.Messages;
 public partial class Snackbar : ComponentBase, IAsyncDisposable
 {
     private readonly List<SnackbarItem> _activeSnackbars = [];
-    private IJSObjectReference? _module;
-    private ElementReference _snackbarContainerRef;
 
     #region IAsyncDisposable Members
 
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
-        if (_module is not null)
-        {
-            await _module.DisposeAsync();
-        }
+        return ValueTask.CompletedTask;
     }
 
     #endregion
@@ -31,8 +26,6 @@ public partial class Snackbar : ComponentBase, IAsyncDisposable
     {
         if (firstRender)
         {
-            _module = await JsRuntime.InvokeAsync<IJSObjectReference>("import",
-                "./_content/DropBear.Blazor.Components/snackbarInterop.js");
             await InitializeJavaScript();
         }
     }
@@ -40,26 +33,26 @@ public partial class Snackbar : ComponentBase, IAsyncDisposable
     private async Task InitializeJavaScript()
     {
         await JsRuntime.InvokeVoidAsync("eval", @"
-                window.snackbarInterop = {
-                    animateProgress: function(snackbarId, duration) {
-                        const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
-                        if (snackbar) {
-                            const progress = snackbar.querySelector('.snackbar-progress');
-                            if (progress) {
-                                progress.style.transition = `width ${duration}ms linear`;
-                                progress.style.width = '0%';
-                            }
-                        }
-                    },
-                    removeSnackbar: function(snackbarId) {
-                        const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
-                        if (snackbar) {
-                            snackbar.style.animation = 'slideOutAndShrink 0.3s ease-out forwards';
-                            setTimeout(() => snackbar.remove(), 300);
+            window.snackbarInterop = {
+                animateProgress: function(snackbarId, duration) {
+                    const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
+                    if (snackbar) {
+                        const progress = snackbar.querySelector('.snackbar-progress');
+                        if (progress) {
+                            progress.style.transition = `width ${duration}ms linear`;
+                            progress.style.width = '0%';
                         }
                     }
-                };
-            ");
+                },
+                removeSnackbar: function(snackbarId) {
+                    const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
+                    if (snackbar) {
+                        snackbar.style.animation = 'slideOutAndShrink 0.3s ease-out forwards';
+                        setTimeout(() => snackbar.remove(), 300);
+                    }
+                }
+            };
+        ");
     }
 
     public async Task AddSnackbar(SnackbarItem snackbar)
