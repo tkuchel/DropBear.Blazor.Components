@@ -1,6 +1,8 @@
 ﻿#region
 
+using DropBear.Blazor.Components.Menus;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 #endregion
 
@@ -35,6 +37,16 @@ public partial class StandardDataGrid<TItem>
     private string SortColumn { get; set; } = string.Empty;
     private bool IsSortAscending { get; set; } = true;
     private HashSet<TItem> SelectedItems { get; } = [];
+#pragma warning disable CA1002
+    [Parameter] public List<ContextMenuItem> ContextMenuItems { get; set; } = [];
+#pragma warning restore CA1002
+    [Parameter] public EventCallback<(ContextMenuItem, TItem)> OnContextMenuItemClick { get; set; }
+    [Parameter] public string ContextMenuBackgroundColor { get; set; } = "#2b2d31";
+    [Parameter] public string ContextMenuTextColor { get; set; } = "#a4b1cd";
+    [Parameter] public string ContextMenuHighlightColor { get; set; } = "#4ebafd";
+
+    private StandardContextMenu ContextMenu { get; set; } = new();
+    private TItem CurrentContextMenuItem { get; set; } = default!;
 
     private IEnumerable<TItem> FilteredAndSortedItems
     {
@@ -160,5 +172,16 @@ public partial class StandardDataGrid<TItem>
         {
             CurrentPage = 1;
         }
+    }
+
+    private async Task ShowContextMenu(MouseEventArgs e, TItem item)
+    {
+        CurrentContextMenuItem = item;
+        await ContextMenu.ShowAtPosition(e.ClientX, e.ClientY);
+    }
+
+    private async Task HandleContextMenuItemClick(ContextMenuItem menuItem)
+    {
+        await OnContextMenuItemClick.InvokeAsync((menuItem, CurrentContextMenuItem));
     }
 }

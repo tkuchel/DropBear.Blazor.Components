@@ -1,4 +1,5 @@
 ﻿@inherits ComponentBase
+@using DropBear.Blazor.Components.Menus
 @namespace DropBear.Blazor.Components.Data
 @typeparam TItem where TItem : notnull
 
@@ -74,7 +75,10 @@
                 </div>
                 @foreach (var item in FilteredAndSortedItems)
                 {
-                    <div class="datagrid-row @(SelectedItems.Contains(item) ? "selected" : "")" role="row">
+                    <div class="datagrid-row @(SelectedItems.Contains(item) ? "selected" : "")"
+                         role="row"
+                         @oncontextmenu="@(e => ShowContextMenu(e, item))"
+                         @oncontextmenu:preventDefault>
                         @if (AllowSelect)
                         {
                             <div class="datagrid-cell checkbox" role="cell">
@@ -142,4 +146,11 @@
             </div>
         </div>
     }
+    <StandardContextMenu @ref="ContextMenu"
+                         MenuItems="@ContextMenuItems"
+                         OnMenuItemClick="@HandleContextMenuItemClick"
+                         BackgroundColor="@ContextMenuBackgroundColor"
+                         TextColor="@ContextMenuTextColor"
+                         HighlightColor="@ContextMenuHighlightColor">
+    </StandardContextMenu>
 </div>

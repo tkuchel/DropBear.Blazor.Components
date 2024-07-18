@@ -8,7 +8,7 @@ using Microsoft.JSInterop;
 
 namespace DropBear.Blazor.Components.Menus;
 
-public abstract partial class ContextMenu : ComponentBase
+public partial class StandardContextMenu : ComponentBase
 {
     private double _left;
     private ElementReference _menuElement;
