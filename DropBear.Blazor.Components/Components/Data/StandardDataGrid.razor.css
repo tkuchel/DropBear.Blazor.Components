@@ -213,6 +213,22 @@
   opacity: 1;
 }
 
+.datagrid-row.selected .datagrid-cell {
+  background-color: rgba(78, 186, 253, 0.2);
+}
+
+.datagrid-row.selected:hover .datagrid-cell {
+  background-color: rgba(78, 186, 253, 0.3);
+}
+
+.theme-light .datagrid-row.selected .datagrid-cell {
+  background-color: rgba(78, 186, 253, 0.15);
+}
+
+.theme-light .datagrid-row.selected:hover .datagrid-cell {
+  background-color: rgba(78, 186, 253, 0.25);
+}
+
 .btn-icon {
   padding: var(--spacing-xs);
   background-color: transparent;
@@ -259,14 +275,38 @@
 }
 
 .items-per-page select {
-  padding: 0.4rem 0.8rem;
   border-radius: var(--border-radius);
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.7rem top 50%;
   background-size: 0.65rem auto;
-  padding-right: 2rem;
+  padding: 0.4rem 2rem 0.4rem 0.8rem;
+}
+
+.datagrid-row.selected:not(.header) .datagrid-cell:first-child::before,
+.datagrid-row:not(.header):hover .datagrid-cell:first-child::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--clr-primary),
+    var(--clr-secondary)
+  );
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.datagrid-row.selected:not(.header) .datagrid-cell:first-child::before,
+.datagrid-row:not(.header):hover .datagrid-cell:first-child::before {
+  transform: translateX(0);
+  animation: shimmer 2s infinite linear;
 }
 
 @media (max-width: 768px) {
