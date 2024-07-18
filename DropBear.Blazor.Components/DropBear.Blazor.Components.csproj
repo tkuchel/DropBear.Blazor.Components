@@ -1,38 +1,75 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>2024.7.0</Version>
-        <PackageId>DropBear.Blazor.Components</PackageId>
-        <Authors>Terrence Kuchel (DropBear)</Authors>
-        <Company>Terrence Kuchel (DropBear)</Company>
-        <Description>Custom Blazor components and UI elements</Description>
-        <PackageTags>blazor;components;ui;dropbear</PackageTags>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>2024.7.0</Version>
+    <PackageId>DropBear.Blazor.Components</PackageId>
+    <Authors>Terrence Kuchel (DropBear)</Authors>
+    <Company>Terrence Kuchel (DropBear)</Company>
+    <Description>Custom Blazor components and UI elements</Description>
+    <PackageTags>blazor;components;ui;dropbear</PackageTags>
+  </PropertyGroup>
 
 
-    <ItemGroup>
-        <SupportedPlatform Include="browser"/>
-    </ItemGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser"/>
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Meziantou.DotNet.CodingStandard" Version="1.0.125">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.7" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Meziantou.DotNet.CodingStandard" Version="1.0.125">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.7"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <None Include="wwwroot\scripts\ContextMenu.js" />
-      <None Include="wwwroot\scripts\FileUploader.js" />
-      <None Include="wwwroot\scripts\Snackbar.js" />
-      <None Include="wwwroot\styles\global-styles.css">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\scripts\ContextMenu.js"/>
+    <None Include="wwwroot\scripts\FileUploader.js"/>
+    <None Include="wwwroot\scripts\Snackbar.js"/>
+    <None Include="wwwroot\styles\global-styles.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\"/>
+    <Folder Include="wwwroot\scripts\"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Components\Buttons\StandardButton.razor"/>
+    <AdditionalFiles Include="Components\Cards\PromptCard.razor"/>
+    <AdditionalFiles Include="Components\Cards\StandardCard.razor"/>
+    <AdditionalFiles Include="Components\Data\StandardDataGrid.razor"/>
+    <AdditionalFiles Include="Components\Downloader\FileDownloader.razor"/>
+    <AdditionalFiles Include="Components\Loaders\LongWaitProgressBar.razor"/>
+    <AdditionalFiles Include="Components\Loaders\ShortWaitSpinner.razor"/>
+    <AdditionalFiles Include="Components\Menus\ContextSubmenu.razor"/>
+    <AdditionalFiles Include="Components\Menus\StandardContextMenu.razor"/>
+    <AdditionalFiles Include="Components\Messages\AlertMessage.razor"/>
+    <AdditionalFiles Include="Components\Messages\Snackbar.razor"/>
+    <AdditionalFiles Include="Components\Modals\StandardModal.razor"/>
+    <AdditionalFiles Include="Components\Uploader\FileUploader.razor"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Cards\PromptCard.razor"/>
+    <UpToDateCheckInput Remove="Cards\StandardCard.razor"/>
+    <UpToDateCheckInput Remove="Data\StandardDataGrid.razor"/>
+    <UpToDateCheckInput Remove="Downloader\FileDownloader.razor"/>
+    <UpToDateCheckInput Remove="Forms\StandardTextEdit.razor"/>
+    <UpToDateCheckInput Remove="Loaders\LongWaitProgressBar.razor"/>
+    <UpToDateCheckInput Remove="Loaders\ShortWaitSpinner.razor"/>
+    <UpToDateCheckInput Remove="Menus\ContextSubmenu.razor"/>
+    <UpToDateCheckInput Remove="Menus\StandardContextMenu.razor"/>
+    <UpToDateCheckInput Remove="Messages\AlertMessage.razor"/>
+    <UpToDateCheckInput Remove="Messages\Snackbar.razor"/>
+    <UpToDateCheckInput Remove="Modals\StandardModal.razor"/>
+    <UpToDateCheckInput Remove="Uploader\FileUploader.razor"/>
+  </ItemGroup>
 
 </Project>

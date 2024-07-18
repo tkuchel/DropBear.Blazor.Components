@@ -1,0 +1,35 @@
+﻿@namespace DropBear.Blazor.Components.Components.Menus
+@using Microsoft.JSInterop
+@inherits ComponentBase
+@inject IJSRuntime JsRuntime
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+<div @ref="_menuElement"
+     class="context-menu @(IsVisible ? "visible" : "hidden")"
+     style="left: @(_left)px; top: @(_top)px;"
+     @onclick:stopPropagation>
+    @foreach (var item in MenuItems)
+    {
+        if (item.IsSeparator)
+        {
+            <div class="menu-separator"></div>
+        }
+        else
+        {
+            <div class="menu-item" @onclick="() => OnItemClick(item)">
+                @if (!string.IsNullOrEmpty(item.IconClass))
+                {
+                    <i class="@item.IconClass"></i>
+                }
+                <span>@item.Text</span>
+                @if (item.HasSubmenu)
+                {
+                    <i class="fas fa-chevron-right submenu-indicator"></i>
+                }
+            </div>
+        }
+    }
+</div>

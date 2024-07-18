@@ -2,13 +2,13 @@
 
 public sealed class AlertService
 {
-    private readonly List<Messages.AlertMessage> _alerts = [];
+    private readonly List<Components.Messages.AlertMessage> _alerts = [];
 
     public EventHandler<AlertEventArgs>? OnChange { get; set; } = default!;
 
-    public IReadOnlyCollection<Messages.AlertMessage> Alerts => _alerts.AsReadOnly();
+    public IReadOnlyCollection<Components.Messages.AlertMessage> Alerts => _alerts.AsReadOnly();
 
-    public void RegisterAlert(Messages.AlertMessage alert)
+    public void RegisterAlert(Components.Messages.AlertMessage alert)
     {
         if (_alerts.Contains(alert))
         {
@@ -19,7 +19,7 @@ public sealed class AlertService
         OnChange?.Invoke(this, new AlertEventArgs());
     }
 
-    public void RemoveAlert(Messages.AlertMessage alert)
+    public void RemoveAlert(Components.Messages.AlertMessage alert)
     {
         if (_alerts.Remove(alert))
         {

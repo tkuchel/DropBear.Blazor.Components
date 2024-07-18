@@ -1,0 +1,27 @@
+﻿@inject IJSRuntime JsRuntime
+@using Microsoft.JSInterop
+@inherits ComponentBase
+
+namespace DropBear.Blazor.Components.Components.Messages;
+
+<div class="snackbar-container" @ref="_snackbarContainerRef">
+    @foreach (var snackbar in _activeSnackbars)
+    {
+        <div class="snackbar @snackbar.Type.ToString().ToLower()" @key="snackbar.Id" data-snackbar-id="@snackbar.Id">
+            <div class="snackbar-icon">
+                <i class="@GetIconClass(snackbar.Type)"></i>
+            </div>
+            <div class="snackbar-content">
+                <p class="snackbar-message">@snackbar.Message</p>
+            </div>
+            @if (snackbar.Action != null)
+            {
+                <button class="snackbar-action" @onclick="() => snackbar.Action.Handler()">
+                    @snackbar.Action.Text
+                </button>
+            }
+            <button class="snackbar-close" @onclick="() => RemoveSnackbar(snackbar.Id)">&times;</button>
+            <div class="snackbar-progress"></div>
+        </div>
+    }
+</div>

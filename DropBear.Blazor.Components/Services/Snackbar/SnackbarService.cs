@@ -8,9 +8,9 @@ namespace DropBear.Blazor.Components.Services.Snackbar;
 
 public class SnackbarService
 {
-    private Messages.Snackbar? _snackbarComponent;
+    private Components.Messages.Snackbar? _snackbarComponent;
 
-    public void SetSnackbarComponent(Messages.Snackbar snackbarComponent)
+    public void SetSnackbarComponent(Components.Messages.Snackbar snackbarComponent)
     {
         _snackbarComponent = snackbarComponent;
     }
