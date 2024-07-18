@@ -1,0 +1,31 @@
+﻿@inherits Microsoft.AspNetCore.Components.Forms.InputBase<string>
+
+<div class="custom-textbox @GetWrapperClasses()">
+    <input @attributes="AdditionalAttributes"
+           class="@GetInputClasses()"
+           @bind="CurrentValue"
+           @bind:event="oninput"
+           @onfocus="OnFocusHandler"
+           @onblur="OnBlurHandler"
+           id="@Id"
+           type="@Type"
+           placeholder=" "
+           disabled="@IsDisabled"/>
+    <label class="textbox-label" for="@Id">@Label</label>
+    @if (ShowIcon)
+    {
+        <i class="@IconClass textbox-icon" @onclick="OnIconClickHandler"></i>
+    }
+    @if (ShowCharacterCount)
+    {
+        <span class="character-count">@CurrentValue?.Length/@MaxLength</span>
+    }
+    @if (IsError)
+    {
+        <div class="error-message">@ErrorMessage</div>
+    }
+    @if (IsValid)
+    {
+        <div class="valid-message">@ValidMessage</div>
+    }
+</div>
