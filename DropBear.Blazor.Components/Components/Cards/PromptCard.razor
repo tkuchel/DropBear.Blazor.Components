@@ -3,22 +3,22 @@
 
 <div class="@GetOverlayClasses()">
     <div class="@GetCardClasses()">
-        <div class="card-header">
+        <div class="prompt-card-header">
             <i class="@GetIconClass()" aria-hidden="true"></i>
-            <h5 class="card-title">@Title</h5>
+            <h5 class="prompt-card-title">@Title</h5>
         </div>
-        <div class="card-body">
-            <p class="card-text">@Content</p>
-            <div class="button-group">
+        <div class="prompt-card-body">
+            <p class="prompt-card-text">@Content</p>
+            <div class="prompt-button-group">
                 @if (ShowConfirmButton)
                 {
-                    <button class="btn btn-primary custom-btn" @onclick="OnConfirmClick">
+                    <button class="btn btn-primary prompt-custom-btn" @onclick="OnConfirmClick">
                         <i class="@ConfirmIcon"></i> @ConfirmText
                     </button>
                 }
                 @if (ShowCancelButton)
                 {
-                    <button class="btn btn-secondary custom-btn" @onclick="OnCancelClick">
+                    <button class="btn btn-secondary prompt-custom-btn" @onclick="OnCancelClick">
                         <i class="@CancelIcon"></i> @CancelText
                     </button>
                 }

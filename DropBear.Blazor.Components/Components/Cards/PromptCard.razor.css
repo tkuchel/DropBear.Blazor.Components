@@ -1,5 +1,4 @@
 ﻿
-
 .prompt-card-overlay {
   position: fixed;
   top: 0;
@@ -40,55 +39,55 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.card-header {
+.prompt-card-header {
   display: flex;
   align-items: center;
   padding: 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.light-mode .card-header {
+.light-mode .prompt-card-header {
   border-bottom: 1px solid var(--clr-light-border);
 }
 
-.card-header i {
+.prompt-card-header i {
   font-size: 1.5rem;
   margin-right: 0.75rem;
 }
 
-.card-title {
+.prompt-card-title {
   margin: 0;
   font-weight: 600;
   font-size: 1.25rem;
   color: var(--clr-silver-sand);
 }
 
-.light-mode .card-title {
+.light-mode .prompt-card-title {
   color: var(--clr-light-text);
 }
 
-.card-body {
+.prompt-card-body {
   padding: 1.75rem;
 }
 
-.card-text {
+.prompt-card-text {
   color: var(--clr-silver-sand);
   margin-bottom: 1.75rem;
   font-weight: 300;
   line-height: 1.6;
 }
 
-.light-mode .card-text {
+.light-mode .prompt-card-text {
   color: var(--clr-light-text);
 }
 
-.button-group {
+.prompt-button-group {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
 }
 
-.custom-btn {
+.prompt-custom-btn {
   border: none;
   padding: 0.625rem 1.25rem;
   border-radius: 6px;
@@ -99,7 +98,7 @@
   gap: 8px;
 }
 
-.custom-btn:hover {
+.prompt-custom-btn:hover {
   transform: translateY(-2px);
 }
 
