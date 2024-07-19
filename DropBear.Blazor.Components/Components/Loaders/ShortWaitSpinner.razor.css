@@ -1,4 +1,5 @@
-﻿.loading-spinner-container {
+﻿/* ShortWaitSpinner.razor.css */
+.short-wait-spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,26 +7,26 @@
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
   line-height: 1.6;
   padding: 2rem;
 }
 
-.loading-card {
+.short-wait-loading-card {
   background-color: var(--clr-card-bg);
   border-radius: var(--border-radius);
   padding: var(--spacing-lg);
   width: 300px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
   text-align: center;
   transition: transform 0.3s ease;
 }
 
-.loading-card:hover {
+.short-wait-loading-card:hover {
   transform: translateY(-5px);
 }
 
-h3 {
+.short-wait-heading {
   color: var(--clr-heading);
   margin-bottom: var(--spacing-md);
   display: flex;
@@ -33,34 +34,34 @@ h3 {
   justify-content: center;
 }
 
-h3 i {
+.short-wait-heading i {
   margin-right: var(--spacing-sm);
   color: var(--clr-primary);
 }
 
-.loading-text {
-  color: var(--clr-heading, #ffffff);
+.short-wait-loading-text {
+  color: var(--clr-heading);
   font-size: 0.8rem;
   font-weight: 600;
   position: relative;
   z-index: 1;
 }
 
-p {
-  margin-top: var(--spacing-md, 1rem);
+.short-wait-paragraph {
+  margin-top: var(--spacing-md);
   font-size: 0.9rem;
-  color: var(--clr-text, #a4b1cd);
+  color: var(--clr-text);
 }
 
 /* Spinner Styles */
-.spinner-container {
+.short-wait-spinner-inner-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100px;
 }
 
-.spinner {
+.short-wait-spinner {
   width: 50px;
   height: 50px;
   border: 3px solid var(--clr-primary);
@@ -73,13 +74,14 @@ p {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
 /* Animated dots */
-.dots {
+.short-wait-dots {
   display: inline-block;
   width: 20px;
   text-align: left;
@@ -89,16 +91,17 @@ p {
   0% {
     content: ".";
   }
+
   33% {
     content: "..";
   }
+
   66% {
     content: "...";
   }
 }
 
-.dots::after {
+.short-wait-dots::after {
   content: ".";
   animation: ellipsis 1.5s infinite;
 }
-

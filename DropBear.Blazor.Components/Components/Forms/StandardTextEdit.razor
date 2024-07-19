@@ -1,7 +1,7 @@
 ﻿@inherits Microsoft.AspNetCore.Components.Forms.InputBase<string>
 @namespace DropBear.Blazor.Components.Components.Forms
 
-<div class="custom-textbox @GetWrapperClasses()">
+<div class="standard-textbox @GetWrapperClasses()">
     <input @attributes="AdditionalAttributes!"
            class="@GetInputClasses()"
            @bind="CurrentValue"
@@ -12,21 +12,21 @@
            type="@Type"
            placeholder=" "
            disabled="@IsDisabled"/>
-    <label class="textbox-label" for="@Id">@Label</label>
+    <label class="standard-textbox-label" for="@Id">@Label</label>
     @if (ShowIcon)
     {
-        <i class="@IconClass textbox-icon" @onclick="OnIconClickHandler"></i>
+        <i class="@IconClass standard-textbox-icon" @onclick="OnIconClickHandler"></i>
     }
     @if (ShowCharacterCount)
     {
-        <span class="character-count">@CurrentValue?.Length/@MaxLength</span>
+        <span class="standard-character-count">@CurrentValue?.Length/@MaxLength</span>
     }
     @if (IsError)
     {
-        <div class="error-message">@ErrorMessage</div>
+        <div class="standard-error-message">@ErrorMessage</div>
     }
     @if (IsValid)
     {
-        <div class="valid-message">@ValidMessage</div>
+        <div class="standard-valid-message">@ValidMessage</div>
     }
 </div>

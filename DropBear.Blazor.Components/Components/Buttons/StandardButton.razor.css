@@ -1,140 +1,35 @@
-﻿.button-showcase {
+﻿/* StandardButton.razor.css */
+.standard-button-showcase {
   max-width: 800px;
   margin: 0 auto;
 }
 
-h2 {
+.standard-button-header {
   color: var(--clr-text-muted);
   margin-top: 2rem;
 }
 
-.pad-left-5 {
+.standard-button-pad-left-5 {
   padding-left: 5px;
 }
 
-.pad-right-5 {
+.standard-button-pad-right-5 {
   padding-right: 5px;
 }
 
-.button-group {
+.standard-button-group {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
   flex-wrap: wrap;
 }
 
-.btn {
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius);
-  border: none;
-  cursor: pointer;
-  transition: var(--transition), transform 0.2s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  line-height: 1;
-  min-height: 2.5rem;
-}
-
-.btn-text {
-  background-color: transparent;
-  color: var(--clr-text);
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-.btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(78, 186, 253, 0.3);
-}
-
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.btn-primary {
+.standard-button-primary {
   background-color: var(--clr-primary);
   color: var(--clr-surface);
 }
 
-.btn-primary:hover {
+.standard-button-primary:hover {
   background-color: var(--clr-primary-hover);
   filter: brightness(1.1);
-}
-
-.btn-secondary {
-  background-color: var(--clr-secondary);
-  color: var(--clr-surface);
-}
-
-.btn-secondary:hover {
-  background-color: var(--clr-secondary-hover);
-  filter: brightness(1.1);
-}
-
-.btn-outline {
-  background-color: transparent;
-  color: var(--clr-primary);
-  border: 2px solid var(--clr-primary);
-}
-
-.btn-outline:hover {
-  background-color: var(--clr-primary);
-  color: var(--clr-surface);
-  filter: brightness(1.1);
-}
-
-.btn-danger {
-  background-color: var(--clr-danger);
-  color: var(--clr-surface);
-}
-
-.btn-danger:hover {
-  background-color: var(--clr-danger-hover);
-  filter: brightness(1.1);
-}
-
-.btn-icon {
-  gap: 0.5rem;
-}
-
-.btn-icon-only {
-  padding: 0.75rem;
-  border-radius: 50%;
-  background-color: var(--clr-surface);
-  color: var(--clr-text);
-}
-
-.btn-icon-only:hover {
-  background-color: var(--clr-surface-hover);
-  filter: brightness(1.1);
-}
-
-.btn-sm {
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  min-height: 2rem;
-}
-
-.btn-lg {
-  font-size: 1.125rem;
-  padding: 1rem 2rem;
-  min-height: 3rem;
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
-/* Add some spacing for better visibility in CodePen */
-.button-showcase > div {
-  margin-bottom: 2rem;
 }

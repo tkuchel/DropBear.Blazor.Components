@@ -1,9 +1,10 @@
-﻿.standard-card {
+﻿/* StandardCard.razor.css */
+.standard-card {
   background-color: var(--clr-card-bg);
   color: var(--clr-text);
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -11,7 +12,7 @@
 
 .standard-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgb(0 0 0 / 15%);
 }
 
 .standard-card-header {
@@ -58,30 +59,7 @@
   margin-top: auto;
 }
 
-.btn {
-  padding: var(--spacing-xs) var(--spacing-md);
-  border: none;
-  border-radius: var(--border-radius);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary {
-  background-color: var(--clr-primary);
-  color: var(--clr-card-bg);
-}
-
-.btn-primary:hover {
-  background-color: var(--clr-secondary);
-}
-
 /* Light mode styles */
-.light-mode {
-  background-color: var(--clr-light-card-bg);
-  color: var(--clr-light-text);
-}
-
 .light-mode .standard-card-header {
   background-color: var(--clr-light-header-bg);
 }
@@ -96,15 +74,6 @@
 
 .light-mode .standard-card-footer {
   background-color: var(--clr-light-footer-bg);
-}
-
-.light-mode .btn-primary {
-  background-color: var(--clr-light-primary);
-  color: var(--clr-light-card-bg);
-}
-
-.light-mode .btn-primary:hover {
-  background-color: var(--clr-light-secondary);
 }
 
 /* Compact styles */
@@ -123,7 +92,7 @@
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .container {
     grid-template-columns: 1fr;
   }

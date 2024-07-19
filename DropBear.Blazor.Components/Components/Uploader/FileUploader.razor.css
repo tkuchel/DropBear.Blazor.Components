@@ -1,12 +1,13 @@
-﻿.file-uploader {
+﻿/* FileUploader.razor.css */
+.file-uploader {
   background-color: var(--clr-surface);
   border-radius: var(--border-radius);
   padding: 2rem;
   width: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
-.file-uploader__dropzone {
+.file-uploader-dropzone {
   border: 2px dashed var(--clr-surface-lighter);
   border-radius: var(--border-radius);
   padding: 2rem;
@@ -15,16 +16,16 @@
   text-align: center;
 }
 
-.file-uploader__dropzone.dragover {
+.file-uploader-dropzone.dragover {
   border-color: var(--clr-primary);
   background-color: var(--clr-surface-light);
 }
 
-.file-uploader__input {
+.file-uploader-input {
   display: none;
 }
 
-.file-uploader__label {
+.file-uploader-label {
   background-color: var(--clr-primary);
   color: var(--clr-surface);
   padding: 0.6rem 1.2rem;
@@ -36,15 +37,15 @@
   display: inline-block;
 }
 
-.file-uploader__label:hover {
+.file-uploader-label:hover {
   background-color: var(--clr-secondary);
 }
 
-.file-uploader__file-list {
+.file-uploader-file-list {
   margin-top: 1rem;
 }
 
-.file-uploader__file-item {
+.file-uploader-file-item {
   background-color: var(--clr-surface-light);
   border-radius: var(--border-radius);
   padding: 0.75rem 1rem;
@@ -54,27 +55,27 @@
   align-items: center;
 }
 
-.file-uploader__file-info {
+.file-uploader-file-info {
   flex-grow: 1;
   margin-right: 1rem;
 }
 
-.file-uploader__file-name {
+.file-uploader-file-name {
   font-weight: bold;
   margin-bottom: 0.25rem;
 }
 
-.file-uploader__file-meta {
+.file-uploader-file-meta {
   font-size: 0.8rem;
   color: var(--clr-text-muted);
 }
 
-.file-uploader__file-status {
+.file-uploader-file-status {
   font-size: 0.8rem;
   color: var(--clr-success);
 }
 
-.file-uploader__remove-btn {
+.file-uploader-remove-btn {
   background-color: var(--clr-error);
   color: var(--clr-text);
   border: none;
@@ -84,16 +85,16 @@
   transition: var(--transition);
 }
 
-.file-uploader__remove-btn:hover {
+.file-uploader-remove-btn:hover {
   background-color: #ff7a7a;
 }
 
-.file-uploader__footer {
+.file-uploader-footer {
   margin-top: 1rem;
   text-align: center;
 }
 
-.file-uploader__upload-btn {
+.file-uploader-upload-btn {
   background-color: var(--clr-success);
   color: var(--clr-surface);
   border: none;
@@ -105,16 +106,16 @@
   transition: var(--transition);
 }
 
-.file-uploader__upload-btn:hover {
+.file-uploader-upload-btn:hover {
   background-color: #8ee863;
 }
 
-.file-uploader__upload-btn:disabled {
+.file-uploader-upload-btn:disabled {
   background-color: var(--clr-surface-lighter);
   cursor: not-allowed;
 }
 
-.file-uploader__progress {
+.file-uploader-progress {
   width: 100%;
   height: 4px;
   background-color: var(--clr-surface-lighter);
@@ -123,23 +124,14 @@
   margin-top: 0.5rem;
 }
 
-.file-uploader__progress-bar {
+.file-uploader-progress-bar {
   width: 0;
   height: 100%;
   background-color: var(--clr-primary);
   transition: width 0.3s ease;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.file-uploader__spinner {
+.file-uploader-spinner {
   animation: spin 1s linear infinite;
   margin-right: 0.5rem;
 }

@@ -22,7 +22,7 @@ public partial class StandardButton : ComponentBase
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
     private string ButtonClasses =>
-        $"btn btn-{Variant} {SizeClass} {(IsBlock ? "btn-block" : "")} {(IsIconOnly ? "btn-icon-only" : "")}".Trim();
+        $"btn standard-button-{Variant} {SizeClass} {(IsBlock ? "btn-block" : "")} {(IsIconOnly ? "btn-icon-only" : "")}".Trim();
 
     private string SizeClass => Size switch
     {

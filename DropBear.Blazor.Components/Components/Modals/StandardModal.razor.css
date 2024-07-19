@@ -1,122 +1,124 @@
-﻿.modal {
+﻿/* StandardModal.razor.css */
+.standard-modal {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--clr-overlay, rgba(0, 0, 0, 0.7));
+  background-color: var(--clr-overlay);
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.modal.active {
+.standard-modal.active {
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 1;
 }
 
-.modal-content {
-  background-color: var(--clr-surface, #2b2d31);
-  border-radius: var(--border-radius, 12px);
+.standard-modal-content {
+  background-color: var(--clr-surface);
+  border-radius: var(--border-radius);
   width: 90%;
   max-width: 450px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgb(0 0 0 / 20%);
   transform: scale(0.7);
   transition: transform 0.3s ease;
   overflow: hidden;
 }
 
-.modal.active .modal-content {
+.standard-modal.active .standard-modal-content {
   transform: scale(1);
-  animation: modalEnter 0.3s forwards;
+  animation: modalenter 0.3s forwards;
 }
 
-.modal-header {
+.standard-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
-  background-color: var(--clr-surface-light, #3a3d44);
-  border-bottom: 1px solid var(--clr-surface-lighter, #454950);
+  padding: var(--spacing-lg);
+  background-color: var(--clr-surface-light);
+  border-bottom: 1px solid var(--clr-surface-lighter);
 }
 
-.modal-header h2 {
+.standard-modal-header h2 {
   margin: 0;
   font-size: 1.2rem;
-  color: var(--clr-text, #ffffff);
+  color: var(--clr-text);
   font-weight: 600;
 }
 
-.modal-close {
+.standard-modal-close {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--clr-text-muted, #a4b1cd);
+  color: var(--clr-text-muted);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
 }
 
-.modal-close:hover {
-  color: var(--clr-text, #ffffff);
+.standard-modal-close:hover {
+  color: var(--clr-text);
 }
 
-.modal-body {
-  padding: 1.5rem;
-  background-color: var(--clr-surface, #2b2d31);
+.standard-modal-body {
+  padding: var(--spacing-lg);
+  background-color: var(--clr-surface);
 }
 
-.modal-footer {
+.standard-modal-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 0.75rem;
-  padding: 1rem 1.5rem;
-  background-color: var(--clr-surface-light, #3a3d44);
-  border-top: 1px solid var(--clr-surface-lighter, #454950);
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: var(--clr-surface-light);
+  border-top: 1px solid var(--clr-surface-lighter);
 }
 
-.btn {
-  font-family: var(--font-family, 'Poppins', sans-serif), sans-serif;
+.standard-modal-btn {
+  font-family: Poppins, sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.6rem 1.2rem;
-  border-radius: var(--border-radius, 12px);
+  border-radius: var(--border-radius);
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.btn-primary {
-  background-color: var(--clr-primary, #4ebafd);
-  color: var(--clr-surface, #2b2d31);
+.standard-modal-btn-primary {
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
 }
 
-.btn-primary:hover {
-  background-color: var(--clr-secondary, #8552f8);
+.standard-modal-btn-primary:hover {
+  background-color: var(--clr-secondary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
-.btn-secondary {
-  background-color: var(--clr-surface-light, #3a3d44);
-  color: var(--clr-text, #ffffff);
+.standard-modal-btn-secondary {
+  background-color: var(--clr-surface-light);
+  color: var(--clr-text);
 }
 
-.btn-secondary:hover {
-  background-color: var(--clr-surface-lighter, #454950);
+.standard-modal-btn-secondary:hover {
+  background-color: var(--clr-surface-lighter);
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
-@keyframes modalEnter {
+@keyframes modalenter {
   from {
     opacity: 0;
     transform: scale(0.8) translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -124,101 +126,97 @@
 }
 
 /* Light Mode Styles */
-.modal.light-mode {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.light-mode .modal-content {
+.light-mode .standard-modal-content {
   background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
 }
 
-.light-mode .modal-header {
+.light-mode .standard-modal-header {
   background-color: #f8f9fa;
   border-bottom: 1px solid #eee;
 }
 
-.light-mode .modal-header h2 {
+.light-mode .standard-modal-header h2 {
   color: #333;
 }
 
-.light-mode .modal-close {
+.light-mode .standard-modal-close {
   color: #666;
 }
 
-.light-mode .modal-close:hover {
+.light-mode .standard-modal-close:hover {
   color: #333;
 }
 
-.light-mode .modal-body {
+.light-mode .standard-modal-body {
   background-color: white;
   color: #333;
 }
 
-.light-mode .modal-footer {
+.light-mode .standard-modal-footer {
   background-color: #f8f9fa;
   border-top: 1px solid #eee;
 }
 
-.light-mode .btn-primary {
+.light-mode .standard-modal-btn-primary {
   background-color: #007bff;
   color: white;
 }
 
-.light-mode .btn-primary:hover {
+.light-mode .standard-modal-btn-primary:hover {
   background-color: #0056b3;
 }
 
-.light-mode .btn-secondary {
+.light-mode .standard-modal-btn-secondary {
   background-color: #6c757d;
   color: white;
 }
 
-.light-mode .btn-secondary:hover {
+.light-mode .standard-modal-btn-secondary:hover {
   background-color: #5a6268;
 }
 
 /* Size variants */
-.modal-content.small {
+.standard-modal-content.small {
   max-width: 300px;
 }
 
-.modal-content.medium {
+.standard-modal-content.medium {
   max-width: 500px;
 }
 
-.modal-content.large {
+.standard-modal-content.large {
   max-width: 800px;
 }
 
 /* Transition variants */
-.modal.fade .modal-content {
+.standard-modal.fade .standard-modal-content {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.modal.slide .modal-content {
+.standard-modal.slide .standard-modal-content {
   transition: transform 0.3s ease;
 }
 
-.modal.zoom .modal-content {
+.standard-modal.zoom .standard-modal-content {
   transition: transform 0.3s ease;
 }
 
-.modal.fade:not(.active) .modal-content {
+.standard-modal.fade:not(.active) .standard-modal-content {
   opacity: 0;
   transform: scale(0.9);
 }
 
-.modal.slide:not(.active) .modal-content {
+.standard-modal.slide:not(.active) .standard-modal-content {
   transform: translateY(-50px);
 }
 
-.modal.zoom:not(.active) .modal-content {
+.standard-modal.zoom:not(.active) .standard-modal-content {
   transform: scale(0.5);
 }
 
 /* Scrollable content */
-.modal.scrollable .modal-body {
+.standard-modal.scrollable .standard-modal-body {
   max-height: 50vh;
   overflow-y: auto;
 }

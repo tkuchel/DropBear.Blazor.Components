@@ -5,25 +5,25 @@
 
 @foreach (var positionGroup in _activeSnackbars.Values.GroupBy(s => s.Position))
 {
-<div class="snackbar-container @positionGroup.Key.ToString().ToLower()">
-    @foreach (var snackbar in positionGroup)
-    {
-    <div class="snackbar @snackbar.Type.ToString().ToLower()" @key="snackbar.Id" data-snackbar-id="@snackbar.Id">
-        <div class="snackbar-icon">
-            <i class="@GetIconClass(snackbar.Type)"></i>
-        </div>
-        <div class="snackbar-content">
-            <p class="snackbar-message">@snackbar.Message</p>
-        </div>
-        @if (snackbar.Action != null)
+    <div class="snackbar-container @positionGroup.Key.ToString().ToLower()">
+        @foreach (var snackbar in positionGroup)
         {
-        <button class="snackbar-action" @onclick="() => snackbar.Action.Handler()">
-            @snackbar.Action.Text
-        </button>
+            <div class="snackbar @snackbar.Type.ToString().ToLower()" @key="snackbar.Id" data-snackbar-id="@snackbar.Id">
+                <div class="snackbar-icon">
+                    <i class="@GetIconClass(snackbar.Type)"></i>
+                </div>
+                <div class="snackbar-content">
+                    <p class="snackbar-message">@snackbar.Message</p>
+                </div>
+                @if (snackbar.Action != null)
+                {
+                    <button class="snackbar-action" @onclick="() => snackbar.Action.Handler()">
+                        @snackbar.Action.Text
+                    </button>
+                }
+                <button class="snackbar-close" @onclick="() => RemoveSnackbar(snackbar.Id)">&times;</button>
+                <div class="snackbar-progress"></div>
+            </div>
         }
-        <button class="snackbar-close" @onclick="() => RemoveSnackbar(snackbar.Id)">&times;</button>
-        <div class="snackbar-progress"></div>
     </div>
-    }
-</div>
 }

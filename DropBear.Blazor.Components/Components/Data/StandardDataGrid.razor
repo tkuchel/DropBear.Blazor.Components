@@ -2,28 +2,28 @@
 @namespace DropBear.Blazor.Components.Components.Data
 @typeparam TItem where TItem : notnull
 
-<div class="custom-datagrid @(IsLightMode ? "theme-light" : "theme-dark")">
-    <div class="datagrid-header">
+<div class="standard-datagrid @(IsLightMode ? "theme-light" : "theme-dark")">
+    <div class="standard-datagrid-header">
         <h2>
             <i class="@HeaderIcon"></i> @Title
         </h2>
-        <div class="datagrid-actions">
+        <div class="standard-datagrid-actions">
             @if (AllowSearch)
             {
-                <div class="search-wrapper">
-                    <input type="text" placeholder="Search..." class="search-input" @bind-value="SearchTerm" @bind-value:event="oninput">
+                <div class="standard-search-wrapper">
+                    <input type="text" placeholder="Search..." class="standard-search-input" @bind-value="SearchTerm" @bind-value:event="oninput">
                     <i class="fas fa-search search-icon"></i>
                 </div>
             }
             @if (AllowAdd)
             {
-                <button class="btn btn-primary" @onclick="OnAddClick">
+                <button class="standard-btn standard-btn-primary" @onclick="OnAddClick">
                     <i class="fas fa-plus"></i> @AddText
                 </button>
             }
         </div>
     </div>
-    <div class="datagrid-table-wrapper">
+    <div class="standard-datagrid-table-wrapper">
         @if (IsLoading)
         {
             @if (LoadingTemplate != null)
@@ -53,34 +53,34 @@
         }
         else
         {
-            <div class="datagrid-table" role="table" aria-label="@Title">
-                <div class="datagrid-row header" role="row">
+            <div class="standard-datagrid-table" role="table" aria-label="@Title">
+                <div class="standard-datagrid-row header" role="row">
                     @if (AllowSelect)
                     {
-                        <div class="datagrid-cell checkbox" role="columnheader">
+                        <div class="standard-datagrid-cell checkbox" role="columnheader">
                             <input type="checkbox" @bind="AreAllSelected" aria-label="Select all items">
                         </div>
                     }
                     @foreach (var column in Columns!)
                     {
-                        <div class="datagrid-cell sortable" role="columnheader" aria-sort="@GetSortOrder(column)" @onclick="() => SortByColumn(column)">
+                        <div class="standard-datagrid-cell sortable" role="columnheader" aria-sort="@GetSortOrder(column)" @onclick="() => SortByColumn(column)">
                             <i class="@column.IconClass"></i> @column.Title <i class="fas fa-sort ml-2"></i>
                         </div>
                     }
                     @if (AllowEdit || AllowDelete)
                     {
-                        <div class="datagrid-cell" role="columnheader">ACTIONS</div>
+                        <div class="standard-datagrid-cell" role="columnheader">ACTIONS</div>
                     }
                 </div>
                 @foreach (var item in FilteredAndSortedItems)
                 {
-                    <div class="datagrid-row @(SelectedItems.Contains(item) ? "selected" : "")"
+                    <div class="standard-datagrid-row @(SelectedItems.Contains(item) ? "selected" : "")"
                          role="row"
                          @oncontextmenu="@(e => ShowContextMenu(e, item))"
                          @oncontextmenu:preventDefault>
                         @if (AllowSelect)
                         {
-                            <div class="datagrid-cell checkbox" role="cell">
+                            <div class="standard-datagrid-cell checkbox" role="cell">
                                 <input type="checkbox"
                                        checked="@IsItemSelected(item)"
                                        @onchange="@(e => ToggleItemSelection(item))"
@@ -89,7 +89,7 @@
                         }
                         @foreach (var column in Columns)
                         {
-                            <div class="datagrid-cell" role="cell">
+                            <div class="standard-datagrid-cell" role="cell">
                                 @if (column.CellTemplate != null)
                                 {
                                     @column.CellTemplate(item)
@@ -102,16 +102,16 @@
                         }
                         @if (AllowEdit || AllowDelete)
                         {
-                            <div class="datagrid-cell actions" role="cell">
+                            <div class="standard-datagrid-cell actions" role="cell">
                                 @if (AllowEdit)
                                 {
-                                    <button class="btn btn-icon" title="Edit" aria-label="Edit item" @onclick="() => OnEditClick.InvokeAsync(item)">
+                                    <button class="standard-btn btn-icon" title="Edit" aria-label="Edit item" @onclick="() => OnEditClick.InvokeAsync(item)">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 }
                                 @if (AllowDelete)
                                 {
-                                    <button class="btn btn-icon" title="Delete" aria-label="Delete item" @onclick="() => OnDeleteClick.InvokeAsync(item)">
+                                    <button class="standard-btn btn-icon" title="Delete" aria-label="Delete item" @onclick="() => OnDeleteClick.InvokeAsync(item)">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 }
@@ -124,13 +124,13 @@
     </div>
     @if (TotalPages > 1)
     {
-        <div class="datagrid-footer">
+        <div class="standard-datagrid-footer">
             <div class="pagination">
-                <button class="btn btn-icon" title="Previous Page" aria-label="Go to previous page" @onclick="PreviousPage" disabled="@(!CanGoToPreviousPage)">
+                <button class="standard-btn btn-icon" title="Previous Page" aria-label="Go to previous page" @onclick="PreviousPage" disabled="@(!CanGoToPreviousPage)">
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <span>Page @CurrentPage of @TotalPages</span>
-                <button class="btn btn-icon" title="Next Page" aria-label="Go to next page" @onclick="NextPage" disabled="@(!CanGoToNextPage)">
+                <button class="standard-btn btn-icon" title="Next Page" aria-label="Go to next page" @onclick="NextPage" disabled="@(!CanGoToNextPage)">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>

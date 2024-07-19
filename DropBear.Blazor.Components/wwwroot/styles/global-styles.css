@@ -1,9 +1,9 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+﻿/* global-styles.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
 :root {
-  /* Primary Colors */
-  --clr-mine-shaft: #333333;
+  --clr-mine-shaft: #333;
   --clr-silver-sand: #bbbec3;
   --clr-viking: #62dbc8;
   --clr-pastel-green: #7cd651;
@@ -27,7 +27,7 @@
   --clr-surface-light: #3a3d44;
   --clr-surface-lighter: #454950;
   --clr-surface-hover: #3a3d44; /* New hover color */
-  --clr-heading: #ffffff;
+  --clr-heading: #fff;
   --clr-primary: #4ebafd;
   --clr-primary-hover: #3aa0d5;
   --clr-secondary: #8552f8;
@@ -36,13 +36,13 @@
   --clr-warning: #ffd14d;
   --clr-error: #ff5757;
   --clr-error-hover: #d94d4d;
-  --clr-text: #ffffff;
+  --clr-text: #fff;
   --clr-text-muted: #a4b1cd;
-  --clr-overlay: rgba(0, 0, 0, 0.7);
+  --clr-overlay: rgb(0 0 0 / 70%);
 
   /* Light mode colors */
   --clr-light-background: var(--clr-silver-sand);
-  --clr-light-card-bg: #ffffff; /* Keeping white for better contrast */
+  --clr-light-card-bg: #fff; /* Keeping white for better contrast */
   --clr-light-heading: var(--clr-mine-shaft);
   --clr-light-text: var(--clr-mine-shaft);
   --clr-light-primary: var(--clr-viking);
@@ -52,17 +52,17 @@
   --clr-light-border: var(--clr-silver-sand);
   --clr-light-surface: var(--clr-light-card-bg);
   --clr-light-surface-hover: var(--clr-silver-sand);
-  --clr-light-overlay: rgba(0, 0, 0, 0.1);
+  --clr-light-overlay: rgb(0 0 0 / 10%);
   --clr-light-malibu: #3498db;
   --clr-light-mustard: #f39c12;
   --clr-light-persimmon: #e74c3c;
   --clr-light-pastel-green: #2ecc71;
 
   /* Header and footer background colors */
-  --clr-header-bg: rgba(255, 255, 255, 0.05);
-  --clr-footer-bg: rgba(255, 255, 255, 0.05);
-  --clr-light-header-bg: rgba(0, 0, 0, 0.05);
-  --clr-light-footer-bg: rgba(0, 0, 0, 0.05);
+  --clr-header-bg: rgb(255 255 255 / 5%);
+  --clr-footer-bg: rgb(255 255 255 / 5%);
+  --clr-light-header-bg: rgb(0 0 0 / 5%);
+  --clr-light-footer-bg: rgb(0 0 0 / 5%);
 
   /* Card background colors */
   --clr-card-bg: var(--clr-surface);
@@ -78,7 +78,7 @@
   --spacing-xl: 1.5rem;
 
   /* Additional Colors */
-  --clr-text-light: #ffffff;
+  --clr-text-light: #fff;
   --clr-admin: #7cd651;
   --clr-user: #ffd14d;
   --clr-danger: #ff5757;
@@ -88,13 +88,13 @@
 
   /* Context Menu Colors */
   --context-menu-bg: #2b2d31;
-  --context-menu-text: #ffffff;
+  --context-menu-text: #fff;
   --context-menu-hover-bg: #3a3d42;
-  --context-menu-hover-text: #ffffff;
+  --context-menu-hover-text: #fff;
   --context-menu-disabled-text: #8e9297;
   --context-menu-separator: #40444b;
   --context-menu-icon-color: #b9bbbe;
-  --context-menu-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --context-menu-shadow: 0 2px 10px rgb(0 0 0 / 10%);
   --context-menu-border-radius: 4px;
   --context-menu-padding: 8px 0;
   --context-menu-item-padding: 8px 12px;
@@ -106,11 +106,28 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
   background-color: var(--clr-dark-background);
   color: var(--clr-mine-shaft);
   line-height: 1.6;
   padding: 2rem;
   font-size: 14px;
   margin: 0;
+}
+
+.btn {
+  font-family: Poppins, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition), transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
+  min-height: 2.5rem;
 }

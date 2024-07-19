@@ -5,22 +5,22 @@
 
 @if (IsVisible)
 {
-    <div class="modal @(IsVisible ? "active" : "") @(LightMode ? "light-mode" : "") @CustomCssClass @Size.ToString().ToLower() @Transition.ToString().ToLower() @(ScrollableContent ? "scrollable" : "")"
+    <div class="standard-modal @(IsVisible ? "active" : "") @(LightMode ? "light-mode" : "") @CustomCssClass @Size.ToString().ToLower() @Transition.ToString().ToLower() @(ScrollableContent ? "scrollable" : "")"
          @ref="_modalElement"
          @onclick="CloseClick">
-        <div class="modal-content" @onclick:stopPropagation="true">
+        <div class="standard-modal-content" @onclick:stopPropagation="true">
             @if (CustomHeader != null)
             {
                 @CustomHeader
             }
             else
             {
-                <div class="modal-header">
+                <div class="standard-modal-header">
                     <h2>@Title</h2>
-                    <button class="modal-close" @onclick="CloseClick">&times;</button>
+                    <button class="standard-modal-close" @onclick="CloseClick">&times;</button>
                 </div>
             }
-            <div class="modal-body">
+            <div class="standard-modal-body">
                 @BodyContent
             </div>
             @if (CustomFooter != null)
@@ -29,12 +29,12 @@
             }
             else
             {
-                <div class="modal-footer">
+                <div class="standard-modal-footer">
                     @if (ShowCancelButton)
                     {
-                        <button class="btn btn-secondary" @onclick="CancelClick">@CancelText</button>
+                        <button class="standard-modal-btn standard-modal-btn-secondary" @onclick="CancelClick">@CancelText</button>
                     }
-                    <button class="btn btn-primary" @onclick="ConfirmClick">@ConfirmText</button>
+                    <button class="standard-modal-btn standard-modal-btn-primary" @onclick="ConfirmClick">@ConfirmText</button>
                 </div>
             }
         </div>
