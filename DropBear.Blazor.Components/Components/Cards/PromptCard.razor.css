@@ -1,21 +1,4 @@
-﻿:root {
-  /* Existing dark mode colors */
-  --clr-mine-shaft: #2b2d31;
-  --clr-silver-sand: #C0C0C0;
-  --clr-malibu: #61afff;
-  --clr-mustard: #ffd14d;
-  --clr-persimmon: #ff5757;
-  --clr-pastel-green: #7cd651;
-
-  /* New light mode colors */
-  --clr-light-background: #ffffff;
-  --clr-light-text: #333333;
-  --clr-light-border: #e0e0e0;
-  --clr-light-malibu: #3498db;
-  --clr-light-mustard: #f39c12;
-  --clr-light-persimmon: #e74c3c;
-  --clr-light-pastel-green: #2ecc71;
-}
+﻿
 
 .prompt-card-overlay {
   position: fixed;
@@ -77,6 +60,7 @@
   margin: 0;
   font-weight: 600;
   font-size: 1.25rem;
+  color: var(--clr-silver-sand);
 }
 
 .light-mode .card-title {

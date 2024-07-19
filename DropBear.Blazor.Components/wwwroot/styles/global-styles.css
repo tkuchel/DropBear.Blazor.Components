@@ -53,6 +53,10 @@
   --clr-light-surface: var(--clr-light-card-bg);
   --clr-light-surface-hover: var(--clr-silver-sand);
   --clr-light-overlay: rgba(0, 0, 0, 0.1);
+  --clr-light-malibu: #3498db;
+  --clr-light-mustard: #f39c12;
+  --clr-light-persimmon: #e74c3c;
+  --clr-light-pastel-green: #2ecc71;
 
   /* Header and footer background colors */
   --clr-header-bg: rgba(255, 255, 255, 0.05);
