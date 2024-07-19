@@ -1,4 +1,23 @@
-﻿.prompt-card-overlay {
+﻿:root {
+  /* Existing dark mode colors */
+  --clr-mine-shaft: #2b2d31;
+  --clr-silver-sand: #C0C0C0;
+  --clr-malibu: #61afff;
+  --clr-mustard: #ffd14d;
+  --clr-persimmon: #ff5757;
+  --clr-pastel-green: #7cd651;
+
+  /* New light mode colors */
+  --clr-light-background: #ffffff;
+  --clr-light-text: #333333;
+  --clr-light-border: #e0e0e0;
+  --clr-light-malibu: #3498db;
+  --clr-light-mustard: #f39c12;
+  --clr-light-persimmon: #e74c3c;
+  --clr-light-pastel-green: #2ecc71;
+}
+
+.prompt-card-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,6 +31,10 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.prompt-card-overlay.light-mode {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .prompt-card-overlay.visible {
@@ -29,11 +52,20 @@
   max-width: 500px;
 }
 
+.prompt-card.light-mode {
+  background-color: var(--clr-light-background);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 .card-header {
   display: flex;
   align-items: center;
   padding: 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .card-header {
+  border-bottom: 1px solid var(--clr-light-border);
 }
 
 .card-header i {
@@ -47,6 +79,10 @@
   font-size: 1.25rem;
 }
 
+.light-mode .card-title {
+  color: var(--clr-light-text);
+}
+
 .card-body {
   padding: 1.75rem;
 }
@@ -56,6 +92,10 @@
   margin-bottom: 1.75rem;
   font-weight: 300;
   line-height: 1.6;
+}
+
+.light-mode .card-text {
+  color: var(--clr-light-text);
 }
 
 .button-group {
@@ -112,6 +152,40 @@
   color: var(--clr-pastel-green);
 }
 
+/* PromptType specific styles */
+.light-mode.prompt-card.information {
+  border-top: 4px solid var(--clr-light-malibu);
+}
+
+.light-mode.prompt-card.warning {
+  border-top: 4px solid var(--clr-light-mustard);
+}
+
+.light-mode.prompt-card.error {
+  border-top: 4px solid var(--clr-light-persimmon);
+}
+
+.light-mode.prompt-card.success {
+  border-top: 4px solid var(--clr-light-pastel-green);
+}
+
+.light-mode .information .card-header i {
+  color: var(--clr-light-malibu);
+}
+
+.light-mode .warning .card-header i {
+  color: var(--clr-light-mustard);
+}
+
+.light-mode .error .card-header i {
+  color: var(--clr-light-persimmon);
+}
+
+.light-mode .success .card-header i {
+  color: var(--clr-light-pastel-green);
+}
+
+
 /* Button styles */
 .information .btn-primary {
   background-color: var(--clr-malibu);
@@ -140,4 +214,143 @@
 
 .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Button styles */
+.light-mode .information .btn-primary {
+  background-color: var(--clr-light-malibu);
+  color: white;
+}
+
+.light-mode .warning .btn-primary {
+  background-color: var(--clr-light-mustard);
+  color: white;
+}
+
+.light-mode .error .btn-primary {
+  background-color: var(--clr-light-persimmon);
+  color: white;
+}
+
+.light-mode .success .btn-primary {
+  background-color: var(--clr-light-pastel-green);
+  color: white;
+}
+
+.light-mode .btn-secondary {
+  background-color: #f0f0f0;
+  color: var(--clr-light-text);
+}
+
+.light-mode .btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* Subtle variation - Dark Mode */
+.prompt-card.subtle {
+  background-color: rgba(43, 45, 49, 0.8); /* Slightly transparent version of --clr-mine-shaft */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prompt-card.subtle .card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prompt-card.subtle .card-title {
+  color: rgba(192, 192, 192, 0.9); /* Slightly transparent version of --clr-silver-sand */
+}
+
+.prompt-card.subtle .card-text {
+  color: rgba(192, 192, 192, 0.8); /* More transparent version of --clr-silver-sand */
+}
+
+/* Subtle variation - Light Mode */
+.light-mode.prompt-card.subtle {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-mode.prompt-card.subtle .card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.light-mode.prompt-card.subtle .card-title {
+  color: rgba(51, 51, 51, 0.9); /* Slightly transparent version of --clr-light-text */
+}
+
+.light-mode.prompt-card.subtle .card-text {
+  color: rgba(51, 51, 51, 0.8); /* More transparent version of --clr-light-text */
+}
+
+/* Subtle variation - PromptType specific styles */
+.prompt-card.subtle.information {
+  border-top: 2px solid rgba(97, 175, 255, 0.6);
+}
+
+/* --clr-malibu */
+.prompt-card.subtle.warning {
+  border-top: 2px solid rgba(255, 209, 77, 0.6);
+}
+
+/* --clr-mustard */
+.prompt-card.subtle.error {
+  border-top: 2px solid rgba(255, 87, 87, 0.6);
+}
+
+/* --clr-persimmon */
+.prompt-card.subtle.success {
+  border-top: 2px solid rgba(124, 214, 81, 0.6);
+}
+
+/* --clr-pastel-green */
+
+.light-mode.prompt-card.subtle.information {
+  border-top: 2px solid rgba(52, 152, 219, 0.6);
+}
+
+/* --clr-light-malibu */
+.light-mode.prompt-card.subtle.warning {
+  border-top: 2px solid rgba(243, 156, 18, 0.6);
+}
+
+/* --clr-light-mustard */
+.light-mode.prompt-card.subtle.error {
+  border-top: 2px solid rgba(231, 76, 60, 0.6);
+}
+
+/* --clr-light-persimmon */
+.light-mode.prompt-card.subtle.success {
+  border-top: 2px solid rgba(46, 204, 113, 0.6);
+}
+
+/* --clr-light-pastel-green */
+
+/* Subtle variation - Icon colors */
+.prompt-card.subtle .card-header i {
+  opacity: 0.8;
+}
+
+/* Subtle variation - Button styles */
+.prompt-card.subtle .btn-primary {
+  opacity: 0.9;
+}
+
+.prompt-card.subtle .btn-secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(192, 192, 192, 0.9);
+}
+
+.light-mode.prompt-card.subtle .btn-secondary {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(51, 51, 51, 0.9);
+}
+
+.prompt-card.subtle .btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.light-mode.prompt-card.subtle .btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

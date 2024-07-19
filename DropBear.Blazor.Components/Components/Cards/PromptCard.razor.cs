@@ -33,7 +33,8 @@ public partial class PromptCard : ComponentBase
 
     private string GetCardClasses()
     {
-        return $"prompt-card {CardType.ToString().ToLower(CultureInfo.CurrentCulture)} {(IsSubtle ? "subtle" : "")}";
+        return
+            $"prompt-card {CardType.ToString().ToLower(CultureInfo.CurrentCulture)} {(IsSubtle ? "subtle" : "")} {(IsLightMode ? "light-mode" : "")}";
     }
 
     private string GetIconClass()
