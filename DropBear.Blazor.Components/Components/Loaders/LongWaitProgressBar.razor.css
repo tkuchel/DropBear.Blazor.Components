@@ -16,9 +16,9 @@
 .loading-card {
   background-color: var(--clr-card-bg);
   border-radius: var(--border-radius);
-  padding: min(var(--spacing-lg), 24px);
-  width: 300px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-lg);
+  width: 350px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
   text-align: center;
   transition: transform 0.3s ease;
 }
@@ -33,11 +33,14 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 400;
 }
 
 h3 i {
   margin-right: var(--spacing-sm);
   color: var(--clr-primary);
+  padding-top: 2px;
+  scale: 0.85;
 }
 
 /* Progress Bar Styles */
@@ -90,7 +93,7 @@ h3 i {
 .progress-text {
   color: var(--clr-heading);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   position: relative;
   z-index: 1;
 }
@@ -98,13 +101,14 @@ h3 i {
 .processing-text {
   color: var(--clr-heading, #ffffff);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   position: relative;
   z-index: 1;
 }
 
 p {
   margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
   font-size: 0.9rem;
 }
 

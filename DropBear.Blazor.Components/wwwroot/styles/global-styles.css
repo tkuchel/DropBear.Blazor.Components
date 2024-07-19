@@ -69,7 +69,7 @@
   --clr-card-hover-bg: var(--clr-surface-hover);
 
   /* Global variables */
-  --border-radius: 8px;
+  --border-radius: 12px;
   --transition: all 0.3s ease;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;

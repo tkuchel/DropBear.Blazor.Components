@@ -4,31 +4,31 @@
 <div class="@CardClasses">
     @if (!string.IsNullOrEmpty(Header) || !string.IsNullOrEmpty(IconClass))
     {
-        <div class="card-header">
+        <div class="standard-card-header">
             @if (!string.IsNullOrEmpty(IconClass))
             {
                 <i class="icon-header @IconClass"></i>
             }
-            <h3 class="card-title">@Header</h3>
+            <h3 class="standard-card-title">@Header</h3>
         </div>
     }
 
     @if (!string.IsNullOrEmpty(ImageUrl))
     {
-        <img src="@ImageUrl" alt="@ImageAlt" class="card-img-top">
+        <img src="@ImageUrl" alt="@ImageAlt" class="standard-card-img-top">
     }
 
-    <div class="card-body">
+    <div class="standard-card-body">
         @if (!string.IsNullOrEmpty(BodyTitle))
         {
-            <h4 class="card-body-title">@BodyTitle</h4>
+            <h4 class="standard-card-body-title">@BodyTitle</h4>
         }
         @BodyContent
     </div>
 
     @if (ShowFooter)
     {
-        <div class="card-footer">
+        <div class="standard-card-footer">
             <button class="btn btn-primary" @onclick="OnFooterButtonClick">@FooterButtonText</button>
         </div>
     }
