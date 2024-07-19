@@ -12,5 +12,6 @@ public class SnackbarItem
     public string Message { get; set; } = string.Empty;
     public SnackbarType Type { get; set; } = SnackbarType.Info;
     public int Duration { get; set; } = 3000;
-    public SnackbarAction? Action { get; set; }
+    public SnackbarAction? Action { get; set; } = new();
+    public SnackbarPosition Position { get; set; } = SnackbarPosition.BottomLeft;
 }

@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Collections.Concurrent;
 using DropBear.Blazor.Components.Enums;
 using DropBear.Blazor.Components.Services.Snackbar;
 using Microsoft.AspNetCore.Components;
@@ -11,12 +12,15 @@ namespace DropBear.Blazor.Components.Components.Messages;
 
 public partial class Snackbar : ComponentBase, IAsyncDisposable
 {
-    private readonly List<SnackbarItem> _activeSnackbars = [];
+    private readonly ConcurrentDictionary<Guid, SnackbarItem> _activeSnackbars = new();
+
+    [Parameter] public SnackbarPosition Position { get; set; } = SnackbarPosition.BottomLeft;
 
     #region IAsyncDisposable Members
 
     public ValueTask DisposeAsync()
     {
+        _activeSnackbars.Clear();
         return ValueTask.CompletedTask;
     }
 
@@ -57,7 +61,7 @@ public partial class Snackbar : ComponentBase, IAsyncDisposable
 
     public async Task AddSnackbar(SnackbarItem snackbar)
     {
-        _activeSnackbars.Add(snackbar);
+        _activeSnackbars[snackbar.Id] = snackbar;
         StateHasChanged();
 
         await JsRuntime.InvokeVoidAsync("snackbarInterop.animateProgress", snackbar.Id, snackbar.Duration);
@@ -68,10 +72,8 @@ public partial class Snackbar : ComponentBase, IAsyncDisposable
 
     private async Task RemoveSnackbar(Guid id)
     {
-        var snackbar = _activeSnackbars.Find(s => s.Id == id);
-        if (snackbar is not null)
+        if (_activeSnackbars.TryRemove(id, out _))
         {
-            _activeSnackbars.Remove(snackbar);
             StateHasChanged();
             await JsRuntime.InvokeVoidAsync("snackbarInterop.removeSnackbar", id);
         }

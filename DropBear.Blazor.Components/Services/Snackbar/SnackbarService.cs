@@ -16,7 +16,7 @@ public class SnackbarService
     }
 
     public async Task ShowSnackbar(string message, SnackbarType type, int duration = 3000,
-        SnackbarAction? action = null)
+        SnackbarAction? action = null, SnackbarPosition position = SnackbarPosition.BottomLeft)
     {
         if (_snackbarComponent is null)
         {
@@ -29,9 +29,10 @@ public class SnackbarService
             Message = message,
             Type = type,
             Duration = duration,
-            Action = action ?? new SnackbarAction()
+            Action = action ?? new SnackbarAction(),
+            Position = position
         };
 
-        await _snackbarComponent.AddSnackbar(snackbar)!.ConfigureAwait(false);
+        await _snackbarComponent.AddSnackbar(snackbar).ConfigureAwait(false);
     }
 }

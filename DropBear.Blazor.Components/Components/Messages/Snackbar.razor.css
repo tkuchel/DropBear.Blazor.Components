@@ -1,13 +1,31 @@
 ﻿.snackbar-container {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
   display: flex;
   flex-direction: column-reverse;
   gap: 10px;
   max-width: 400px;
   width: 100%;
   z-index: 1000;
+}
+
+.snackbar-container.bottomleft {
+  bottom: 20px;
+  left: 20px;
+}
+
+.snackbar-container.bottomright {
+  bottom: 20px;
+  right: 20px;
+}
+
+.snackbar-container.topleft {
+  top: 20px;
+  left: 20px;
+}
+
+.snackbar-container.topright {
+  top: 20px;
+  right: 20px;
 }
 
 .snackbar {
@@ -40,6 +58,38 @@
   }
   to {
     transform: translateX(-100%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.snackbar-container.bottomright .snackbar,
+.snackbar-container.topright .snackbar {
+  animation: slideInAndGrowRight 0.3s ease-out;
+}
+
+@keyframes slideInAndGrowRight {
+  from {
+    transform: translateX(100%) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.snackbar-container.bottomright .snackbar.removing,
+.snackbar-container.topright .snackbar.removing {
+  animation: slideOutAndShrinkRight 0.3s ease-out forwards;
+}
+
+@keyframes slideOutAndShrinkRight {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%) scale(0.8);
     opacity: 0;
   }
 }
