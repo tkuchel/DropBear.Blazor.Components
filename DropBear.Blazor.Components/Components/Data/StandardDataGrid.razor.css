@@ -1,4 +1,19 @@
 ﻿/* StandardDataGrid.razor.css */
+body.theme-light {
+  --clr-background: var(--clr-light-background);
+  --clr-surface: var(--clr-light-surface);
+  --clr-surface-hover: var(--clr-light-surface-hover);
+  --clr-border: var(--clr-light-border);
+  --clr-text: var(--clr-light-text);
+}
+
+body.theme-dark {
+  --clr-background: var(--clr-dark-background);
+  --clr-surface: var(--clr-dark-surface);
+  --clr-surface-hover: var(--clr-dark-surface-hover);
+  --clr-border: var(--clr-dark-border);
+  --clr-text: var(--clr-dark-text);
+}
 
 .standard-datagrid {
   background-color: var(--clr-surface);
@@ -13,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-lg);
-  background-color: var(--clr-surface-light);
+  background-color: var(--clr-surface);
 }
 
 .standard-datagrid-header h2 {
@@ -37,7 +52,7 @@
 .standard-search-input {
   padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-sm) 2.5rem;
   border-radius: var(--border-radius);
-  border: 1px solid var(--clr-surface-lighter);
+  border: 1px solid var(--clr-border);
   background-color: var(--clr-surface);
   color: var(--clr-text);
   width: 200px;
@@ -66,11 +81,11 @@
 
 .standard-btn-primary {
   background-color: var(--clr-primary);
-  color: #fff;
+  color: var(--clr-surface);
 }
 
 .standard-btn-primary:hover {
-  background-color: var(--clr-secondary);
+  background-color: var(--clr-primary-hover);
 }
 
 .standard-datagrid-table {
@@ -86,10 +101,10 @@
 
 .standard-datagrid-cell {
   padding: var(--spacing-md);
-  border-bottom: 1px solid var(--clr-surface-lighter);
+  border-bottom: 1px solid var(--clr-border);
   display: flex;
   align-items: center;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .standard-datagrid-row.header .standard-datagrid-cell {
@@ -97,7 +112,7 @@
   text-transform: uppercase;
   font-size: 0.8rem;
   color: var(--clr-text);
-  background-color: var(--clr-surface-light);
+  background-color: var(--clr-surface);
 }
 
 .standard-datagrid-row.header .standard-datagrid-cell i {
@@ -111,15 +126,15 @@
 
 .standard-datagrid-row:not(.header) .standard-datagrid-cell {
   position: relative;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .standard-datagrid-row:not(.header):nth-child(even) .standard-datagrid-cell {
-  background-color: var(--clr-surface-lighter);
+  background-color: var(--clr-surface-hover);
 }
 
 .standard-datagrid-row:not(.header):hover .standard-datagrid-cell {
-  background-color: var(--clr-surface-hover);
+  background-color: var(--clr-primary-hover);
 }
 
 .standard-datagrid-cell.checkbox {
@@ -146,7 +161,7 @@
 
 .btn-icon:hover {
   color: var(--clr-text);
-  background-color: var(--clr-surface-lighter);
+  background-color: var(--clr-surface-hover);
   transform: scale(1.1);
 }
 
@@ -155,7 +170,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md);
-  background-color: var(--clr-surface-light);
+  background-color: var(--clr-surface);
 }
 
 .standard-pagination {
@@ -172,14 +187,14 @@
 
 .standard-pagination .btn-icon,
 .standard-items-per-page select {
-  background-color: var(--clr-surface-light);
+  background-color: var(--clr-surface);
   color: var(--clr-text);
-  border: 1px solid var(--clr-surface-lighter);
+  border: 1px solid var(--clr-border);
 }
 
 .standard-pagination .btn-icon:hover,
 .standard-items-per-page select:hover {
-  background-color: var(--clr-surface-lighter);
+  background-color: var(--clr-surface-hover);
 }
 
 .standard-items-per-page select {

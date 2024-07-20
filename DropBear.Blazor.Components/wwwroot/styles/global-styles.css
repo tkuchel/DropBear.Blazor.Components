@@ -39,6 +39,10 @@
   --clr-text: #fff;
   --clr-text-muted: #a4b1cd;
   --clr-overlay: rgb(0 0 0 / 70%);
+  --clr-dark-text: #fff;
+  --clr-dark-surface: #2b2d31;
+  --clr-dark-surface-hover: #3a3d44;
+  --clr-dark-border: #454950;
 
   /* Light mode colors */
   --clr-light-background: var(--clr-silver-sand);
@@ -57,6 +61,7 @@
   --clr-light-mustard: #f39c12;
   --clr-light-persimmon: #e74c3c;
   --clr-light-pastel-green: #2ecc71;
+
 
   /* Header and footer background colors */
   --clr-header-bg: rgb(255 255 255 / 5%);
@@ -110,7 +115,8 @@ body {
   background-color: var(--clr-dark-background);
   color: var(--clr-mine-shaft);
   line-height: 1.6;
-  /*padding: 2rem;*/
+
+  /* padding: 2rem; */
   font-size: 14px;
   margin: 0;
 }
