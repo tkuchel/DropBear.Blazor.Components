@@ -21,7 +21,7 @@
   --clr-error-hover: #d94d4d;
 }
 
-.standard-datagrid.theme-light {
+body.theme-light {
   --clr-background: var(--clr-light-background);
   --clr-surface: var(--clr-light-surface);
   --clr-surface-hover: var(--clr-light-surface-hover);
@@ -29,7 +29,7 @@
   --clr-text: var(--clr-light-text);
 }
 
-.standard-datagrid.theme-dark {
+body.theme-dark {
   --clr-background: var(--clr-dark-background);
   --clr-surface: var(--clr-dark-surface);
   --clr-surface-hover: var(--clr-dark-surface-hover);
@@ -142,7 +142,7 @@
 }
 
 .standard-datagrid-row.selected .standard-datagrid-cell {
-  background-color: var(--clr-primary);
+  background-color: var(--clr-primary) !important;
   color: var(--clr-surface);
 }
 
@@ -159,7 +159,13 @@
   background-color: var(--clr-primary-hover);
 }
 
-.standard-datagrid-row:not(.header):hover .standard-datagrid-cell::before {
+.standard-datagrid-row.selected .standard-datagrid-cell::before {
+  transform: translateX(0);
+  animation: shimmer 2s infinite linear;
+}
+
+.standard-datagrid-row:not(.header):hover .standard-datagrid-cell::before,
+.standard-datagrid-row.selected .standard-datagrid-cell::before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -173,10 +179,6 @@
   z-index: 1;
 }
 
-.standard-datagrid-row:not(.header).selected .standard-datagrid-cell::before {
-  transform: translateX(0);
-  animation: shimmer 2s infinite linear;
-}
 
 @keyframes shimmer {
   0% {
@@ -236,13 +238,6 @@
   gap: var(--spacing-sm);
 }
 
-.standard-pagination .btn-icon,
-.standard-items-per-page select {
-  background-color: var(--clr-surface);
-  color: var(--clr-text);
-  border: 1px solid var(--clr-border);
-}
-
 .standard-items-per-page select {
   border-radius: var(--border-radius);
   appearance: none;
@@ -251,6 +246,13 @@
   background-position: right 0.7rem top 50%;
   background-size: 0.65rem auto;
   padding: 0.4rem 2rem 0.4rem 0.8rem;
+}
+
+.standard-pagination .btn-icon,
+.standard-items-per-page select {
+  background-color: var(--clr-surface);
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
 }
 
 .standard-pagination .btn-icon:hover,
