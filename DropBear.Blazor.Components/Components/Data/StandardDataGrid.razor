@@ -12,7 +12,7 @@
             {
                 <div class="standard-search-wrapper">
                     <input type="text" placeholder="Search..." class="standard-search-input" @bind-value="SearchTerm" @bind-value:event="oninput">
-                    <i class="fas fa-search search-icon"></i>
+                    <i class="fas fa-search standard-search-icon"></i>
                 </div>
             }
             @if (AllowAdd)
@@ -125,7 +125,7 @@
     @if (TotalPages > 1)
     {
         <div class="standard-datagrid-footer">
-            <div class="pagination">
+            <div class="standard-pagination">
                 <button class="standard-btn btn-icon" title="Previous Page" aria-label="Go to previous page" @onclick="PreviousPage" disabled="@(!CanGoToPreviousPage)">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -134,7 +134,7 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-            <div class="items-per-page">
+            <div class="standard-items-per-page">
                 <label for="itemsPerPage">Items per page:</label>
                 <select id="itemsPerPage" @bind="ItemsPerPage">
                     <option>10</option>
