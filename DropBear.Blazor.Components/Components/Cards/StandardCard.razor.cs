@@ -8,21 +8,13 @@ namespace DropBear.Blazor.Components.Components.Cards;
 
 public partial class StandardCard : ComponentBase
 {
-    [Parameter] public string Header { get; set; } = "Card Header";
-    [Parameter] public string IconClass { get; set; } = "fas fa-question-circle";
-#pragma warning disable CA1056
-    [Parameter] public string? ImageUrl { get; set; }
-#pragma warning restore CA1056
-    [Parameter] public string ImageAlt { get; set; } = "Card Image";
-    [Parameter] public string BodyTitle { get; set; } = "";
-    [Parameter] public RenderFragment BodyContent { get; set; } = default!;
-    [Parameter] public bool ShowFooter { get; set; } = true;
-    [Parameter] public EventCallback OnFooterButtonClick { get; set; }
-    [Parameter] public string FooterButtonText { get; set; } = "Button";
-    [Parameter] public string AdditionalClasses { get; set; } = "";
-    [Parameter] public bool IsCompact { get; set; }
     [Parameter] public bool IsLightMode { get; set; }
-
-    private string CardClasses =>
-        $"standard-card {AdditionalClasses} {(IsCompact ? "compact" : "")} {(IsLightMode ? "light-mode" : "")}".Trim();
+    [Parameter] public bool IsCompact { get; set; }
+    [Parameter] public string? ImgSrc { get; set; }
+    [Parameter] public string? ImgAlt { get; set; }
+    [Parameter] public string? Icon { get; set; }
+    [Parameter] public string Title { get; set; } = "Card Title";
+    [Parameter] public string? BodyTitle { get; set; }
+    [Parameter] public RenderFragment? BodyContent { get; set; }
+    [Parameter] public RenderFragment? FooterContent { get; set; }
 }
