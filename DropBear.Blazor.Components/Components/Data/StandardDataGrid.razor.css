@@ -21,7 +21,7 @@
   --clr-error-hover: #d94d4d;
 }
 
-.standard-datagrid .theme-light {
+.standard-datagrid.theme-light {
   --clr-background: var(--clr-light-background);
   --clr-surface: var(--clr-light-surface);
   --clr-surface-hover: var(--clr-light-surface-hover);
@@ -29,7 +29,7 @@
   --clr-text: var(--clr-light-text);
 }
 
-.standard-datagrid .theme-dark {
+.standard-datagrid.theme-dark {
   --clr-background: var(--clr-dark-background);
   --clr-surface: var(--clr-dark-surface);
   --clr-surface-hover: var(--clr-dark-surface-hover);
@@ -159,6 +159,35 @@
   background-color: var(--clr-primary-hover);
 }
 
+.standard-datagrid-row:not(.header):hover .standard-datagrid-cell::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background: linear-gradient(to right, var(--clr-primary), var(--clr-secondary));
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.standard-datagrid-row:not(.header).selected .standard-datagrid-cell::before {
+  transform: translateX(0);
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .standard-datagrid-cell.checkbox {
   justify-content: center;
 }
@@ -166,7 +195,7 @@
 .standard-datagrid-cell.actions {
   display: flex;
   gap: var(--spacing-xs);
-  opacity: 0.5;
+  opacity: 0.8;
   transition: opacity 0.2s ease;
 }
 
@@ -214,11 +243,6 @@
   border: 1px solid var(--clr-border);
 }
 
-.standard-pagination .btn-icon:hover,
-.standard-items-per-page select:hover {
-  background-color: var(--clr-surface-hover);
-}
-
 .standard-items-per-page select {
   border-radius: var(--border-radius);
   appearance: none;
@@ -228,6 +252,12 @@
   background-size: 0.65rem auto;
   padding: 0.4rem 2rem 0.4rem 0.8rem;
 }
+
+.standard-pagination .btn-icon:hover,
+.standard-items-per-page select:hover {
+  background-color: var(--clr-surface-hover);
+}
+
 
 @media (width <= 768px) {
   .standard-datagrid-table {
@@ -254,7 +284,7 @@
   }
 }
 
-@keyframes fadeOutLeft {
+@keyframes fadeoutleft {
   from {
     opacity: 1;
     transform: translateX(0);
