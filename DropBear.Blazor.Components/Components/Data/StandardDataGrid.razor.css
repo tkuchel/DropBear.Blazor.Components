@@ -21,7 +21,7 @@
   --clr-error-hover: #d94d4d;
 }
 
-body.theme-light {
+.standard-datagrid.theme-light {
   --clr-background: var(--clr-light-background);
   --clr-surface: var(--clr-light-surface);
   --clr-surface-hover: var(--clr-light-surface-hover);
@@ -29,7 +29,7 @@ body.theme-light {
   --clr-text: var(--clr-light-text);
 }
 
-body.theme-dark {
+.standard-datagrid.theme-dark {
   --clr-background: var(--clr-dark-background);
   --clr-surface: var(--clr-dark-surface);
   --clr-surface-hover: var(--clr-dark-surface-hover);
@@ -41,7 +41,7 @@ body.theme-dark {
   background-color: var(--clr-surface);
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0 4px 6px var(--clr-overlay);
+  box-shadow: 0 4px 8px -4px var(--clr-overlay);
   margin: var(--spacing-lg);
 }
 
