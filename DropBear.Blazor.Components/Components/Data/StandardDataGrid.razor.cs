@@ -36,9 +36,9 @@ public partial class StandardDataGrid<TItem>
     private int ItemsPerPage { get; set; } = 10;
     private string SortColumn { get; set; } = string.Empty;
     private bool IsSortAscending { get; set; } = true;
-    private HashSet<TItem> SelectedItems { get; } = [];
+    private HashSet<TItem> SelectedItems { get; } = new();
 #pragma warning disable CA1002
-    [Parameter] public List<ContextMenuItem> ContextMenuItems { get; set; } = [];
+    [Parameter] public List<ContextMenuItem> ContextMenuItems { get; set; } = new();
 #pragma warning restore CA1002
     [Parameter] public EventCallback<(ContextMenuItem, TItem)> OnContextMenuItemClick { get; set; }
     [Parameter] public string ContextMenuBackgroundColor { get; set; } = "#2b2d31";

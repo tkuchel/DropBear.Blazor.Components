@@ -1,5 +1,27 @@
 ﻿/* StandardDataGrid.razor.css */
-body.theme-light {
+
+:root {
+  --clr-dark-text: #fff;
+  --clr-light-text: #333;
+  --clr-light-background: #f8f9fa;
+  --clr-dark-background: #2b2d31;
+  --clr-light-surface: #fff;
+  --clr-dark-surface: #2b2d31;
+  --clr-light-surface-hover: #e0e0e0;
+  --clr-dark-surface-hover: #3a3d44;
+  --clr-light-border: #dee2e6;
+  --clr-dark-border: #454950;
+  --clr-primary: #4ebafd;
+  --clr-primary-hover: #3aa0d5;
+  --clr-secondary: #8552f8;
+  --clr-secondary-hover: #6a3ed5;
+  --clr-success: #7cd651;
+  --clr-warning: #ffd14d;
+  --clr-error: #ff5757;
+  --clr-error-hover: #d94d4d;
+}
+
+.standard-datagrid .theme-light {
   --clr-background: var(--clr-light-background);
   --clr-surface: var(--clr-light-surface);
   --clr-surface-hover: var(--clr-light-surface-hover);
@@ -7,7 +29,7 @@ body.theme-light {
   --clr-text: var(--clr-light-text);
 }
 
-body.theme-dark {
+.standard-datagrid .theme-dark {
   --clr-background: var(--clr-dark-background);
   --clr-surface: var(--clr-dark-surface);
   --clr-surface-hover: var(--clr-dark-surface-hover);
@@ -232,7 +254,7 @@ body.theme-dark {
   }
 }
 
-@keyframes fadeoutleft {
+@keyframes fadeOutLeft {
   from {
     opacity: 1;
     transform: translateX(0);
