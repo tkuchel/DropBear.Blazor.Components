@@ -1,6 +1,7 @@
 ﻿#region
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 #endregion
 
@@ -14,6 +15,7 @@ public partial class ContextSubmenu : ComponentBase
     [Parameter] public bool IsVisible { get; set; } = true;
     [Parameter] public string SubmenuStyle { get; set; } = "";
     [Parameter] public EventCallback<ContextMenuItem> OnSubmenuItemClick { get; set; }
+    [Parameter] public bool IsLightMode { get; set; }
 
     private ContextMenuItem? SelectedItem { get; set; }
 
@@ -21,7 +23,21 @@ public partial class ContextSubmenu : ComponentBase
     {
         if (!item.HasSubmenu)
         {
-            await OnSubmenuItemClick.InvokeAsync(item)!;
+            await OnSubmenuItemClick.InvokeAsync(item);
+        }
+    }
+
+    private async Task OnKeyDown(KeyboardEventArgs e, ContextMenuItem item)
+    {
+        switch (e.Key)
+        {
+            case "Enter":
+            case " ":
+                await OnItemClick(item);
+                break;
+            case "Escape":
+                // Close submenu
+                break;
         }
     }
 }

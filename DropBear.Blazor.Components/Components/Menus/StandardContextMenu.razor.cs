@@ -2,6 +2,7 @@
 
 using DropBear.Blazor.Components.Helpers.Utilities;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 
 #endregion
@@ -11,9 +12,9 @@ namespace DropBear.Blazor.Components.Components.Menus;
 public partial class StandardContextMenu : ComponentBase
 {
     private double _left;
-    private double _top;
 
     private ElementReference _menuElement;
+    private double _top;
     private bool IsVisible { get; set; }
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
@@ -21,9 +22,7 @@ public partial class StandardContextMenu : ComponentBase
     [Parameter] public List<ContextMenuItem> MenuItems { get; set; } = [];
 #pragma warning restore CA1002
     [Parameter] public EventCallback<ContextMenuItem> OnMenuItemClick { get; set; }
-    [Parameter] public string BackgroundColor { get; set; } = "#2b2d31";
-    [Parameter] public string TextColor { get; set; } = "#a4b1cd";
-    [Parameter] public string HighlightColor { get; set; } = "#4ebafd";
+    [Parameter] public bool IsLightMode { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -111,5 +110,19 @@ public partial class StandardContextMenu : ComponentBase
     public void HandleGlobalClick()
     {
         Hide();
+    }
+
+    private async Task OnKeyDown(KeyboardEventArgs e, ContextMenuItem item)
+    {
+        switch (e.Key)
+        {
+            case "Enter":
+            case " ":
+                await OnItemClick(item);
+                break;
+            case "Escape":
+                Hide();
+                break;
+        }
     }
 }

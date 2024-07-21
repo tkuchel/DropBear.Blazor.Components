@@ -1,31 +1,34 @@
-﻿
-@inherits ComponentBase
+﻿@inherits ComponentBase
 @namespace DropBear.Blazor.Components.Components.Menus
 
 <div class="context-submenu @(IsVisible ? "active" : "")"
-     style="@SubmenuStyle">
+     style="@SubmenuStyle;"
+     role="menu">
     @if (MenuItems != null)
     {
         @foreach (var item in MenuItems)
         {
             if (item.IsSeparator)
             {
-                <div class="context-menu-separator"></div>
+                <div class="context-menu-separator" role="separator"></div>
             }
             else
             {
                 <div class="context-menu-item @(item.HasSubmenu ? "has-submenu" : "") @(item == SelectedItem ? "selected" : "")"
                      @onclick="() => OnItemClick(item)"
-                     @onmouseover="() => SelectedItem = item">
+                     @onmouseover="() => SelectedItem = item"
+                     role="menuitem"
+                     tabindex="0"
+                     @onkeydown="@(e => OnKeyDown(e, item))">
                     @if (!string.IsNullOrEmpty(item.IconClass))
                     {
-                        <i class="@item.IconClass"></i>
+                        <i class="@item.IconClass" aria-hidden="true"></i>
                     }
                     <span>@item.Text</span>
                     @if (item.HasSubmenu)
                     {
-                        <i class="fas fa-chevron-right submenu-icon"></i>
-                        <ContextSubmenu MenuItems="item.SubmenuItems" OnSubmenuItemClick="OnSubmenuItemClick"/>
+                        <i class="fas fa-chevron-right submenu-icon" aria-hidden="true"></i>
+                        <ContextSubmenu MenuItems="item.SubmenuItems" OnSubmenuItemClick="OnSubmenuItemClick" IsLightMode="IsLightMode"/>
                     }
                 </div>
             }

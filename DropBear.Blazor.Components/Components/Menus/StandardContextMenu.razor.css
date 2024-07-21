@@ -1,19 +1,34 @@
 ﻿/* StandardContextMenu.razor.css */
+:root {
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
+}
+
 .standard-context-menu {
   position: fixed;
-  background-color: var(--clr-surface);
-  color: var(--clr-text);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-sm) 0;
-  min-width: 180px;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  border-radius: calc(8px * var(--inverse-golden-ratio));
+  padding: calc(4px * var(--inverse-golden-ratio)) 0;
+  min-width: calc(180px * var(--golden-ratio));
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
   z-index: 1000;
   font-family: Poppins, sans-serif;
-  font-size: 14px;
+  font-size: calc(14px * var(--inverse-golden-ratio));
   opacity: 0;
   visibility: hidden;
   transform: scale(0.95);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  transition: opacity calc(0.2s * var(--inverse-golden-ratio)) ease,
+  transform calc(0.2s * var(--inverse-golden-ratio)) ease,
+  visibility calc(0.2s * var(--inverse-golden-ratio));
+}
+
+.standard-context-menu.theme-light {
+  background-color: var(--clr-light-surface);
+  color: var(--clr-light-text);
+}
+
+.standard-context-menu.theme-dark {
+  background-color: var(--clr-dark-surface);
+  color: var(--clr-dark-text);
 }
 
 .standard-context-menu.active {
@@ -25,16 +40,16 @@
 .standard-context-menu-item {
   display: flex;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: calc(8px * var(--inverse-golden-ratio)) calc(12px * var(--inverse-golden-ratio));
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  animation: fadein 0.2s ease-out forwards;
+  transition: background-color calc(0.2s * var(--inverse-golden-ratio)) ease;
+  animation: fadein calc(0.2s * var(--inverse-golden-ratio)) ease-out forwards;
   opacity: 0;
 }
 
 .standard-context-menu-item:hover {
-  background-color: var(--clr-surface-hover);
-  color: var(--clr-text);
+  background-color: var(--clr-primary);
+  color: var(--clr-light-text);
 }
 
 .standard-context-menu-item.disabled {
@@ -43,39 +58,39 @@
 }
 
 .standard-context-menu-separator {
-  height: 1px;
+  height: calc(1px * var(--inverse-golden-ratio));
   background-color: var(--clr-surface-lighter);
-  margin: var(--spacing-xs) 0;
+  margin: calc(4px * var(--inverse-golden-ratio)) 0;
 }
 
 .standard-context-menu-item i {
-  margin-right: var(--spacing-sm);
+  margin-right: calc(8px * var(--inverse-golden-ratio));
   color: var(--clr-primary);
-  width: 16px;
+  width: calc(16px * var(--inverse-golden-ratio));
   text-align: center;
-  transition: transform 0.2s;
+  transition: transform calc(0.2s * var(--inverse-golden-ratio));
 }
 
 .standard-context-menu-item.has-submenu::after {
   content: '▶';
   position: absolute;
-  right: var(--spacing-sm);
-  font-size: 0.8em;
+  right: calc(8px * var(--inverse-golden-ratio));
+  font-size: calc(0.8em * var(--inverse-golden-ratio));
 }
 
-.standard-context-submenu {
+.context-submenu {
   position: absolute;
   left: 100%;
   top: 0;
-  background-color: var(--clr-surface);
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  background-color: inherit;
+  border-radius: calc(8px * var(--inverse-golden-ratio));
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
   display: none;
-  min-width: 180px;
+  min-width: calc(180px * var(--golden-ratio));
   z-index: 1001;
 }
 
-.standard-context-menu-item.has-submenu:hover > .standard-context-submenu {
+.standard-context-menu-item.has-submenu:hover > .context-submenu {
   display: block;
 }
 
@@ -86,7 +101,7 @@
 @keyframes fadein {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(calc(-10px * var(--inverse-golden-ratio)));
   }
 
   to {
@@ -96,21 +111,27 @@
 }
 
 .standard-context-menu-item:nth-child(1) {
-  animation-delay: 0.05s;
+  animation-delay: calc(0.05s * var(--inverse-golden-ratio));
 }
 
 .standard-context-menu-item:nth-child(2) {
-  animation-delay: 0.1s;
+  animation-delay: calc(0.1s * var(--inverse-golden-ratio));
 }
 
 .standard-context-menu-item:nth-child(3) {
-  animation-delay: 0.15s;
+  animation-delay: calc(0.15s * var(--inverse-golden-ratio));
 }
 
 .standard-context-menu-item:nth-child(4) {
-  animation-delay: 0.2s;
+  animation-delay: calc(0.2s * var(--inverse-golden-ratio));
 }
 
 .standard-context-menu-item:nth-child(5) {
-  animation-delay: 0.25s;
+  animation-delay: calc(0.25s * var(--inverse-golden-ratio));
+}
+
+/* Accessibility improvements */
+.standard-context-menu-item:focus {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(-2px * var(--inverse-golden-ratio));
 }
