@@ -8,9 +8,9 @@ namespace DropBear.Blazor.Components.Components.Loaders;
 
 public partial class ShortWaitSpinner : ComponentBase
 {
-#pragma warning disable CA1823
+#pragma warning disable CA1823, IDE0051
     private const double GoldenRatio = 1.618;
-#pragma warning restore CA1823
+#pragma warning restore CA1823, IDE0051
     private const double InverseGoldenRatio = 0.618;
     [Parameter] public string Title { get; set; } = "Short Wait Spinner";
     [Parameter] public string LoadingText { get; set; } = "Loading";
