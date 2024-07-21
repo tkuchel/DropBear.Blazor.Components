@@ -5,11 +5,11 @@
 
 @foreach (var positionGroup in _activeSnackbars.Values.GroupBy(s => s.Position))
 {
-    <div class="snackbar-container @positionGroup.Key.ToString().ToLower()">
+    <div class="snackbar-container @positionGroup.Key.ToString().ToLower() @(IsLightMode ? "theme-light" : "theme-dark")" role="log" aria-live="polite">
         @foreach (var snackbar in positionGroup)
         {
-            <div class="snackbar @snackbar.Type.ToString().ToLower()" @key="snackbar.Id" data-snackbar-id="@snackbar.Id">
-                <div class="snackbar-icon">
+            <div class="snackbar @snackbar.Type.ToString().ToLower()" @key="snackbar.Id" data-snackbar-id="@snackbar.Id" role="alert">
+                <div class="snackbar-icon" aria-hidden="true">
                     <i class="@GetIconClass(snackbar.Type)"></i>
                 </div>
                 <div class="snackbar-content">
@@ -21,8 +21,10 @@
                         @snackbar.Action.Text
                     </button>
                 }
-                <button class="snackbar-close" @onclick="() => RemoveSnackbar(snackbar.Id)">&times;</button>
-                <div class="snackbar-progress"></div>
+                <button class="snackbar-close" @onclick="() => RemoveSnackbar(snackbar.Id)" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="snackbar-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
             </div>
         }
     </div>

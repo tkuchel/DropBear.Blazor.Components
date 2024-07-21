@@ -13,39 +13,40 @@ namespace DropBear.Blazor.Components.Components.Messages;
 public partial class Snackbar : ComponentBase, IAsyncDisposable
 {
     private const string JavaScriptFunctions = """
-
-                                                       window.snackbarInterop = {
-                                                           animateProgress: function(snackbarId, duration) {
-                                                               const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
-                                                               if (snackbar) {
-                                                                   const progress = snackbar.querySelector('.snackbar-progress');
-                                                                   if (progress) {
-                                                                       progress.style.transition = `width ${duration}ms linear`;
-                                                                       progress.style.width = '0%';
-                                                                   }
-                                                               }
-                                                           },
-                                                           removeSnackbar: function(snackbarId) {
-                                                               const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
-                                                               if (snackbar) {
-                                                                   snackbar.style.animation = 'slideOutAndShrink 0.3s ease-out forwards';
-                                                                   setTimeout(() => snackbar.remove(), 300);
+                                                   window.snackbarInterop = {
+                                                       animateProgress: function(snackbarId, duration) {
+                                                           const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
+                                                           if (snackbar) {
+                                                               const progress = snackbar.querySelector('.snackbar-progress');
+                                                               if (progress) {
+                                                                   progress.style.transition = `width ${duration}ms linear`;
+                                                                   progress.style.width = '0%';
+                                                                   progress.setAttribute('aria-valuenow', '100');
+                                                                   setTimeout(() => progress.setAttribute('aria-valuenow', '0'), duration);
                                                                }
                                                            }
-                                                       };
-
+                                                       },
+                                                       removeSnackbar: function(snackbarId) {
+                                                           const snackbar = document.querySelector(`[data-snackbar-id='${snackbarId}']`);
+                                                           if (snackbar) {
+                                                               snackbar.style.animation = 'slideOutAndShrink 0.3s ease-out forwards';
+                                                               setTimeout(() => snackbar.remove(), 300);
+                                                           }
+                                                       }
+                                                   };
                                                """;
 
     private readonly ConcurrentDictionary<Guid, SnackbarItem> _activeSnackbars = new();
     private bool _jsInitialized;
 
     [Parameter] public SnackbarPosition Position { get; set; } = SnackbarPosition.BottomLeft;
+    [Parameter] public bool IsLightMode { get; set; }
 
     #region IAsyncDisposable Members
 
-    public ValueTask DisposeAsync()
+    public async ValueTask DisposeAsync()
     {
-        return ValueTask.CompletedTask;
+        // Cleanup code if needed
     }
 
     #endregion

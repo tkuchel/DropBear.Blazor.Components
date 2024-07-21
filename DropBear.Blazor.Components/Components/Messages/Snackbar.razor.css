@@ -1,44 +1,58 @@
 ﻿/* Snackbar.razor.css */
+:root {
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
+}
+
 .snackbar-container {
   position: fixed;
   display: flex;
   flex-direction: column-reverse;
-  gap: 10px;
-  max-width: 400px;
+  gap: calc(10px * var(--inverse-golden-ratio));
+  max-width: calc(400px * var(--golden-ratio));
   width: 100%;
   z-index: 1000;
 }
 
 .snackbar-container.bottomleft {
-  bottom: 20px;
-  left: 20px;
+  bottom: calc(20px * var(--inverse-golden-ratio));
+  left: calc(20px * var(--inverse-golden-ratio));
 }
 
 .snackbar-container.bottomright {
-  bottom: 20px;
-  right: 20px;
+  bottom: calc(20px * var(--inverse-golden-ratio));
+  right: calc(20px * var(--inverse-golden-ratio));
 }
 
 .snackbar-container.topleft {
-  top: 20px;
-  left: 20px;
+  top: calc(20px * var(--inverse-golden-ratio));
+  left: calc(20px * var(--inverse-golden-ratio));
 }
 
 .snackbar-container.topright {
-  top: 20px;
-  right: 20px;
+  top: calc(20px * var(--inverse-golden-ratio));
+  right: calc(20px * var(--inverse-golden-ratio));
 }
 
 .snackbar {
   display: flex;
   align-items: center;
-  background-color: var(--clr-surface);
-  border-radius: var(--border-radius);
-  padding: 12px 16px;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
-  animation: slideinandgrow 0.3s ease-out;
+  border-radius: calc(var(--border-radius) * var(--inverse-golden-ratio));
+  padding: calc(12px * var(--inverse-golden-ratio)) calc(16px * var(--inverse-golden-ratio));
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  animation: slideinandgrow calc(0.3s * var(--inverse-golden-ratio)) ease-out;
   position: relative;
   overflow: hidden;
+}
+
+.theme-light .snackbar {
+  background-color: var(--clr-light-surface);
+  color: var(--clr-light-text);
+}
+
+.theme-dark .snackbar {
+  background-color: var(--clr-dark-surface);
+  color: var(--clr-dark-text);
 }
 
 @keyframes slideinandgrow {
@@ -67,7 +81,7 @@
 
 .snackbar-container.bottomright .snackbar,
 .snackbar-container.topright .snackbar {
-  animation: slideinandgrowright 0.3s ease-out;
+  animation: slideinandgrowright calc(0.3s * var(--inverse-golden-ratio)) ease-out;
 }
 
 @keyframes slideinandgrowright {
@@ -84,7 +98,7 @@
 
 .snackbar-container.bottomright .snackbar.removing,
 .snackbar-container.topright .snackbar.removing {
-  animation: slideoutandshrinkright 0.3s ease-out forwards;
+  animation: slideoutandshrinkright calc(0.3s * var(--inverse-golden-ratio)) ease-out forwards;
 }
 
 @keyframes slideoutandshrinkright {
@@ -100,13 +114,13 @@
 }
 
 .snackbar-icon {
-  font-size: 1.5rem;
-  margin-right: 12px;
+  font-size: calc(1.5rem * var(--inverse-golden-ratio));
+  margin-right: calc(12px * var(--inverse-golden-ratio));
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: calc(24px * var(--inverse-golden-ratio));
+  height: calc(24px * var(--inverse-golden-ratio));
 }
 
 .snackbar-content {
@@ -115,60 +129,80 @@
 
 .snackbar-message {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: calc(0.95rem * var(--inverse-golden-ratio));
 }
 
 .snackbar-action {
-  background-color: rgb(255 255 255 / 30%);
   border: none;
-  color: var(--clr-text);
-  font-size: 0.9rem;
+  font-size: calc(0.9rem * var(--inverse-golden-ratio));
   font-weight: 600;
   cursor: pointer;
-  padding: 6px 12px;
-  margin-left: 8px;
-  transition: var(--transition);
-  border-radius: var(--border-radius);
+  padding: calc(6px * var(--inverse-golden-ratio)) calc(12px * var(--inverse-golden-ratio));
+  margin-left: calc(8px * var(--inverse-golden-ratio));
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
+  border-radius: calc(var(--border-radius) * var(--inverse-golden-ratio));
   text-transform: uppercase;
 }
 
+.theme-light .snackbar-action {
+  background-color: var(--clr-light-surface-hover);
+  color: var(--clr-light-text);
+}
+
+.theme-dark .snackbar-action {
+  background-color: rgb(255 255 255 / 20%);
+  color: var(--clr-dark-text);
+}
+
 .snackbar-action:hover {
-  background-color: rgb(255 255 255 / 40%);
-}
-
-.light-theme .snackbar-action {
-  background-color: var(--clr-info);
-  color: #fff;
-}
-
-.light-theme .snackbar-action:hover {
-  background-color: #3a9be0;
+  filter: brightness(1.1);
 }
 
 .snackbar-close {
   background: none;
   border: none;
-  color: var(--clr-text-muted);
-  font-size: 1.2rem;
+  font-size: calc(1.2rem * var(--inverse-golden-ratio));
   cursor: pointer;
-  padding: 4px 8px;
-  margin-left: 8px;
-  transition: var(--transition);
+  padding: calc(4px * var(--inverse-golden-ratio)) calc(8px * var(--inverse-golden-ratio));
+  margin-left: calc(8px * var(--inverse-golden-ratio));
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
   border-radius: 50%;
 }
 
+.theme-light .snackbar-close {
+  color: var(--clr-light-text-muted);
+}
+
+.theme-dark .snackbar-close {
+  color: var(--clr-text-muted);
+}
+
 .snackbar-close:hover {
-  color: var(--clr-text);
   background-color: rgb(255 255 255 / 10%);
+}
+
+.theme-light .snackbar-close:hover {
+  color: var(--clr-light-text);
+}
+
+.theme-dark .snackbar-close:hover {
+  color: var(--clr-dark-text);
 }
 
 .snackbar-progress {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 4px;
-  background-color: rgb(255 255 255 / 20%);
+  height: calc(4px * var(--inverse-golden-ratio));
   width: 100%;
+}
+
+.theme-light .snackbar-progress {
+  background-color: rgb(0 0 0 / 10%);
+}
+
+.theme-dark .snackbar-progress {
+  background-color: rgb(255 255 255 / 20%);
 }
 
 .snackbar-progress::after {
@@ -178,7 +212,6 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: currentcolor;
   animation: progress linear forwards;
 }
 
@@ -192,93 +225,41 @@
   }
 }
 
-.light-theme .snackbar-progress {
-  background-color: rgb(0 0 0 / 10%);
-}
-
 .snackbar-info {
-  border-left: 4px solid var(--clr-info);
-}
-
-.snackbar-info .snackbar-icon,
-.snackbar-info .snackbar-progress::after {
-  color: var(--clr-info);
+  border-left: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-info);
 }
 
 .snackbar-success {
-  border-left: 4px solid var(--clr-success);
-}
-
-.snackbar-success .snackbar-icon,
-.snackbar-success .snackbar-progress::after {
-  color: var(--clr-success);
+  border-left: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-success);
 }
 
 .snackbar-warning {
-  border-left: 4px solid var(--clr-warning);
-}
-
-.snackbar-warning .snackbar-icon,
-.snackbar-warning .snackbar-progress::after {
-  color: var(--clr-warning);
+  border-left: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-warning);
 }
 
 .snackbar-error {
-  border-left: 4px solid var(--clr-error);
+  border-left: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-error);
 }
 
-.snackbar-error .snackbar-icon,
-.snackbar-error .snackbar-progress::after {
+.snackbar-info .snackbar-icon, .snackbar-info .snackbar-progress::after {
+  color: var(--clr-info);
+}
+
+.snackbar-success .snackbar-icon, .snackbar-success .snackbar-progress::after {
+  color: var(--clr-success);
+}
+
+.snackbar-warning .snackbar-icon, .snackbar-warning .snackbar-progress::after {
+  color: var(--clr-warning);
+}
+
+.snackbar-error .snackbar-icon, .snackbar-error .snackbar-progress::after {
   color: var(--clr-error);
-}
-
-.snackbar-controls {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.snackbar-btn {
-  font-family: Poppins, sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius);
-  border: none;
-  cursor: pointer;
-  transition: var(--transition);
-  color: var(--clr-surface);
-}
-
-.snackbar-btn:hover {
-  filter: brightness(1.1);
-}
-
-.snackbar-btn-info {
-  background-color: var(--clr-info);
-}
-
-.snackbar-btn-success {
-  background-color: var(--clr-success);
-}
-
-.snackbar-btn-warning {
-  background-color: var(--clr-warning);
-}
-
-.snackbar-btn-error {
-  background-color: var(--clr-error);
-}
-
-.snackbar-btn-secondary {
-  background-color: var(--clr-text-muted);
 }
 
 @media (width <= 600px) {
   .snackbar-container {
-    top: 20px;
+    top: calc(20px * var(--inverse-golden-ratio));
     bottom: auto;
     left: 50%;
     transform: translateX(-50%);
