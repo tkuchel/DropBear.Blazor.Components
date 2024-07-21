@@ -13,6 +13,7 @@
   height: 100%;
   z-index: 1000;
   opacity: 0;
+  background-color: var(--modal-overlay);
   transition: opacity calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 
@@ -27,8 +28,10 @@
   border-radius: calc(var(--border-radius) * var(--inverse-golden-ratio));
   width: 90%;
   max-width: calc(450px * var(--golden-ratio));
-  box-shadow: 0 calc(10px * var(--inverse-golden-ratio)) calc(25px * var(--inverse-golden-ratio)) rgb(0 0 0 / 20%);
+  box-shadow: 0 calc(10px * var(--inverse-golden-ratio)) calc(25px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 20%);
   transform: scale(0.7);
+  background-color: var(--modal-bg);
+  color: var(--modal-text);
   transition: transform calc(0.3s * var(--inverse-golden-ratio)) ease;
   overflow: hidden;
 }
@@ -38,11 +41,13 @@
   animation: modalenter calc(0.3s * var(--inverse-golden-ratio)) forwards;
 }
 
-.standard-modal-header {
+.standard-modal-header,
+.standard-modal-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: calc(var(--spacing-lg) * var(--inverse-golden-ratio));
+  border-color: var(--modal-border);
 }
 
 .standard-modal-header h2 {
@@ -56,6 +61,7 @@
   border: none;
   font-size: calc(1.5rem * var(--inverse-golden-ratio));
   cursor: pointer;
+  color: var(--modal-text);
   transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 
@@ -64,10 +70,8 @@
 }
 
 .standard-modal-footer {
-  display: flex;
   justify-content: flex-end;
   gap: calc(var(--spacing-md) * var(--inverse-golden-ratio));
-  padding: calc(var(--spacing-lg) * var(--inverse-golden-ratio));
 }
 
 .standard-modal-btn {
@@ -85,7 +89,7 @@
 
 .standard-modal-btn:hover {
   transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
-  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
 }
 
 @keyframes modalenter {
@@ -105,31 +109,14 @@
   --modal-bg: var(--clr-light-surface);
   --modal-text: var(--clr-light-text);
   --modal-border: var(--clr-light-border);
-  --modal-overlay: rgb(0 0 0 / 50%);
+  --modal-overlay: hsl(0deg 0% 0% / 50%);
 }
 
 .standard-modal.theme-dark {
   --modal-bg: var(--clr-dark-surface);
   --modal-text: var(--clr-dark-text);
   --modal-border: var(--clr-dark-border);
-  --modal-overlay: rgb(0 0 0 / 70%);
-}
-
-.standard-modal {
-  background-color: var(--modal-overlay);
-}
-
-.standard-modal-content {
-  background-color: var(--modal-bg);
-  color: var(--modal-text);
-}
-
-.standard-modal-header, .standard-modal-footer {
-  border-color: var(--modal-border);
-}
-
-.standard-modal-close {
-  color: var(--modal-text);
+  --modal-overlay: hsl(0deg 0% 0% / 70%);
 }
 
 .standard-modal-btn-primary {
@@ -157,8 +144,7 @@
 
 /* Transition variants */
 .standard-modal.fade .standard-modal-content {
-  transition: opacity calc(0.3s * var(--inverse-golden-ratio)) ease,
-  transform calc(0.3s * var(--inverse-golden-ratio)) ease;
+  transition: opacity calc(0.3s * var(--inverse-golden-ratio)) ease, transform calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 
 .standard-modal.slide .standard-modal-content,

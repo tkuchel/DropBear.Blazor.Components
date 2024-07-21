@@ -22,7 +22,7 @@
   display: flex;
   align-items: flex-start;
   gap: calc(1rem * var(--inverse-golden-ratio));
-  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
   transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
   position: relative;
   animation: slideindown calc(0.3s * var(--inverse-golden-ratio)) ease-out;
@@ -40,7 +40,7 @@
 
 .alert:hover {
   transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
-  box-shadow: 0 calc(6px * var(--inverse-golden-ratio)) calc(8px * var(--inverse-golden-ratio)) rgb(0 0 0 / 15%);
+  box-shadow: 0 calc(6px * var(--inverse-golden-ratio)) calc(8px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 15%);
 }
 
 .alert-icon {
@@ -118,22 +118,22 @@
 
 .alert-info .alert-icon {
   color: var(--clr-info);
-  background-color: rgb(from var(--clr-info) 0.1);
+  background-color: hsl(var(--clr-info) 0.1);
 }
 
 .alert-success .alert-icon {
   color: var(--clr-success);
-  background-color: rgb(from var(--clr-success) 0.1);
+  background-color: hsl(var(--clr-success) 0.1);
 }
 
 .alert-warning .alert-icon {
   color: var(--clr-warning);
-  background-color: rgb(from var(--clr-warning) 0.1);
+  background-color: hsl(var(--clr-warning) 0.1);
 }
 
 .alert-danger .alert-icon {
   color: var(--clr-danger);
-  background-color: rgb(from var(--clr-danger) 0.1);
+  background-color: hsl(var(--clr-danger) 0.1);
 }
 
 .alert-low {
@@ -141,7 +141,7 @@
 }
 
 .alert-high {
-  box-shadow: 0 0 0 calc(4px * var(--inverse-golden-ratio)) rgb(from var(--clr-danger) 0.3);
+  box-shadow: 0 0 0 calc(4px * var(--inverse-golden-ratio)) hsl(var(--clr-danger) 0.3);
 }
 
 .alert-dismissible .alert-close {
@@ -162,4 +162,10 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* Accessibility improvements */
+.alert-close:focus {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
 }

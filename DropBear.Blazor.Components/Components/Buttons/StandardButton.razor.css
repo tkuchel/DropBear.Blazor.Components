@@ -4,6 +4,26 @@
   --inverse-golden-ratio: 0.618;
 }
 
+/* Button Group */
+.standard-button-group {
+  display: flex;
+  gap: calc(1rem * var(--inverse-golden-ratio));
+  margin-bottom: calc(1rem * var(--inverse-golden-ratio));
+  flex-wrap: wrap;
+}
+
+/* Responsive styles */
+@media (width <= 768px) {
+  .standard-button-group {
+    flex-direction: column;
+  }
+
+  .standard-button-block {
+    width: 100%;
+  }
+}
+
+/* Standard Button Styles */
 .standard-button {
   font-family: Poppins, sans-serif;
   font-weight: 500;
@@ -20,7 +40,7 @@
 
 .standard-button:hover:not(.disabled) {
   transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
-  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(4px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(4px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
 }
 
 .standard-button:active:not(.disabled) {
@@ -141,25 +161,6 @@
 /* Light Mode Styles */
 .standard-button.light-mode {
   /* Add specific light mode styles if needed */
-}
-
-/* Button Group */
-.standard-button-group {
-  display: flex;
-  gap: calc(1rem * var(--inverse-golden-ratio));
-  margin-bottom: calc(1rem * var(--inverse-golden-ratio));
-  flex-wrap: wrap;
-}
-
-/* Responsive styles */
-@media (width <= 768px) {
-  .standard-button-group {
-    flex-direction: column;
-  }
-
-  .standard-button-block {
-    width: 100%;
-  }
 }
 
 /* Accessibility */

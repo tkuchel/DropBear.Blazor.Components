@@ -4,12 +4,13 @@
   --inverse-golden-ratio: 0.618;
 }
 
+/* Standard Card Styles */
 .standard-card {
   background-color: var(--clr-card-bg);
   color: var(--clr-text);
   border-radius: calc(var(--border-radius) * var(--inverse-golden-ratio));
   overflow: hidden;
-  box-shadow: calc(1px * var(--golden-ratio)) calc(2px * var(--golden-ratio)) calc(6px * var(--golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: calc(1px * var(--golden-ratio)) calc(2px * var(--golden-ratio)) calc(6px * var(--golden-ratio)) hsl(0deg 0% 0% / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -18,12 +19,12 @@
 
 .standard-card:hover {
   transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
-  box-shadow: calc(2px * var(--golden-ratio)) calc(4px * var(--golden-ratio)) calc(8px * var(--golden-ratio)) rgb(0 0 0 / 15%);
+  box-shadow: calc(2px * var(--golden-ratio)) calc(4px * var(--golden-ratio)) calc(8px * var(--golden-ratio)) hsl(0deg 0% 0% / 15%);
 }
 
 .standard-card.hover-enabled:hover {
   transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
-  box-shadow: calc(2px * var(--golden-ratio)) calc(4px * var(--golden-ratio)) calc(8px * var(--golden-ratio)) rgb(0 0 0 / 15%);
+  box-shadow: calc(2px * var(--golden-ratio)) calc(4px * var(--golden-ratio)) calc(8px * var(--golden-ratio)) hsl(0deg 0% 0% / 15%);
 }
 
 .standard-card-icon {

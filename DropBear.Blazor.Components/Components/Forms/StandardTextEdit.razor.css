@@ -19,7 +19,7 @@
 
   position: relative;
   width: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
   margin-bottom: calc(1rem * var(--golden-ratio));
 }
 
@@ -38,7 +38,7 @@
   --surface-light: var(--clr-dark-surface-hover);
   --surface-lighter: var(--clr-dark-border);
   --text: var(--clr-dark-text);
-  --text-muted: var(--clr-dark-text-muted);
+  --text-muted: var(--clr-text-muted);
 }
 
 .standard-textbox {
@@ -59,7 +59,7 @@
 
 .standard-textbox:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 calc(3px * var(--inverse-golden-ratio)) rgba(var(--primary), 0.3);
+  box-shadow: 0 0 0 calc(3px * var(--inverse-golden-ratio)) hsl(var(--primary) 0.3);
 }
 
 .standard-textbox::placeholder {
@@ -92,7 +92,7 @@
 }
 
 .standard-textbox.error:focus {
-  box-shadow: 0 0 0 calc(3px * var(--inverse-golden-ratio)) rgba(var(--error), 0.3);
+  box-shadow: 0 0 0 calc(3px * var(--inverse-golden-ratio)) hsl(var(--error) 0.3);
 }
 
 .standard-textbox.error ~ .standard-textbox-label {
@@ -104,7 +104,7 @@
 }
 
 .standard-textbox.valid:focus {
-  box-shadow: 0 0 0 calc(3px * var(--inverse-golden-ratio)) rgba(var(--success), 0.3);
+  box-shadow: 0 0 0 calc(3px * var(--inverse-golden-ratio)) hsl(var(--success) 0.3);
 }
 
 .standard-textbox.valid ~ .standard-textbox-label {
@@ -176,9 +176,9 @@
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(var(--primary), 0.4); }
-  70% { box-shadow: 0 0 0 calc(10px * var(--inverse-golden-ratio)) rgba(var(--primary), 0); }
-  100% { box-shadow: 0 0 0 0 rgba(var(--primary), 0); }
+  0% { box-shadow: 0 0 0 0 hsl(var(--primary) 0.4); }
+  70% { box-shadow: 0 0 0 calc(10px * var(--inverse-golden-ratio)) hsl(var(--primary) 0); }
+  100% { box-shadow: 0 0 0 0 hsl(var(--primary) 0); }
 }
 
 .standard-textbox:focus {

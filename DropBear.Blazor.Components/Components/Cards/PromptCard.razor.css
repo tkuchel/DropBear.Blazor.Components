@@ -4,13 +4,130 @@
   --inverse-golden-ratio: 0.618;
 }
 
+/* Button styles */
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background-color: hsl(0deg 0% 100% / 10%);
+  color: var(--clr-silver-sand);
+}
+
+.btn-secondary:hover {
+  background-color: hsl(0deg 0% 100% / 20%);
+  filter: brightness(0.9);
+}
+
+.error .btn-primary {
+  background-color: var(--clr-persimmon);
+  color: white;
+}
+
+.information .btn-primary {
+  background-color: var(--clr-malibu);
+  color: var(--clr-mine-shaft);
+}
+
+.success .btn-primary {
+  background-color: var(--clr-pastel-green);
+  color: var(--clr-mine-shaft);
+}
+
+.warning .btn-primary {
+  background-color: var(--clr-mustard);
+  color: var(--clr-mine-shaft);
+}
+
+/* Light mode button styles */
+.light-mode .btn-secondary {
+  background-color: #f0f0f0;
+  color: var(--clr-light-text);
+}
+
+.light-mode .btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.light-mode .error .btn-primary {
+  background-color: var(--clr-light-persimmon);
+  color: white;
+}
+
+.light-mode .information .btn-primary {
+  background-color: var(--clr-light-malibu);
+  color: white;
+}
+
+.light-mode .success .btn-primary {
+  background-color: var(--clr-light-pastel-green);
+  color: white;
+}
+
+.light-mode .warning .btn-primary {
+  background-color: var(--clr-light-mustard);
+  color: white;
+}
+
+/* Prompt card styles */
+.prompt-card {
+  background-color: var(--clr-mine-shaft);
+  border: none;
+  border-radius: calc(12px * var(--inverse-golden-ratio));
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 15%);
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
+  max-width: calc(500px * var(--golden-ratio));
+}
+
+.prompt-card:focus-within {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
+}
+
+.prompt-card:hover {
+  transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
+  box-shadow: 0 calc(6px * var(--inverse-golden-ratio)) calc(25px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 20%);
+}
+
+.prompt-card-body {
+  padding: calc(1.25rem * var(--inverse-golden-ratio));
+}
+
+.prompt-card-header {
+  display: flex;
+  align-items: center;
+  padding: calc(1.25rem * var(--inverse-golden-ratio));
+  border-bottom: 1px solid hsl(0deg 0% 100% / 10%);
+}
+
+.prompt-card-header i {
+  font-size: calc(1.5rem * var(--inverse-golden-ratio));
+  margin-right: calc(0.75rem * var(--inverse-golden-ratio));
+}
+
+.prompt-card-text {
+  color: var(--clr-silver-sand);
+  margin-bottom: calc(1.75rem * var(--inverse-golden-ratio));
+  font-weight: 300;
+  line-height: var(--golden-ratio);
+  font-size: calc(0.9rem * var(--inverse-golden-ratio));
+}
+
+.prompt-card-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: calc(1.25rem * var(--inverse-golden-ratio));
+  color: var(--clr-silver-sand);
+}
+
+/* Overlay styles */
 .prompt-card-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: hsl(0deg 0% 0% / 50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +138,7 @@
 }
 
 .prompt-card-overlay.light-mode {
-  background-color: rgb(0 0 0 / 10%);
+  background-color: hsl(0deg 0% 0% / 10%);
 }
 
 .prompt-card-overlay.visible {
@@ -29,69 +146,193 @@
   visibility: visible;
 }
 
-.prompt-card {
-  background-color: var(--clr-mine-shaft);
-  border: none;
-  border-radius: calc(12px * var(--inverse-golden-ratio));
-  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) rgb(0 0 0 / 15%);
-  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
-  /*width: 90%;*/
-  max-width: calc(500px * var(--golden-ratio));
+/* PromptType specific styles */
+.prompt-card.error .prompt-card-header i {
+  color: var(--clr-persimmon);
 }
 
-.prompt-card.light-mode {
-  background-color: var(--clr-light-background);
-  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+.prompt-card.error {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-persimmon);
 }
 
-.prompt-card-header {
-  display: flex;
-  align-items: center;
-  padding: calc(1.25rem * var(--inverse-golden-ratio));
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
+.prompt-card.information .prompt-card-header i {
+  color: var(--clr-malibu);
 }
 
+.prompt-card.information {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-malibu);
+}
+
+.prompt-card.success .prompt-card-header i {
+  color: var(--clr-pastel-green);
+}
+
+.prompt-card.success {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-pastel-green);
+}
+
+.prompt-card.warning .prompt-card-header i {
+  color: var(--clr-mustard);
+}
+
+.prompt-card.warning {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-mustard);
+}
+
+/* Light mode styles */
 .light-mode .prompt-card-header {
   border-bottom: 1px solid var(--clr-light-border);
-}
-
-.prompt-card-header i {
-  font-size: calc(1.5rem * var(--inverse-golden-ratio));
-  margin-right: calc(0.75rem * var(--inverse-golden-ratio));
-}
-
-.prompt-card-title {
-  margin: 0;
-  font-weight: 600;
-  font-size: calc(1.25rem * var(--inverse-golden-ratio));
-  color: var(--clr-silver-sand);
-}
-
-.light-mode .prompt-card-title {
-  color: var(--clr-light-text);
-}
-
-.prompt-card-body {
-  padding: calc(1.75rem * var(--inverse-golden-ratio));
-}
-
-.prompt-card-text {
-  color: var(--clr-silver-sand);
-  margin-bottom: calc(1.75rem * var(--inverse-golden-ratio));
-  font-weight: 300;
-  line-height: var(--golden-ratio);
 }
 
 .light-mode .prompt-card-text {
   color: var(--clr-light-text);
 }
 
+.light-mode .prompt-card-title {
+  color: var(--clr-light-text);
+}
+
+.light-mode.prompt-card.error .prompt-card-header i {
+  color: var(--clr-light-persimmon);
+}
+
+.light-mode.prompt-card.error {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-persimmon);
+}
+
+.light-mode.prompt-card.information .prompt-card-header i {
+  color: var(--clr-light-malibu);
+}
+
+.light-mode.prompt-card.information {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-malibu);
+}
+
+.light-mode.prompt-card.success .prompt-card-header i {
+  color: var(--clr-light-pastel-green);
+}
+
+.light-mode.prompt-card.success {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-pastel-green);
+}
+
+.light-mode.prompt-card.warning .prompt-card-header i {
+  color: var(--clr-light-mustard);
+}
+
+.light-mode.prompt-card.warning {
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-mustard);
+}
+
+.prompt-card.light-mode {
+  background-color: var(--clr-light-background);
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
+}
+
+/* Subtle variation styles */
+.prompt-card.subtle .btn-primary {
+  opacity: 0.9;
+}
+
+.prompt-card.subtle .btn-secondary {
+  background-color: hsl(0deg 0% 100% / 10%);
+  color: hsl(0deg 0% 75% / 90%);
+}
+
+.prompt-card.subtle .btn-secondary:hover {
+  background-color: hsl(0deg 0% 100% / 20%);
+}
+
+.prompt-card.subtle .prompt-card-header i {
+  opacity: 0.8;
+}
+
+.prompt-card.subtle .prompt-card-header {
+  border-bottom: 1px solid hsl(0deg 0% 100% / 5%);
+}
+
+.prompt-card.subtle .prompt-card-text {
+  color: hsl(0deg 0% 75% / 90%);
+}
+
+.prompt-card.subtle .prompt-card-title {
+  color: hsl(0deg 0% 75% / 90%);
+}
+
+.prompt-card.subtle {
+  background-color: hsl(220deg 7% 18% / 80%);
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
+  border: 1px solid hsl(0deg 0% 100% / 10%);
+}
+
+.prompt-card.subtle.error {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(0deg 100% 67% / 60%);
+}
+
+.prompt-card.subtle.information {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(208deg 100% 68% / 60%);
+}
+
+.prompt-card.subtle.success {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(90deg 65% 60% / 60%);
+}
+
+.prompt-card.subtle.warning {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(45deg 100% 64% / 60%);
+}
+
+/* Light Mode Subtle variation styles */
+.light-mode.prompt-card.subtle .btn-secondary {
+  background-color: hsl(0deg 0% 0% / 5%);
+  color: hsl(0deg 0% 20% / 90%);
+}
+
+.light-mode.prompt-card.subtle .btn-secondary:hover {
+  background-color: hsl(0deg 0% 0% / 10%);
+}
+
+.light-mode.prompt-card.subtle .prompt-card-header {
+  border-bottom: 1px solid hsl(0deg 0% 0% / 10%);
+}
+
+.light-mode.prompt-card.subtle .prompt-card-text {
+  color: hsl(0deg 0% 20% / 90%);
+}
+
+.light-mode.prompt-card.subtle .prompt-card-title {
+  color: hsl(0deg 0% 20% / 90%);
+}
+
+.light-mode.prompt-card.subtle {
+  background-color: hsl(0deg 0% 100% / 90%);
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 5%);
+  border: 1px solid hsl(0deg 0% 0% / 10%);
+}
+
+.light-mode.prompt-card.subtle.error {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(4deg 78% 58% / 60%);
+}
+
+.light-mode.prompt-card.subtle.information {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(204deg 70% 53% / 60%);
+}
+
+.light-mode.prompt-card.subtle.success {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(145deg 63% 51% / 60%);
+}
+
+.light-mode.prompt-card.subtle.warning {
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid hsl(36deg 87% 50% / 60%);
+}
+
+/* Prompt button group styles */
 .prompt-button-group {
   display: flex;
   justify-content: flex-end;
   gap: calc(12px * var(--inverse-golden-ratio));
 }
 
+/* Prompt custom button styles */
 .prompt-custom-btn {
   border: none;
   padding: calc(0.625rem * var(--inverse-golden-ratio)) calc(1.25rem * var(--inverse-golden-ratio));
@@ -101,232 +342,21 @@
   display: flex;
   align-items: center;
   gap: calc(8px * var(--inverse-golden-ratio));
+  font-size: calc(0.9rem * var(--inverse-golden-ratio));
 }
 
 .prompt-custom-btn:hover {
   transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
 }
 
-/* PromptType specific styles */
-.prompt-card.information {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-malibu);
+.prompt-custom-btn:focus {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
 }
 
-.prompt-card.warning {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-mustard);
-}
-
-.prompt-card.error {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-persimmon);
-}
-
-.prompt-card.success {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-pastel-green);
-}
-
-.prompt-card.information .prompt-card-header i {
-  color: var(--clr-malibu);
-}
-
-.prompt-card.warning .prompt-card-header i {
-  color: var(--clr-mustard);
-}
-
-.prompt-card.error .prompt-card-header i {
-  color: var(--clr-persimmon);
-}
-
-.prompt-card.success .prompt-card-header i {
-  color: var(--clr-pastel-green);
-}
-
-/* Light Mode PromptType specific styles */
-.light-mode.prompt-card.information {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-malibu);
-}
-
-.light-mode.prompt-card.warning {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-mustard);
-}
-
-.light-mode.prompt-card.error {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-persimmon);
-}
-
-.light-mode.prompt-card.success {
-  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-pastel-green);
-}
-
-.light-mode.prompt-card.information .prompt-card-header i {
-  color: var(--clr-light-malibu);
-}
-
-.light-mode.prompt-card.warning .prompt-card-header i {
-  color: var(--clr-light-mustard);
-}
-
-.light-mode.prompt-card.error .prompt-card-header i {
-  color: var(--clr-light-persimmon);
-}
-
-.light-mode.prompt-card.success .prompt-card-header i {
-  color: var(--clr-light-pastel-green);
-}
-
-/* Button styles */
-.information .btn-primary {
-  background-color: var(--clr-malibu);
-  color: var(--clr-mine-shaft);
-}
-
-.warning .btn-primary {
-  background-color: var(--clr-mustard);
-  color: var(--clr-mine-shaft);
-}
-
-.error .btn-primary {
-  background-color: var(--clr-persimmon);
-  color: white;
-}
-
-.success .btn-primary {
-  background-color: var(--clr-pastel-green);
-  color: var(--clr-mine-shaft);
-}
-
-.btn-secondary {
-  background-color: rgb(255 255 255 / 10%);
-  color: var(--clr-silver-sand);
-}
-
-.btn-secondary:hover {
-  background-color: rgb(255 255 255 / 20%);
-}
-
-/* Light mode button styles */
-.light-mode .information .btn-primary {
-  background-color: var(--clr-light-malibu);
-  color: white;
-}
-
-.light-mode .warning .btn-primary {
-  background-color: var(--clr-light-mustard);
-  color: white;
-}
-
-.light-mode .error .btn-primary {
-  background-color: var(--clr-light-persimmon);
-  color: white;
-}
-
-.light-mode .success .btn-primary {
-  background-color: var(--clr-light-pastel-green);
-  color: white;
-}
-
-.light-mode .btn-secondary {
-  background-color: #f0f0f0;
-  color: var(--clr-light-text);
-}
-
-.light-mode .btn-secondary:hover {
-  background-color: #e0e0e0;
-}
-
-/* Subtle variation styles */
-.prompt-card.subtle {
-  background-color: rgb(43 45 49 / 80%);
-  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
-  border: 1px solid rgb(255 255 255 / 10%);
-}
-
-.light-mode.prompt-card.subtle {
-  background-color: rgb(255 255 255 / 90%);
-  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 5%);
-  border: 1px solid rgb(0 0 0 / 10%);
-}
-
-.prompt-card.subtle .prompt-card-header {
-  border-bottom: 1px solid rgb(255 255 255 / 5%);
-}
-
-.light-mode.prompt-card.subtle .prompt-card-header {
-  border-bottom: 1px solid rgb(0 0 0 / 5%);
-}
-
-.prompt-card.subtle .prompt-card-title {
-  color: rgb(192 192 192 / 90%);
-}
-
-.light-mode.prompt-card.subtle .prompt-card-title {
-  color: rgb(51 51 51 / 90%);
-}
-
-.prompt-card.subtle .prompt-card-text {
-  color: rgb(192 192 192 / 80%);
-}
-
-.light-mode.prompt-card.subtle .prompt-card-text {
-  color: rgb(51 51 51 / 80%);
-}
-
-/* Subtle variation - PromptType specific styles */
-.prompt-card.subtle.information {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(97 175 255 / 60%);
-}
-
-.prompt-card.subtle.warning {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(255 209 77 / 60%);
-}
-
-.prompt-card.subtle.error {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(255 87 87 / 60%);
-}
-
-.prompt-card.subtle.success {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(124 214 81 / 60%);
-}
-
-.light-mode.prompt-card.subtle.information {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(52 152 219 / 60%);
-}
-
-.light-mode.prompt-card.subtle.warning {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(243 156 18 / 60%);
-}
-
-.light-mode.prompt-card.subtle.error {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(231 76 60 / 60%);
-}
-
-.light-mode.prompt-card.subtle.success {
-  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(46 204 113 / 60%);
-}
-
-.prompt-card.subtle .prompt-card-header i {
-  opacity: 0.8;
-}
-
-.prompt-card.subtle .btn-primary {
-  opacity: 0.9;
-}
-
-.prompt-card.subtle .btn-secondary {
-  background-color: rgb(255 255 255 / 10%);
-  color: rgb(192 192 192 / 90%);
-}
-
-.light-mode.prompt-card.subtle .btn-secondary {
-  background-color: rgb(0 0 0 / 5%);
-  color: rgb(51 51 51 / 90%);
-}
-
-.prompt-card.subtle .btn-secondary:hover {
-  background-color: rgb(255 255 255 / 20%);
-}
-
-.light-mode.prompt-card.subtle .btn-secondary:hover {
-  background-color: rgb(0 0 0 / 10%);
+/* Additional hover effects for buttons */
+.prompt-custom-btn {
+  transition: background-color calc(0.2s * var(--inverse-golden-ratio)) ease-in-out, transform calc(0.2s * var(--inverse-golden-ratio)) ease-in-out;
 }
 
 /* Responsive styles */
@@ -335,65 +365,4 @@
     width: 95%;
     max-width: calc(400px * var(--golden-ratio));
   }
-
-  .prompt-card-header {
-    padding: calc(1rem * var(--inverse-golden-ratio));
-  }
-
-  .prompt-card-body {
-    padding: calc(1.25rem * var(--inverse-golden-ratio));
-  }
-
-  .prompt-card-title {
-    font-size: calc(1.1rem * var(--inverse-golden-ratio));
-  }
-
-  .prompt-card-text {
-    font-size: calc(0.9rem * var(--inverse-golden-ratio));
-  }
-
-  .prompt-custom-btn {
-    padding: calc(0.5rem * var(--inverse-golden-ratio)) calc(1rem * var(--inverse-golden-ratio));
-    font-size: calc(0.9rem * var(--inverse-golden-ratio));
-  }
-}
-
-/* Accessibility improvements */
-.prompt-card:focus-within {
-  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
-  outline-offset: calc(2px * var(--inverse-golden-ratio));
-}
-
-.prompt-custom-btn:focus {
-  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
-  outline-offset: calc(2px * var(--inverse-golden-ratio));
-}
-
-/* Transition effects */
-.prompt-card {
-  transition: transform calc(0.3s * var(--inverse-golden-ratio)) ease-in-out,
-  box-shadow calc(0.3s * var(--inverse-golden-ratio)) ease-in-out;
-}
-
-.prompt-card:hover {
-  transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
-  box-shadow: 0 calc(6px * var(--inverse-golden-ratio)) calc(25px * var(--inverse-golden-ratio)) rgb(0 0 0 / 20%);
-}
-
-/* Additional hover effects for buttons */
-.prompt-custom-btn {
-  transition: background-color calc(0.2s * var(--inverse-golden-ratio)) ease-in-out,
-  transform calc(0.2s * var(--inverse-golden-ratio)) ease-in-out;
-}
-
-.prompt-custom-btn:hover {
-  transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
-}
-
-.btn-primary:hover {
-  filter: brightness(1.1);
-}
-
-.btn-secondary:hover {
-  filter: brightness(0.9);
 }

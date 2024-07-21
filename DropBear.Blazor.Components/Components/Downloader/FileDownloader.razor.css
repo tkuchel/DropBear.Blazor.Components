@@ -4,12 +4,13 @@
   --inverse-golden-ratio: 0.618;
 }
 
+/* File Downloader Styles */
 .file-downloader {
   font-family: Poppins, sans-serif;
   border-radius: calc(0.5rem * var(--inverse-golden-ratio));
   padding: calc(1.5rem * var(--inverse-golden-ratio));
   width: calc(350px * var(--golden-ratio));
-  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
   transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 

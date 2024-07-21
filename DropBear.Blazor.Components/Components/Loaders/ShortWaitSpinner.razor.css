@@ -34,7 +34,7 @@
   border-radius: calc(var(--border-radius) * var(--inverse-golden-ratio));
   padding: calc(var(--spacing-lg) * var(--inverse-golden-ratio));
   width: calc(300px * var(--golden-ratio));
-  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
   text-align: center;
   transition: transform calc(0.3s * var(--inverse-golden-ratio)) ease;
 }

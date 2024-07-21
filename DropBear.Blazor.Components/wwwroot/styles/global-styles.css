@@ -3,50 +3,50 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
 :root {
-  --clr-mine-shaft: #333;
-  --clr-silver-sand: #bbbec3;
-  --clr-viking: #62dbc8;
-  --clr-pastel-green: #7cd651;
-  --clr-japonica: #d58558;
-  --clr-mustard: #ffd14d;
-  --clr-coral: #ff8d48;
-  --clr-persimmon: #ff5757;
-  --clr-hot-pink: #ff6ed4;
-  --clr-heliotrope: #ad6fff;
-  --clr-malibu: #4ebafd;
-  --clr-cornflower-blue: #8552f8;
-  --clr-hyperlink-blue: #61afff;
-  --clr-dark-background: #1e1f22;
-  --clr-lime: #9fef00;
-  --clr-rock-blue: #a4b1cd;
-  --clr-confirmation: #9b59b6;
+  --clr-mine-shaft: hsl(0deg 0% 20%);
+  --clr-silver-sand: hsl(210deg 7% 76%);
+  --clr-viking: hsl(171deg 56% 62%);
+  --clr-pastel-green: hsl(90deg 65% 60%);
+  --clr-japonica: hsl(19deg 64% 60%);
+  --clr-mustard: hsl(45deg 100% 64%);
+  --clr-coral: hsl(22deg 100% 64%);
+  --clr-persimmon: hsl(0deg 100% 67%);
+  --clr-hot-pink: hsl(326deg 100% 69%);
+  --clr-heliotrope: hsl(266deg 100% 70%);
+  --clr-malibu: hsl(202deg 97% 65%);
+  --clr-cornflower-blue: hsl(262deg 92% 63%);
+  --clr-hyperlink-blue: hsl(208deg 100% 68%);
+  --clr-dark-background: hsl(230deg 9% 12%);
+  --clr-lime: hsl(86deg 100% 47%);
+  --clr-rock-blue: hsl(220deg 26% 70%);
+  --clr-confirmation: hsl(282deg 36% 55%);
 
   /* Theme variables - default to dark theme */
-  --clr-background: #1e1f22;
-  --clr-surface: #2b2d31;
-  --clr-surface-light: #3a3d44;
-  --clr-surface-lighter: #454950;
-  --clr-surface-hover: #3a3d44; /* New hover color */
-  --clr-heading: #fff;
-  --clr-primary: #4ebafd;
-  --clr-primary-hover: #3aa0d5;
-  --clr-secondary: #8552f8;
-  --clr-secondary-hover: #6a3ed5;
-  --clr-success: #7cd651;
-  --clr-warning: #ffd14d;
-  --clr-error: #ff5757;
-  --clr-error-hover: #d94d4d;
-  --clr-text: #fff;
-  --clr-text-muted: #a4b1cd;
-  --clr-overlay: rgb(0 0 0 / 70%);
-  --clr-dark-text: #fff;
-  --clr-dark-surface: #2b2d31;
-  --clr-dark-surface-hover: #3a3d44;
-  --clr-dark-border: #454950;
+  --clr-background: hsl(230deg 9% 12%);
+  --clr-surface: hsl(230deg 8% 18%);
+  --clr-surface-light: hsl(230deg 8% 26%);
+  --clr-surface-lighter: hsl(230deg 8% 30%);
+  --clr-surface-hover: hsl(230deg 8% 26%); /* New hover color */
+  --clr-heading: hsl(0deg 0% 100%);
+  --clr-primary: hsl(202deg 97% 65%);
+  --clr-primary-hover: hsl(202deg 72% 52%);
+  --clr-secondary: hsl(262deg 92% 63%);
+  --clr-secondary-hover: hsl(262deg 72% 52%);
+  --clr-success: hsl(90deg 65% 60%);
+  --clr-warning: hsl(45deg 100% 64%);
+  --clr-error: hsl(0deg 100% 67%);
+  --clr-error-hover: hsl(0deg 71% 57%);
+  --clr-text: hsl(0deg 0% 100%);
+  --clr-text-muted: hsl(220deg 26% 70%);
+  --clr-overlay: hsl(0deg 0% 0% / 70%);
+  --clr-dark-text: hsl(0deg 0% 100%);
+  --clr-dark-surface: hsl(230deg 8% 18%);
+  --clr-dark-surface-hover: hsl(230deg 8% 26%);
+  --clr-dark-border: hsl(230deg 8% 30%);
 
   /* Light mode colors */
   --clr-light-background: var(--clr-silver-sand);
-  --clr-light-card-bg: #fff; /* Keeping white for better contrast */
+  --clr-light-card-bg: hsl(0deg 0% 100%); /* Keeping white for better contrast */
   --clr-light-heading: var(--clr-mine-shaft);
   --clr-light-text: var(--clr-mine-shaft);
   --clr-light-text-muted: var(--clr-mine-shaft);
@@ -57,17 +57,18 @@
   --clr-light-border: var(--clr-silver-sand);
   --clr-light-surface: var(--clr-light-card-bg);
   --clr-light-surface-hover: var(--clr-silver-sand);
-  --clr-light-overlay: rgb(0 0 0 / 10%);
-  --clr-light-malibu: #3498db;
-  --clr-light-mustard: #f39c12;
-  --clr-light-persimmon: #e74c3c;
-  --clr-light-pastel-green: #2ecc71;
+  --clr-light-overlay: hsl(0deg 0% 0% / 10%);
+  --clr-light-malibu: hsl(204deg 70% 53%);
+  --clr-light-mustard: hsl(36deg 87% 50%);
+  --clr-light-persimmon: hsl(4deg 78% 58%);
+  --clr-light-pastel-green: hsl(145deg 63% 51%);
 
   /* Header and footer background colors */
-  --clr-header-bg: rgb(0 0 0 / 5%);
-  --clr-footer-bg: rgb(0 0 0 / 5%);
-  --clr-light-header-bg: rgb(255 255 255 / 90%);
-  --clr-light-footer-bg: rgb(255 255 255 / 75%);
+  --clr-header-bg: hsl(0deg 0% 0% / 5%);
+  --clr-footer-bg: hsl(0deg 0% 0% / 5%);
+  --clr-light-header-bg: hsl(0deg 0% 100% / 90%);
+  --clr-light-footer-bg: hsl(0deg 0% 100% / 75%);
+
 
   /* Card background colors */
   --clr-card-bg: var(--clr-surface);
@@ -89,29 +90,30 @@
   --spacing-xl: calc(1.5rem * var(--golden-ratio));
 
   /* Additional Colors */
-  --clr-text-light: #fff;
-  --clr-admin: #7cd651;
-  --clr-user: #ffd14d;
-  --clr-danger: #ff5757;
-  --clr-danger-hover: #d94d4d;
-  --clr-info: #4ebafd;
-  --clr-info-hover: #3aa0d5;
+  --clr-text-light: hsl(0deg 0% 100%);
+  --clr-admin: hsl(90deg 65% 60%);
+  --clr-user: hsl(45deg 100% 64%);
+  --clr-danger: hsl(0deg 100% 67%);
+  --clr-danger-hover: hsl(0deg 71% 57%);
+  --clr-info: hsl(202deg 97% 65%);
+  --clr-info-hover: hsl(202deg 72% 52%);
+
 
   /* Updated shadow variables */
   --shadow-offset: calc(2px * var(--inverse-golden-ratio));
   --shadow-blur: calc(6px * var(--golden-ratio));
   --shadow-spread: calc(1px * var(--inverse-golden-ratio));
-  --shadow-color: rgb(0 0 0 / 10%);
+  --shadow-color: hsl(0deg 0% 0% / 10%);
 
   /* Context Menu Colors with updates */
-  --context-menu-bg: #2b2d31;
-  --context-menu-text: #fff;
-  --context-menu-hover-bg: #3a3d42;
-  --context-menu-hover-text: #fff;
-  --context-menu-disabled-text: #8e9297;
-  --context-menu-separator: #40444b;
-  --context-menu-icon-color: #b9bbbe;
-  --context-menu-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  --context-menu-bg: hsl(230deg 8% 18%);
+  --context-menu-text: hsl(0deg 0% 100%);
+  --context-menu-hover-bg: hsl(230deg 8% 26%);
+  --context-menu-hover-text: hsl(0deg 0% 100%);
+  --context-menu-disabled-text: hsl(210deg 5% 57%);
+  --context-menu-separator: hsl(230deg 8% 28%);
+  --context-menu-icon-color: hsl(210deg 5% 74%);
+  --context-menu-shadow: 0 2px 10px hsl(0deg 0% 0% / 10%);
   --context-menu-border-radius: calc(6px * var(--inverse-golden-ratio));
   --context-menu-padding: calc(8px * var(--inverse-golden-ratio)) 0;
   --context-menu-item-padding: calc(8px * var(--inverse-golden-ratio)) calc(12px * var(--inverse-golden-ratio));

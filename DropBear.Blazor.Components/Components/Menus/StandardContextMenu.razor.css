@@ -9,7 +9,7 @@
   border-radius: calc(8px * var(--inverse-golden-ratio));
   padding: calc(4px * var(--inverse-golden-ratio)) 0;
   min-width: calc(180px * var(--golden-ratio));
-  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
   z-index: 1000;
   font-family: Poppins, sans-serif;
   font-size: calc(14px * var(--inverse-golden-ratio));
@@ -84,7 +84,7 @@
   top: 0;
   background-color: inherit;
   border-radius: calc(8px * var(--inverse-golden-ratio));
-  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 10%);
   display: none;
   min-width: calc(180px * var(--golden-ratio));
   z-index: 1001;

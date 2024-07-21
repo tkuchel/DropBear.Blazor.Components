@@ -113,13 +113,12 @@
 }
 
 .standard-datagrid-row:not(.header):hover {
-  background-color: rgb(var(--clr-primary-hover) 0.1);
+  background-color: hsl(var(--clr-primary-hover) 0.1);
 }
 
 .standard-datagrid-row.selected {
-  background-color: rgb(var(--clr-primary) 0.2);
+  background-color: hsl(var(--clr-primary) 0.2);
 }
-
 
 .standard-datagrid-sort-icon {
   margin-left: var(--spacing-xs);
@@ -159,7 +158,6 @@
   margin-left: var(--spacing-xs);
 }
 
-
 .standard-datagrid-loading,
 .standard-datagrid-empty {
   display: flex;
@@ -185,7 +183,6 @@
   gap: var(--spacing-sm);
 }
 
-
 .standard-pagination span {
   font-size: 1rem;
 }
@@ -205,6 +202,7 @@
   font-size: 1rem;
 }
 
+/* Responsive styles */
 @media (width <= 768px) {
   .standard-datagrid-header {
     flex-direction: column;
@@ -232,5 +230,3 @@
     justify-content: center;
   }
 }
-
-
