@@ -13,6 +13,7 @@ namespace DropBear.Blazor.Components.Components.Messages;
 public partial class AlertMessage : ComponentBase, IDisposable
 {
     private Timer? _autoDismissTimer;
+
     [Parameter] public AlertType Type { get; set; } = AlertType.Info;
     [Parameter] public AlertSeverity Severity { get; set; } = AlertSeverity.Normal;
     [Parameter] public string Title { get; set; } = string.Empty;
@@ -21,14 +22,38 @@ public partial class AlertMessage : ComponentBase, IDisposable
     [Parameter] public EventCallback OnDismiss { get; set; }
     [Parameter] public string CustomIconClass { get; set; } = string.Empty;
     [Parameter] public int AutoDismissAfter { get; set; } // in milliseconds, 0 means no auto-dismiss
+    [Parameter] public bool IsLightMode { get; set; }
 
     [Inject] private AlertService? AlertService { get; set; }
 
     private bool IsVisible { get; set; } = true;
 
-    private string AlertClasses =>
-        $"alert alert-{Type.ToString().ToLower(CultureInfo.CurrentCulture)} alert-{Severity.ToString().ToLower(CultureInfo.CurrentCulture)} {(IsDismissible ? "" : "alert-dismissible")} {(IsVisible ? "" : "alert-hidden")}"
-            .Trim();
+    private string AlertClasses
+    {
+        get
+        {
+            var classes = new List<string>
+            {
+                "alert",
+                $"alert-{Type.ToString().ToLower(CultureInfo.CurrentCulture)}",
+                $"alert-{Severity.ToString().ToLower(CultureInfo.CurrentCulture)}"
+            };
+
+            if (!IsDismissible)
+            {
+                classes.Add("alert-dismissible");
+            }
+
+            if (!IsVisible)
+            {
+                classes.Add("alert-hidden");
+            }
+
+            classes.Add(IsLightMode ? "theme-light" : "theme-dark");
+
+            return string.Join(" ", classes);
+        }
+    }
 
     private string IconClass => !string.IsNullOrEmpty(CustomIconClass)
         ? CustomIconClass
@@ -54,14 +79,12 @@ public partial class AlertMessage : ComponentBase, IDisposable
     {
         AlertService?.RegisterAlert(this);
 
-        if (AutoDismissAfter <= 0)
+        if (AutoDismissAfter > 0)
         {
-            return;
+            _autoDismissTimer = new Timer(AutoDismissAfter);
+            _autoDismissTimer.Elapsed += async (sender, e) => await DismissAlert();
+            _autoDismissTimer.Start();
         }
-
-        _autoDismissTimer = new Timer(AutoDismissAfter);
-        _autoDismissTimer.Elapsed += async (sender, e) => await DismissAlert();
-        _autoDismissTimer.Start();
     }
 
     private async Task DismissAlert()
