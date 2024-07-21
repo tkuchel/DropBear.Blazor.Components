@@ -87,16 +87,31 @@
   padding: var(--spacing-sm) var(--spacing-md);
   color: var(--datagrid-text);
   text-align: left;
+  border-bottom: 1px solid var(--clr-surface-light);
+  align-items: center;
+  transition: background-color 0.2s ease;
 }
 
+
 .standard-datagrid-row.header .standard-datagrid-cell {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.8rem;
   background-color: var(--datagrid-surface);
   position: sticky;
   top: 0;
   z-index: 1;
   padding-top: var(--spacing-md);
   padding-bottom: var(--spacing-md);
+  text-transform: uppercase;
+}
+
+.standard-items-per-page select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--datagrid-border);
+  background-color: var(--datagrid-surface);
+  color: var(--datagrid-text);
+  font-size: 1rem;
 }
 
 .standard-datagrid-row:focus-within,
@@ -107,13 +122,58 @@
   outline-offset: 2px;
 }
 
-.standard-datagrid-row:not(.header):hover .standard-datagrid-cell,
-.standard-datagrid-row.selected .standard-datagrid-cell {
+
+.standard-datagrid-row:not(.header) .standard-datagrid-cell {
+  background-color: hsl(var(--clr-primary) 0.05);
+  transition: background-color 0.3s ease;
+}
+
+/* Ensure the line doesn't appear on the header row */
+.standard-datagrid-row.header .standard-datagrid-cell::before {
+  display: none;
+}
+
+/* Hide overflow on the table wrapper */
+.datagrid-table-wrapper {
+  overflow: hidden;
+}
+
+
+.standard-datagrid-row:not(.header) .standard-datagrid-cell:first-child::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--clr-primary),
+    var(--clr-secondary)
+  );
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.standard-datagrid-row.selected .standard-datagrid-cell,
+.standard-datagrid-row:not(.header):hover .standard-datagrid-cell {
   color: var(--datagrid-text);
 }
 
+.standard-datagrid-row:not(.header):hover .standard-datagrid-cell:first-child::before {
+  transform: translateX(0);
+  animation: shimmer 2s infinite linear;
+}
+
+
 .standard-datagrid-row:not(.header):hover {
   background-color: hsl(var(--clr-primary-hover) 0.1);
+}
+
+.standard-datagrid-row:not(.header):nth-child(even) .standard-datagrid-cell {
+  background-color: hsl(var(--clr-primary) 0.05);
 }
 
 .standard-datagrid-row.selected {
@@ -193,13 +253,15 @@
   gap: var(--spacing-sm);
 }
 
-.standard-items-per-page select {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--datagrid-border);
-  background-color: var(--datagrid-surface);
-  color: var(--datagrid-text);
-  font-size: 1rem;
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* Responsive styles */
