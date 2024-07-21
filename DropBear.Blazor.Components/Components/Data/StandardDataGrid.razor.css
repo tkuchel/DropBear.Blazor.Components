@@ -1,9 +1,11 @@
-﻿.standard-datagrid {
+﻿/* StandardDataGrid.razor.css */
+.standard-datagrid {
   font-family: Poppins, sans-serif;
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: 0 var(--shadow-offset) var(--shadow-blur) var(--shadow-color);
   margin: var(--spacing-lg);
+  font-size: 1rem;
 }
 
 .standard-datagrid.theme-light {
@@ -34,7 +36,7 @@
 .standard-datagrid-title {
   color: var(--datagrid-text);
   margin: 0;
-  font-size: calc(1.2rem * var(--inverse-golden-ratio));
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -55,7 +57,8 @@
   border: 1px solid var(--datagrid-border);
   background-color: var(--datagrid-surface);
   color: var(--datagrid-text);
-  width: calc(200px * var(--inverse-golden-ratio));
+  width: 200px;
+  font-size: 1rem;
 }
 
 .standard-search-icon {
@@ -81,7 +84,7 @@
 }
 
 .standard-datagrid-cell {
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   color: var(--datagrid-text);
   text-align: left;
 }
@@ -92,29 +95,70 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  padding-top: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+}
+
+.standard-datagrid-row:focus-within,
+.standard-search-input:focus,
+.standard-items-per-page select:focus,
+.btn:focus {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: 2px;
+}
+
+.standard-datagrid-row:not(.header):hover .standard-datagrid-cell,
+.standard-datagrid-row.selected .standard-datagrid-cell {
+  color: var(--datagrid-text);
 }
 
 .standard-datagrid-row:not(.header):hover {
-  background-color: var(--clr-surface-hover);
+  background-color: rgb(var(--clr-primary-hover) 0.1);
 }
 
 .standard-datagrid-row.selected {
-  background-color: var(--clr-primary-hover);
+  background-color: rgb(var(--clr-primary) 0.2);
 }
+
 
 .standard-datagrid-sort-icon {
   margin-left: var(--spacing-xs);
 }
 
 .standard-datagrid-cell.checkbox {
-  width: calc(40px * var(--inverse-golden-ratio));
+  width: 40px;
   text-align: center;
 }
 
 .standard-datagrid-cell.actions {
-  width: calc(100px * var(--inverse-golden-ratio));
+  width: auto;
   text-align: right;
+  white-space: nowrap;
 }
+
+.btn-icon {
+  font-size: 1.1rem;
+  padding: var(--spacing-xs);
+  background-color: transparent;
+  color: var(--datagrid-text-muted);
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.btn-icon:hover {
+  color: var(--clr-primary);
+}
+
+.standard-pagination .btn-icon {
+  font-size: 1.2rem;
+}
+
+.standard-datagrid-cell.actions .btn-icon {
+  display: inline-flex;
+  margin-left: var(--spacing-xs);
+}
+
 
 .standard-datagrid-loading,
 .standard-datagrid-empty {
@@ -141,6 +185,11 @@
   gap: var(--spacing-sm);
 }
 
+
+.standard-pagination span {
+  font-size: 1rem;
+}
+
 .standard-items-per-page {
   display: flex;
   align-items: center;
@@ -148,11 +197,12 @@
 }
 
 .standard-items-per-page select {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius);
   border: 1px solid var(--datagrid-border);
   background-color: var(--datagrid-surface);
   color: var(--datagrid-text);
+  font-size: 1rem;
 }
 
 @media (width <= 768px) {
@@ -183,10 +233,4 @@
   }
 }
 
-.standard-datagrid-row:focus-within,
-.standard-search-input:focus,
-.standard-items-per-page select:focus,
-.btn:focus {
-  outline: 2px solid var(--clr-primary);
-  outline-offset: 2px;
-}
+
