@@ -22,7 +22,7 @@ public partial class StandardDataGrid<TItem>
     [Parameter] public bool AllowDelete { get; set; } = true;
     [Parameter] public bool AllowSelect { get; set; } = true;
     [Parameter] public bool IsLightMode { get; set; }
-    [Parameter] public string AddText { get; set; } = "ADD ITEM";
+    [Parameter] public string AddText { get; set; } = "Add Item";
     [Parameter] public EventCallback OnAddClick { get; set; }
     [Parameter] public EventCallback<TItem> OnEditClick { get; set; }
     [Parameter] public EventCallback<TItem> OnDeleteClick { get; set; }
@@ -30,21 +30,18 @@ public partial class StandardDataGrid<TItem>
     [Parameter] public RenderFragment? EmptyTemplate { get; set; }
     [Parameter] public RenderFragment? LoadingTemplate { get; set; }
     [Parameter] public bool IsLoading { get; set; }
+    [Parameter] public List<ContextMenuItem> ContextMenuItems { get; set; } = [];
+    [Parameter] public EventCallback<(ContextMenuItem, TItem)> OnContextMenuItemClick { get; set; }
+    [Parameter] public string ContextMenuBackgroundColor { get; set; } = "#2b2d31";
+    [Parameter] public string ContextMenuTextColor { get; set; } = "#a4b1cd";
+    [Parameter] public string ContextMenuHighlightColor { get; set; } = "#4ebafd";
 
     private string SearchTerm { get; set; } = "";
     private int CurrentPage { get; set; } = 1;
     private int ItemsPerPage { get; set; } = 10;
     private string SortColumn { get; set; } = string.Empty;
     private bool IsSortAscending { get; set; } = true;
-    private HashSet<TItem> SelectedItems { get; } = new();
-#pragma warning disable CA1002
-    [Parameter] public List<ContextMenuItem> ContextMenuItems { get; set; } = new();
-#pragma warning restore CA1002
-    [Parameter] public EventCallback<(ContextMenuItem, TItem)> OnContextMenuItemClick { get; set; }
-    [Parameter] public string ContextMenuBackgroundColor { get; set; } = "#2b2d31";
-    [Parameter] public string ContextMenuTextColor { get; set; } = "#a4b1cd";
-    [Parameter] public string ContextMenuHighlightColor { get; set; } = "#4ebafd";
-
+    private HashSet<TItem> SelectedItems { get; } = [];
     private StandardContextMenu ContextMenu { get; set; } = new();
     private TItem CurrentContextMenuItem { get; set; } = default!;
 

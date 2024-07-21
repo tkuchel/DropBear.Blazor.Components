@@ -4,7 +4,7 @@
 
 <div class="standard-datagrid @(IsLightMode ? "theme-light" : "theme-dark")">
     <div class="standard-datagrid-header">
-        <h2>
+        <h2 class="standard-datagrid-title">
             <i class="@HeaderIcon"></i> @Title
         </h2>
         <div class="standard-datagrid-actions">
@@ -32,7 +32,7 @@
             }
             else
             {
-                <div class="loading-indicator">
+                <div class="standard-datagrid-loading">
                     <i class="fas fa-spinner fa-spin"></i> Loading...
                 </div>
             }
@@ -45,7 +45,7 @@
             }
             else
             {
-                <div class="empty-state">
+                <div class="standard-datagrid-empty">
                     <i class="fas fa-inbox fa-3x"></i>
                     <p>No items to display.</p>
                 </div>
@@ -64,12 +64,12 @@
                     @foreach (var column in Columns!)
                     {
                         <div class="standard-datagrid-cell sortable" role="columnheader" aria-sort="@GetSortOrder(column)" @onclick="() => SortByColumn(column)">
-                            <i class="@column.IconClass"></i> @column.Title <i class="fas fa-sort ml-2"></i>
+                            <i class="@column.IconClass"></i> @column.Title <i class="fas fa-sort standard-datagrid-sort-icon"></i>
                         </div>
                     }
                     @if (AllowEdit || AllowDelete)
                     {
-                        <div class="standard-datagrid-cell" role="columnheader">ACTIONS</div>
+                        <div class="standard-datagrid-cell" role="columnheader">Actions</div>
                     }
                 </div>
                 @foreach (var item in FilteredAndSortedItems)
