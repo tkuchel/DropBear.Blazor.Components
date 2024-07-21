@@ -30,7 +30,9 @@ public partial class StandardDataGrid<TItem>
     [Parameter] public RenderFragment? EmptyTemplate { get; set; }
     [Parameter] public RenderFragment? LoadingTemplate { get; set; }
     [Parameter] public bool IsLoading { get; set; }
+#pragma warning disable CA1002
     [Parameter] public List<ContextMenuItem> ContextMenuItems { get; set; } = [];
+#pragma warning restore CA1002
     [Parameter] public EventCallback<(ContextMenuItem, TItem)> OnContextMenuItemClick { get; set; }
     [Parameter] public string ContextMenuBackgroundColor { get; set; } = "#2b2d31";
     [Parameter] public string ContextMenuTextColor { get; set; } = "#a4b1cd";
