@@ -226,12 +226,14 @@ public partial class FileUploader : ComponentBase, IAsyncDisposable
 
     #region Nested type: FileInfo
 
+#pragma warning disable CA1812 // Avoid uninstantiated internal classes
     private sealed class FileInfo
     {
         public string Name { get; set; } = string.Empty;
         public long Size { get; set; }
         public string Type { get; set; } = string.Empty;
     }
+#pragma warning restore CA1812 // Avoid uninstantiated internal classes
 
     #endregion
 }
