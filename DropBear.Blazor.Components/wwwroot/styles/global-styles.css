@@ -49,6 +49,7 @@
   --clr-light-card-bg: #fff; /* Keeping white for better contrast */
   --clr-light-heading: var(--clr-mine-shaft);
   --clr-light-text: var(--clr-mine-shaft);
+  --clr-light-text-muted: var(--clr-mine-shaft);
   --clr-light-primary: var(--clr-viking);
   --clr-light-primary-hover: var(--clr-cornflower-blue);
   --clr-light-secondary: var(--clr-cornflower-blue);

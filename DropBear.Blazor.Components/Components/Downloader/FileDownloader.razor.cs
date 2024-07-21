@@ -12,13 +12,14 @@ public partial class FileDownloader : ComponentBase, IDisposable
 {
     private bool _isCompleted;
     private bool _isDownloading;
-
     private int _progress;
     private Timer? _resetTimer;
+
     [Parameter] public string FileName { get; set; } = "example.pdf";
     [Parameter] public string FileType { get; set; } = "PDF";
     [Parameter] public string FileSize { get; set; } = "2.5 MB";
     [Parameter] public Func<IProgress<int>, Task<bool>>? OnDownload { get; set; }
+    [Parameter] public bool IsLightMode { get; set; }
 
     #region IDisposable Members
 

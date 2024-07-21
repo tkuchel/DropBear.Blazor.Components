@@ -1,26 +1,27 @@
 ﻿@inherits ComponentBase
 @namespace DropBear.Blazor.Components.Components.Downloader
-<div class="file-downloader">
+
+<div class="file-downloader @(IsLightMode ? "theme-light" : "theme-dark")">
     <div class="file-downloader-item">
         <div class="file-downloader-name">@FileName</div>
         <div class="file-downloader-info">@FileType - @FileSize</div>
-        <div class="file-downloader-progress">
+        <div class="file-downloader-progress" role="progressbar" aria-valuenow="@_progress" aria-valuemin="0" aria-valuemax="100">
             <div class="file-downloader-progress-bar" style="width: @(_progress)%;"></div>
         </div>
         <button class="file-downloader-button" @onclick="StartDownload" disabled="@_isDownloading">
             @if (_isDownloading)
             {
-                <i class="fas fa-spinner file-downloader-spinner"></i>
+                <i class="fas fa-spinner file-downloader-spinner" aria-hidden="true"></i>
                 <span>Downloading...</span>
             }
             else if (_isCompleted)
             {
-                <i class="fas fa-check"></i>
+                <i class="fas fa-check" aria-hidden="true"></i>
                 <span>Downloaded</span>
             }
             else
             {
-                <i class="fas fa-download"></i>
+                <i class="fas fa-download" aria-hidden="true"></i>
                 <span>Download</span>
             }
         </button>

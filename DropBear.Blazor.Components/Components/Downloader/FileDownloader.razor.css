@@ -1,80 +1,132 @@
 ﻿/* FileDownloader.razor.css */
+:root {
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
+}
+
 .file-downloader {
-  background-color: var(--clr-surface);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  width: 350px;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  font-family: Poppins, sans-serif;
+  border-radius: calc(0.5rem * var(--inverse-golden-ratio));
+  padding: calc(1.5rem * var(--inverse-golden-ratio));
+  width: calc(350px * var(--golden-ratio));
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
+}
+
+.file-downloader.theme-light {
+  --background: var(--clr-light-background);
+  --surface: var(--clr-light-surface);
+  --surface-light: var(--clr-light-surface-hover);
+  --surface-lighter: var(--clr-light-border);
+  --text: var(--clr-light-text);
+  --text-muted: var(--clr-light-text-muted);
+}
+
+.file-downloader.theme-dark {
+  --background: var(--clr-dark-background);
+  --surface: var(--clr-dark-surface);
+  --surface-light: var(--clr-dark-surface-hover);
+  --surface-lighter: var(--clr-dark-border);
+  --text: var(--clr-dark-text);
+  --text-muted: var(--clr-text-muted);
 }
 
 .file-downloader-item {
-  background-color: var(--clr-surface-light);
-  border-radius: var(--border-radius);
-  padding: 1rem;
-  margin-bottom: 1rem;
-  transition: var(--transition);
+  background-color: var(--surface);
+  border-radius: calc(0.5rem * var(--inverse-golden-ratio));
+  padding: calc(1rem * var(--inverse-golden-ratio));
+  margin-bottom: calc(1rem * var(--inverse-golden-ratio));
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 
 .file-downloader-item:hover {
-  background-color: var(--clr-surface-lighter);
+  background-color: var(--surface-light);
 }
 
 .file-downloader-name {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  margin-bottom: calc(0.5rem * var(--inverse-golden-ratio));
+  color: var(--text);
 }
 
 .file-downloader-info {
-  font-size: 0.9rem;
-  color: var(--clr-text-muted);
-  margin-bottom: 0.5rem;
+  font-size: calc(0.9rem * var(--inverse-golden-ratio));
+  color: var(--text-muted);
+  margin-bottom: calc(0.5rem * var(--inverse-golden-ratio));
 }
 
 .file-downloader-progress {
   width: 100%;
-  height: 4px;
-  background-color: var(--clr-surface-lighter);
-  border-radius: 2px;
+  height: calc(4px * var(--inverse-golden-ratio));
+  background-color: var(--surface-lighter);
+  border-radius: calc(2px * var(--inverse-golden-ratio));
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: calc(0.5rem * var(--inverse-golden-ratio));
 }
 
 .file-downloader-progress-bar {
   width: 0;
   height: 100%;
   background-color: var(--clr-primary);
-  transition: width 0.3s ease;
+  transition: width calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 
 .file-downloader-button {
   background-color: var(--clr-primary);
-  color: var(--clr-surface);
+  color: var(--surface);
   border: none;
-  border-radius: var(--border-radius);
-  padding: 0.6rem 1.2rem;
+  border-radius: calc(0.25rem * var(--inverse-golden-ratio));
+  padding: calc(0.6rem * var(--inverse-golden-ratio)) calc(1.2rem * var(--inverse-golden-ratio));
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: var(--transition);
+  letter-spacing: calc(0.5px * var(--inverse-golden-ratio));
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
+  font-size: calc(0.9rem * var(--inverse-golden-ratio));
 }
 
 .file-downloader-button:hover {
-  background-color: var(--clr-secondary);
+  background-color: var(--clr-primary-hover);
 }
 
 .file-downloader-button:disabled {
-  background-color: var(--clr-surface-lighter);
+  background-color: var(--surface-lighter);
+  color: var(--text-muted);
   cursor: not-allowed;
 }
 
 .file-downloader-button i {
-  margin-right: 0.5rem;
+  margin-right: calc(0.5rem * var(--inverse-golden-ratio));
 }
 
 .file-downloader-spinner {
-  animation: spin 1s linear infinite;
+  animation: spin calc(1s * var(--inverse-golden-ratio)) linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibility improvements */
+.file-downloader-button:focus {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
+}
+
+/* Responsive design */
+@media (width <= 768px) {
+  .file-downloader {
+    width: 100%;
+    max-width: calc(350px * var(--golden-ratio));
+  }
 }
