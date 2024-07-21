@@ -2,29 +2,29 @@
 @namespace DropBear.Blazor.Components.Components.Cards
 
 
-<div class="standard-card @(IsLightMode ? "light-mode" : "") @(IsCompact ? "compact" : "")">
+<div class="standard-card @(IsLightMode ? "light-mode" : "") @(IsCompact ? "compact" : "") @(EnableHover ? "hover-enabled" : "")">
     @if (!string.IsNullOrEmpty(ImgSrc))
     {
-        <img class="standard-card-img-top" src="@ImgSrc" alt="@ImgAlt"/>
+    <img class="standard-card-img-top" src="@ImgSrc" alt="@ImgAlt"/>
     }
     <div class="standard-card-header">
         @if (!string.IsNullOrEmpty(Icon))
         {
-            <i class="@Icon icon-header"></i>
+        <i class="@Icon icon-header standard-card-icon"></i>
         }
         <h2 class="standard-card-title">@Title</h2>
     </div>
     <div class="standard-card-body">
         @if (!string.IsNullOrEmpty(BodyTitle))
         {
-            <h3 class="standard-card-body-title">@BodyTitle</h3>
+        <h3 class="standard-card-body-title">@BodyTitle</h3>
         }
         @BodyContent
     </div>
     @if (FooterContent != null)
     {
-        <div class="standard-card-footer">
-            @FooterContent
-        </div>
+    <div class="standard-card-footer">
+        @FooterContent
+    </div>
     }
 </div>

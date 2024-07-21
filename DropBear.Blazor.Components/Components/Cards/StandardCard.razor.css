@@ -1,22 +1,37 @@
 ﻿/* StandardCard.razor.css */
+:root {
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
+}
+
 .standard-card {
   background-color: var(--clr-card-bg);
   color: var(--clr-text);
-  border-radius: var(--border-radius);
+  border-radius: calc(var(--border-radius) * var(--inverse-golden-ratio));
   overflow: hidden;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  box-shadow: calc(1px * var(--golden-ratio)) calc(2px * var(--golden-ratio)) calc(6px * var(--golden-ratio)) rgb(0 0 0 / 10%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  margin-bottom: calc(1em * var(--golden-ratio));
 }
 
 .standard-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgb(0 0 0 / 15%);
+  transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
+  box-shadow: calc(2px * var(--golden-ratio)) calc(4px * var(--golden-ratio)) calc(8px * var(--golden-ratio)) rgb(0 0 0 / 15%);
+}
+
+.standard-card.hover-enabled:hover {
+  transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
+  box-shadow: calc(2px * var(--golden-ratio)) calc(4px * var(--golden-ratio)) calc(8px * var(--golden-ratio)) rgb(0 0 0 / 15%);
+}
+
+.standard-card-icon {
+  font-size: calc(1.25rem * var(--inverse-golden-ratio));
 }
 
 .standard-card-header {
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: calc(var(--spacing-md) * var(--inverse-golden-ratio)) var(--spacing-lg);
   background-color: var(--clr-header-bg);
   display: flex;
   align-items: center;
@@ -26,7 +41,7 @@
   margin: 0;
   color: var(--clr-heading);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: calc(1.1rem * var(--inverse-golden-ratio));
 }
 
 .standard-card-img-top {
@@ -36,59 +51,64 @@
 }
 
 .icon-header {
-  font-size: 1.25rem;
-  margin-right: var(--spacing-md);
+  font-size: calc(1.25rem * var(--inverse-golden-ratio));
+  margin-right: calc(var(--spacing-md) * var(--inverse-golden-ratio));
   color: var(--clr-primary);
 }
 
 .standard-card-body {
-  padding: var(--spacing-lg);
+  padding: calc(var(--spacing-lg) * var(--golden-ratio));
   flex-grow: 1;
 }
 
 .standard-card-body-title {
   color: var(--clr-heading);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--inverse-golden-ratio));
   font-weight: 600;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: calc(var(--spacing-sm) * var(--inverse-golden-ratio));
 }
 
 .standard-card-footer {
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: calc(var(--spacing-md) * var(--inverse-golden-ratio)) var(--spacing-lg);
   background-color: var(--clr-footer-bg);
   margin-top: auto;
 }
 
 /* Light mode styles */
-.light-mode .standard-card-header {
+.standard-card.light-mode {
+  background-color: var(--clr-light-card-bg);
+}
+
+.standard-card.light-mode .standard-card-header {
   background-color: var(--clr-light-header-bg);
 }
 
-.light-mode .standard-card-title {
+.standard-card.light-mode .standard-card-title,
+.standard-card.light-mode .standard-card-body-title {
   color: var(--clr-light-heading);
 }
 
-.light-mode .standard-card-body-title {
-  color: var(--clr-light-heading);
+.standard-card.light-mode .standard-card-body {
+  color: var(--clr-light-text);
 }
 
-.light-mode .standard-card-footer {
+.standard-card.light-mode .standard-card-footer {
   background-color: var(--clr-light-footer-bg);
 }
 
 /* Compact styles */
-.compact .standard-card-body {
-  padding: var(--spacing-md);
+.standard-card.compact .standard-card-body {
+  padding: calc(var(--spacing-md) * var(--golden-ratio));
 }
 
-.compact .standard-card-title {
-  font-size: 1rem;
-  margin-bottom: var(--spacing-sm);
+.standard-card.compact .standard-card-title {
+  font-size: calc(1rem * var(--inverse-golden-ratio));
+  margin-bottom: calc(var(--spacing-sm) * var(--inverse-golden-ratio));
 }
 
-.compact .standard-card-header,
-.compact .standard-card-footer {
-  padding: var(--spacing-sm) var(--spacing-md);
+.standard-card.compact .standard-card-header,
+.standard-card.compact .standard-card-footer {
+  padding: calc(var(--spacing-sm) * var(--inverse-golden-ratio)) calc(var(--spacing-md) * var(--inverse-golden-ratio));
 }
 
 /* Responsive styles */

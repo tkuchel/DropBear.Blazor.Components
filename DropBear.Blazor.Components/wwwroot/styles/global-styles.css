@@ -62,25 +62,30 @@
   --clr-light-persimmon: #e74c3c;
   --clr-light-pastel-green: #2ecc71;
 
-
   /* Header and footer background colors */
-  --clr-header-bg: rgb(255 255 255 / 5%);
-  --clr-footer-bg: rgb(255 255 255 / 5%);
-  --clr-light-header-bg: rgb(0 0 0 / 5%);
-  --clr-light-footer-bg: rgb(0 0 0 / 5%);
+  --clr-header-bg: rgb(0 0 0 / 5%);
+  --clr-footer-bg: rgb(0 0 0 / 5%);
+  --clr-light-header-bg: rgb(255 255 255 / 90%);
+  --clr-light-footer-bg: rgb(255 255 255 / 75%);
 
   /* Card background colors */
   --clr-card-bg: var(--clr-surface);
   --clr-card-hover-bg: var(--clr-surface-hover);
 
-  /* Global variables */
-  --border-radius: 12px;
-  --transition: all 0.3s ease;
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 0.75rem;
-  --spacing-lg: 1rem;
-  --spacing-xl: 1.5rem;
+  /* Golden ratio variables */
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
+
+  /* Updated global variables */
+  --border-radius: calc(12px * var(--inverse-golden-ratio));
+  --transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
+
+  /* Updated spacing variables */
+  --spacing-xs: calc(0.25rem * var(--inverse-golden-ratio));
+  --spacing-sm: calc(0.5rem * var(--inverse-golden-ratio));
+  --spacing-md: calc(0.75rem * var(--inverse-golden-ratio));
+  --spacing-lg: calc(1rem * var(--golden-ratio));
+  --spacing-xl: calc(1.5rem * var(--golden-ratio));
 
   /* Additional Colors */
   --clr-text-light: #fff;
@@ -91,7 +96,13 @@
   --clr-info: #4ebafd;
   --clr-info-hover: #3aa0d5;
 
-  /* Context Menu Colors */
+  /* Updated shadow variables */
+  --shadow-offset: calc(2px * var(--inverse-golden-ratio));
+  --shadow-blur: calc(6px * var(--golden-ratio));
+  --shadow-spread: calc(1px * var(--inverse-golden-ratio));
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  /* Context Menu Colors with updates */
   --context-menu-bg: #2b2d31;
   --context-menu-text: #fff;
   --context-menu-hover-bg: #3a3d42;
@@ -100,13 +111,13 @@
   --context-menu-separator: #40444b;
   --context-menu-icon-color: #b9bbbe;
   --context-menu-shadow: 0 2px 10px rgb(0 0 0 / 10%);
-  --context-menu-border-radius: 6px;
-  --context-menu-padding: 8px 0;
-  --context-menu-item-padding: 8px 12px;
-  --context-menu-transition: all 0.2s ease;
+  --context-menu-border-radius: calc(6px * var(--inverse-golden-ratio));
+  --context-menu-padding: calc(8px * var(--inverse-golden-ratio)) 0;
+  --context-menu-item-padding: calc(8px * var(--inverse-golden-ratio)) calc(12px * var(--inverse-golden-ratio));
+  --context-menu-transition: all calc(0.2s * var(--inverse-golden-ratio)) ease;
   --context-menu-font-family: 'Poppins', sans-serif;
-  --context-menu-font-size: 14px;
-  --context-menu-min-width: 180px;
+  --context-menu-font-size: calc(14px * var(--inverse-golden-ratio));
+  --context-menu-min-width: calc(180px * var(--golden-ratio));
   --context-menu-z-index: 1000;
 }
 
@@ -114,26 +125,24 @@ body {
   font-family: Poppins, sans-serif;
   background-color: var(--clr-dark-background);
   color: var(--clr-mine-shaft);
-  line-height: 1.6;
-
-  /* padding: 2rem; */
-  font-size: 14px;
+  line-height: var(--golden-ratio);
+  font-size: calc(14px * var(--inverse-golden-ratio));
   margin: 0;
 }
 
 .btn {
   font-family: Poppins, sans-serif;
-  font-size: 1rem;
+  font-size: calc(1rem * var(--inverse-golden-ratio));
   font-weight: 500;
-  padding: 0.75rem 1.5rem;
+  padding: calc(0.75rem * var(--inverse-golden-ratio)) calc(1.5rem * var(--inverse-golden-ratio));
   border-radius: var(--border-radius);
   border: none;
   cursor: pointer;
-  transition: var(--transition), transform 0.2s;
+  transition: var(--transition), transform calc(0.2s * var(--inverse-golden-ratio));
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   line-height: 1;
-  min-height: 2.5rem;
+  min-height: calc(2.5rem * var(--inverse-golden-ratio));
 }
