@@ -35,7 +35,7 @@
   border-radius: calc(12px * var(--inverse-golden-ratio));
   box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) rgb(0 0 0 / 15%);
   transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
-  width: 90%;
+  /*width: 90%;*/
   max-width: calc(500px * var(--golden-ratio));
 }
 

@@ -101,7 +101,7 @@
   --shadow-offset: calc(2px * var(--inverse-golden-ratio));
   --shadow-blur: calc(6px * var(--golden-ratio));
   --shadow-spread: calc(1px * var(--inverse-golden-ratio));
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgb(0 0 0 / 10%);
 
   /* Context Menu Colors with updates */
   --context-menu-bg: #2b2d31;
@@ -127,7 +127,7 @@ body {
   background-color: var(--clr-dark-background);
   color: var(--clr-mine-shaft);
   line-height: var(--golden-ratio);
-  font-size: calc(14px * var(--inverse-golden-ratio));
+  font-size: calc(16px * var(--inverse-golden-ratio));
   margin: 0;
 }
 
