@@ -1,4 +1,8 @@
 ﻿/* PromptCard.razor.css */
+:root {
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
+}
 
 .prompt-card-overlay {
   position: fixed;
@@ -13,7 +17,7 @@
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity calc(0.3s * var(--inverse-golden-ratio)) ease, visibility calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 
 .prompt-card-overlay.light-mode {
@@ -28,22 +32,22 @@
 .prompt-card {
   background-color: var(--clr-mine-shaft);
   border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgb(0 0 0 / 15%);
-  transition: all 0.3s ease;
+  border-radius: calc(12px * var(--inverse-golden-ratio));
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) rgb(0 0 0 / 15%);
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
   width: 90%;
-  max-width: 500px;
+  max-width: calc(500px * var(--golden-ratio));
 }
 
 .prompt-card.light-mode {
   background-color: var(--clr-light-background);
-  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
 }
 
 .prompt-card-header {
   display: flex;
   align-items: center;
-  padding: 1.25rem;
+  padding: calc(1.25rem * var(--inverse-golden-ratio));
   border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
@@ -52,14 +56,14 @@
 }
 
 .prompt-card-header i {
-  font-size: 1.5rem;
-  margin-right: 0.75rem;
+  font-size: calc(1.5rem * var(--inverse-golden-ratio));
+  margin-right: calc(0.75rem * var(--inverse-golden-ratio));
 }
 
 .prompt-card-title {
   margin: 0;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: calc(1.25rem * var(--inverse-golden-ratio));
   color: var(--clr-silver-sand);
 }
 
@@ -68,14 +72,14 @@
 }
 
 .prompt-card-body {
-  padding: 1.75rem;
+  padding: calc(1.75rem * var(--inverse-golden-ratio));
 }
 
 .prompt-card-text {
   color: var(--clr-silver-sand);
-  margin-bottom: 1.75rem;
+  margin-bottom: calc(1.75rem * var(--inverse-golden-ratio));
   font-weight: 300;
-  line-height: 1.6;
+  line-height: var(--golden-ratio);
 }
 
 .light-mode .prompt-card-text {
@@ -85,39 +89,39 @@
 .prompt-button-group {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: calc(12px * var(--inverse-golden-ratio));
 }
 
 .prompt-custom-btn {
   border: none;
-  padding: 0.625rem 1.25rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  padding: calc(0.625rem * var(--inverse-golden-ratio)) calc(1.25rem * var(--inverse-golden-ratio));
+  border-radius: calc(6px * var(--inverse-golden-ratio));
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: calc(8px * var(--inverse-golden-ratio));
 }
 
 .prompt-custom-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
 }
 
 /* PromptType specific styles */
 .prompt-card.information {
-  border-top: 4px solid var(--clr-malibu);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-malibu);
 }
 
 .prompt-card.warning {
-  border-top: 4px solid var(--clr-mustard);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-mustard);
 }
 
 .prompt-card.error {
-  border-top: 4px solid var(--clr-persimmon);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-persimmon);
 }
 
 .prompt-card.success {
-  border-top: 4px solid var(--clr-pastel-green);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-pastel-green);
 }
 
 .prompt-card.information .prompt-card-header i {
@@ -138,19 +142,19 @@
 
 /* Light Mode PromptType specific styles */
 .light-mode.prompt-card.information {
-  border-top: 4px solid var(--clr-light-malibu);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-malibu);
 }
 
 .light-mode.prompt-card.warning {
-  border-top: 4px solid var(--clr-light-mustard);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-mustard);
 }
 
 .light-mode.prompt-card.error {
-  border-top: 4px solid var(--clr-light-persimmon);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-persimmon);
 }
 
 .light-mode.prompt-card.success {
-  border-top: 4px solid var(--clr-light-pastel-green);
+  border-top: calc(4px * var(--inverse-golden-ratio)) solid var(--clr-light-pastel-green);
 }
 
 .light-mode.prompt-card.information .prompt-card-header i {
@@ -199,7 +203,7 @@
   background-color: rgb(255 255 255 / 20%);
 }
 
-/* Button styles */
+/* Light mode button styles */
 .light-mode .information .btn-primary {
   background-color: var(--clr-light-malibu);
   color: white;
@@ -229,84 +233,80 @@
   background-color: #e0e0e0;
 }
 
-/* Subtle variation - Dark Mode */
+/* Subtle variation styles */
 .prompt-card.subtle {
-  background-color: rgb(43 45 49 / 80%); /* Slightly transparent version of --clr-mine-shaft */
-  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  background-color: rgb(43 45 49 / 80%);
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
   border: 1px solid rgb(255 255 255 / 10%);
 }
 
-.prompt-card.subtle .card-header {
-  border-bottom: 1px solid rgb(255 255 255 / 5%);
-}
-
-.prompt-card.subtle .card-title {
-  color: rgb(192 192 192 / 90%); /* Slightly transparent version of --clr-silver-sand */
-}
-
-.prompt-card.subtle .card-text {
-  color: rgb(192 192 192 / 80%); /* More transparent version of --clr-silver-sand */
-}
-
-/* Subtle variation - Light Mode */
 .light-mode.prompt-card.subtle {
-  background-color: rgb(255 255 255 / 90%); /* Slightly transparent white */
-  box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
+  background-color: rgb(255 255 255 / 90%);
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(10px * var(--inverse-golden-ratio)) rgb(0 0 0 / 5%);
   border: 1px solid rgb(0 0 0 / 10%);
 }
 
-.light-mode.prompt-card.subtle .card-header {
+.prompt-card.subtle .prompt-card-header {
+  border-bottom: 1px solid rgb(255 255 255 / 5%);
+}
+
+.light-mode.prompt-card.subtle .prompt-card-header {
   border-bottom: 1px solid rgb(0 0 0 / 5%);
 }
 
-.light-mode.prompt-card.subtle .card-title {
-  color: rgb(51 51 51 / 90%); /* Slightly transparent version of --clr-light-text */
+.prompt-card.subtle .prompt-card-title {
+  color: rgb(192 192 192 / 90%);
 }
 
-.light-mode.prompt-card.subtle .card-text {
-  color: rgb(51 51 51 / 80%); /* More transparent version of --clr-light-text */
+.light-mode.prompt-card.subtle .prompt-card-title {
+  color: rgb(51 51 51 / 90%);
+}
+
+.prompt-card.subtle .prompt-card-text {
+  color: rgb(192 192 192 / 80%);
+}
+
+.light-mode.prompt-card.subtle .prompt-card-text {
+  color: rgb(51 51 51 / 80%);
 }
 
 /* Subtle variation - PromptType specific styles */
 .prompt-card.subtle.information {
-  border-top: 2px solid rgb(97 175 255 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(97 175 255 / 60%);
 }
 
 .prompt-card.subtle.warning {
-  border-top: 2px solid rgb(255 209 77 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(255 209 77 / 60%);
 }
 
 .prompt-card.subtle.error {
-  border-top: 2px solid rgb(255 87 87 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(255 87 87 / 60%);
 }
 
 .prompt-card.subtle.success {
-  border-top: 2px solid rgb(124 214 81 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(124 214 81 / 60%);
 }
 
-/* Light Mode Subtle variation - PromptType specific styles */
 .light-mode.prompt-card.subtle.information {
-  border-top: 2px solid rgb(52 152 219 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(52 152 219 / 60%);
 }
 
 .light-mode.prompt-card.subtle.warning {
-  border-top: 2px solid rgb(243 156 18 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(243 156 18 / 60%);
 }
 
 .light-mode.prompt-card.subtle.error {
-  border-top: 2px solid rgb(231 76 60 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(231 76 60 / 60%);
 }
 
 .light-mode.prompt-card.subtle.success {
-  border-top: 2px solid rgb(46 204 113 / 60%);
+  border-top: calc(2px * var(--inverse-golden-ratio)) solid rgb(46 204 113 / 60%);
 }
 
-/* Subtle variation - Icon colors */
-.prompt-card.subtle .card-header i {
+.prompt-card.subtle .prompt-card-header i {
   opacity: 0.8;
 }
 
-/* Subtle variation - Button styles */
 .prompt-card.subtle .btn-primary {
   opacity: 0.9;
 }
@@ -327,4 +327,73 @@
 
 .light-mode.prompt-card.subtle .btn-secondary:hover {
   background-color: rgb(0 0 0 / 10%);
+}
+
+/* Responsive styles */
+@media (width <= 768px) {
+  .prompt-card {
+    width: 95%;
+    max-width: calc(400px * var(--golden-ratio));
+  }
+
+  .prompt-card-header {
+    padding: calc(1rem * var(--inverse-golden-ratio));
+  }
+
+  .prompt-card-body {
+    padding: calc(1.25rem * var(--inverse-golden-ratio));
+  }
+
+  .prompt-card-title {
+    font-size: calc(1.1rem * var(--inverse-golden-ratio));
+  }
+
+  .prompt-card-text {
+    font-size: calc(0.9rem * var(--inverse-golden-ratio));
+  }
+
+  .prompt-custom-btn {
+    padding: calc(0.5rem * var(--inverse-golden-ratio)) calc(1rem * var(--inverse-golden-ratio));
+    font-size: calc(0.9rem * var(--inverse-golden-ratio));
+  }
+}
+
+/* Accessibility improvements */
+.prompt-card:focus-within {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
+}
+
+.prompt-custom-btn:focus {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
+}
+
+/* Transition effects */
+.prompt-card {
+  transition: transform calc(0.3s * var(--inverse-golden-ratio)) ease-in-out,
+  box-shadow calc(0.3s * var(--inverse-golden-ratio)) ease-in-out;
+}
+
+.prompt-card:hover {
+  transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
+  box-shadow: 0 calc(6px * var(--inverse-golden-ratio)) calc(25px * var(--inverse-golden-ratio)) rgb(0 0 0 / 20%);
+}
+
+/* Additional hover effects for buttons */
+.prompt-custom-btn {
+  transition: background-color calc(0.2s * var(--inverse-golden-ratio)) ease-in-out,
+  transform calc(0.2s * var(--inverse-golden-ratio)) ease-in-out;
+}
+
+.prompt-custom-btn:hover {
+  transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-secondary:hover {
+  filter: brightness(0.9);
 }
