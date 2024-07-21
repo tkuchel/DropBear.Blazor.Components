@@ -356,10 +356,6 @@
   outline-offset: calc(2px * var(--inverse-golden-ratio));
 }
 
-/* Additional hover effects for buttons */
-.prompt-custom-btn {
-
-}
 
 /* Responsive styles */
 @media (width <= 768px) {
