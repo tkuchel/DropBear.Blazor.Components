@@ -44,8 +44,9 @@ public partial class Snackbar : ComponentBase, IAsyncDisposable
 
     #region IAsyncDisposable Members
 
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync()
     {
+        return ValueTask.CompletedTask;
         // Cleanup code if needed
     }
 

@@ -18,13 +18,13 @@ public partial class FileUploader : ComponentBase, IAsyncDisposable
     private bool _uploading;
 
     [Parameter] public Func<IBrowserFile, IProgress<int>, Task<bool>>? OnFileUpload { get; set; }
+    [Parameter] public bool IsLightMode { get; set; }
 
     #region IAsyncDisposable Members
 
     public async ValueTask DisposeAsync()
     {
         _dotNetReference?.Dispose();
-        // Remove the drop event listener if needed
         await JsRuntime.InvokeVoidAsync("eval",
             "document.removeEventListener('drop', window.fileUploaderInterop.handleDrop);");
     }
@@ -211,7 +211,7 @@ public partial class FileUploader : ComponentBase, IAsyncDisposable
     }
 
     #region Nested type: FileDetails
-#pragma warning disable CA1812
+
     private sealed class FileDetails
     {
         public string Name { get; set; } = string.Empty;
@@ -232,6 +232,6 @@ public partial class FileUploader : ComponentBase, IAsyncDisposable
         public long Size { get; set; }
         public string Type { get; set; } = string.Empty;
     }
-#pragma warning restore CA1812
+
     #endregion
 }

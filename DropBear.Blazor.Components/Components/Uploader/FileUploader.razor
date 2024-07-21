@@ -4,7 +4,8 @@
 @using Microsoft.JSInterop
 @inherits ComponentBase
 @namespace DropBear.Blazor.Components.Components.Uploader
-<div class="file-uploader">
+
+<div class="file-uploader @(IsLightMode ? "theme-light" : "theme-dark")">
     <div class="file-uploader-dropzone @(_dragOver ? "dragover" : "")"
          @ondragenter:preventDefault
          @ondragenter="HandleDragEnter"
@@ -13,12 +14,12 @@
          @ondragover:preventDefault
          @ondrop:preventDefault>
         <p>
-            <i class="fas fa-cloud-upload-alt fa-2x"></i>
+            <i class="fas fa-cloud-upload-alt fa-2x" aria-hidden="true"></i>
         </p>
         <p>Drag & Drop files here or</p>
         <InputFile OnChange="HandleFileSelection" multiple class="file-uploader-input" id="fileInput"/>
         <label for="fileInput" class="file-uploader-label">
-            <i class="fas fa-folder-open"></i> Choose Files
+            <i class="fas fa-folder-open" aria-hidden="true"></i> Choose Files
         </label>
     </div>
     <div class="file-uploader-file-list">
@@ -31,12 +32,12 @@
                         @FormatFileSize(file.Size) | @(file.ContentType ?? "Unknown type")
                     </div>
                     <div class="file-uploader-file-status">@file.Status</div>
-                    <div class="file-uploader-file-progress">
+                    <div class="file-uploader-file-progress" role="progressbar" aria-valuenow="@file.Progress" aria-valuemin="0" aria-valuemax="100">
                         <div class="file-uploader-progress-bar" style="width: @(file.Progress)%;"></div>
                     </div>
                 </div>
-                <button class="file-uploader-remove-btn" @onclick="() => RemoveFile(file)">
-                    <i class="fas fa-times"></i>
+                <button class="file-uploader-remove-btn" @onclick="() => RemoveFile(file)" aria-label="Remove file">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
         }
@@ -45,16 +46,16 @@
         <button class="file-uploader-upload-btn" @onclick="UploadFiles" disabled="@(_files.Count == 0 || _uploading)">
             @if (_uploading)
             {
-                <i class="fas fa-spinner file-uploader-spinner"></i>
+                <i class="fas fa-spinner file-uploader-spinner" aria-hidden="true"></i>
                 <span>Uploading...</span>
             }
             else
             {
-                <i class="fas fa-upload"></i>
+                <i class="fas fa-upload" aria-hidden="true"></i>
                 <span>Upload Files</span>
             }
         </button>
-        <div class="file-uploader-progress">
+        <div class="file-uploader-progress" role="progressbar" aria-valuenow="@_overallProgress" aria-valuemin="0" aria-valuemax="100">
             <div class="file-uploader-progress-bar" style="width: @($"{_overallProgress}%");"></div>
         </div>
     </div>
