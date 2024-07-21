@@ -92,7 +92,6 @@
   transition: background-color 0.2s ease;
 }
 
-
 .standard-datagrid-row.header .standard-datagrid-cell {
   font-weight: 500;
   font-size: 0.8rem;
@@ -122,9 +121,8 @@
   outline-offset: 2px;
 }
 
-
 .standard-datagrid-row:not(.header) .standard-datagrid-cell {
-  background-color: hsl(var(--clr-primary) 0.05);
+  background-color: hsl(var(--clr-primary) / 5%);
   transition: background-color 0.3s ease;
 }
 
@@ -137,7 +135,6 @@
 .datagrid-table-wrapper {
   overflow: hidden;
 }
-
 
 .standard-datagrid-row:not(.header) .standard-datagrid-cell:first-child::before {
   content: "";
@@ -167,17 +164,16 @@
   animation: shimmer 2s infinite linear;
 }
 
-
 .standard-datagrid-row:not(.header):hover {
-  background-color: hsl(var(--clr-primary-hover) 0.1);
+  background-color: hsl(var(--clr-primary-hover) / 10%);
 }
 
 .standard-datagrid-row:not(.header):nth-child(even) .standard-datagrid-cell {
-  background-color: hsl(var(--clr-primary) 0.05);
+  background-color: hsl(var(--clr-primary) / 5%);
 }
 
 .standard-datagrid-row.selected {
-  background-color: hsl(var(--clr-primary) 0.2);
+  background-color: hsl(var(--clr-primary) / 20%);
 }
 
 .standard-datagrid-sort-icon {
@@ -252,7 +248,6 @@
   align-items: center;
   gap: var(--spacing-sm);
 }
-
 
 @keyframes shimmer {
   0% {
