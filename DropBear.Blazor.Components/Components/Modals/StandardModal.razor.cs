@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Globalization;
 using DropBear.Blazor.Components.Enums;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -23,7 +24,7 @@ public partial class StandardModal : ComponentBase, IAsyncDisposable
     [Parameter] public EventCallback OnConfirm { get; set; }
     [Parameter] public EventCallback OnCancel { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Parameter] public bool LightMode { get; set; }
+    [Parameter] public bool IsLightMode { get; set; }
     [Parameter] public ModalSize Size { get; set; } = ModalSize.Medium;
     [Parameter] public string CustomCssClass { get; set; } = "";
     [Parameter] public ModalTransition Transition { get; set; } = ModalTransition.Fade;
@@ -35,6 +36,7 @@ public partial class StandardModal : ComponentBase, IAsyncDisposable
 
     public ValueTask DisposeAsync()
     {
+        // Cleanup code if needed
         return ValueTask.CompletedTask;
     }
 
@@ -124,7 +126,7 @@ public partial class StandardModal : ComponentBase, IAsyncDisposable
 
     public void Show()
     {
-        _ = ShowAsync().ConfigureAwait(false);
+        _ = ShowAsync();
     }
 
     public async Task HideAsync()
@@ -136,12 +138,12 @@ public partial class StandardModal : ComponentBase, IAsyncDisposable
 
     public void Hide()
     {
-        _ = HideAsync().ConfigureAwait(false);
+        _ = HideAsync();
     }
 
     private async Task CloseClick()
     {
-        if (CloseOnBackdropClick || LightMode)
+        if (CloseOnBackdropClick)
         {
             await OnClose.InvokeAsync();
             await HideAsync();
@@ -151,18 +153,28 @@ public partial class StandardModal : ComponentBase, IAsyncDisposable
     private async Task ConfirmClick()
     {
         await OnConfirm.InvokeAsync();
-        if (LightMode)
-        {
-            await HideAsync();
-        }
+        await HideAsync();
     }
 
     private async Task CancelClick()
     {
         await OnCancel.InvokeAsync();
-        if (LightMode)
+        await HideAsync();
+    }
+
+    private string GetModalClasses()
+    {
+        var classes = new List<string>
         {
-            await HideAsync();
-        }
+            "standard-modal",
+            IsVisible ? "active" : "",
+            IsLightMode ? "theme-light" : "theme-dark",
+            CustomCssClass,
+            Size.ToString().ToLower(CultureInfo.CurrentCulture),
+            Transition.ToString().ToLower(CultureInfo.CurrentCulture),
+            ScrollableContent ? "scrollable" : ""
+        };
+
+        return string.Join(" ", classes.Where(c => !string.IsNullOrWhiteSpace(c)));
     }
 }

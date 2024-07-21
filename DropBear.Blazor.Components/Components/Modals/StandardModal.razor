@@ -5,9 +5,12 @@
 
 @if (IsVisible)
 {
-    <div class="standard-modal @(IsVisible ? "active" : "") @(LightMode ? "light-mode" : "") @CustomCssClass @Size.ToString().ToLower() @Transition.ToString().ToLower() @(ScrollableContent ? "scrollable" : "")"
+    <div class="standard-modal @GetModalClasses()"
          @ref="_modalElement"
-         @onclick="CloseClick">
+         @onclick="CloseClick"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modal-title">
         <div class="standard-modal-content" @onclick:stopPropagation="true">
             @if (CustomHeader != null)
             {
@@ -16,8 +19,8 @@
             else
             {
                 <div class="standard-modal-header">
-                    <h2>@Title</h2>
-                    <button class="standard-modal-close" @onclick="CloseClick">&times;</button>
+                    <h2 id="modal-title">@Title</h2>
+                    <button class="standard-modal-close" @onclick="CloseClick" aria-label="Close modal">&times;</button>
                 </div>
             }
             <div class="standard-modal-body">
