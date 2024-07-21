@@ -1,15 +1,15 @@
 ﻿@inherits ComponentBase
 @namespace DropBear.Blazor.Components.Components.Loaders
 
-<div class="loading-progress-container">
-    <div class="loading-card" style="@CardStyle">
+<div class="loading-progress-container @(IsLightMode ? "theme-light" : "theme-dark")">
+    <div class="loading-card @(IsCompact ? "compact" : "")" style="@CardStyle;">
         @if (ShowTitle)
         {
-            <h3>
-                <i class="@IconClass"></i> @Title
+            <h3 class="loading-title">
+                <i class="@IconClass" aria-hidden="true"></i> @Title
             </h3>
         }
-        <div class="progress-container">
+        <div class="progress-container" role="progressbar" aria-valuenow="@Progress" aria-valuemin="0" aria-valuemax="100">
             <div class="progress-bar" style="width: @(Progress)%;">
                 @if (ShowPercentage)
                 {
@@ -20,7 +20,7 @@
         @if (ShowProcessingText)
         {
             <p class="processing-text">
-                @ProcessingText<span class="dots"></span>
+                @ProcessingText<span class="dots" aria-hidden="true"></span>
             </p>
         }
         @if (ShowCancelButton)

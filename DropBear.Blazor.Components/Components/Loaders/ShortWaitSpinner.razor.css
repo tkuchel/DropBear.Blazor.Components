@@ -1,56 +1,74 @@
 ﻿/* ShortWaitSpinner.razor.css */
+:root {
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
+}
+
 .short-wait-spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
-  max-width: 1200px;
+  gap: calc(2rem * var(--inverse-golden-ratio));
+  max-width: calc(1200px * var(--golden-ratio));
   margin: 0 auto;
   font-family: Poppins, sans-serif;
-  line-height: 1.6;
-  padding: 2rem;
+  line-height: var(--golden-ratio);
+  padding: calc(2rem * var(--inverse-golden-ratio));
+}
+
+.short-wait-spinner-container.theme-light {
+  --spinner-bg: var(--clr-light-surface);
+  --spinner-text: var(--clr-light-text);
+  --spinner-border: var(--clr-light-border);
+}
+
+.short-wait-spinner-container.theme-dark {
+  --spinner-bg: var(--clr-dark-surface);
+  --spinner-text: var(--clr-dark-text);
+  --spinner-border: var(--clr-dark-border);
 }
 
 .short-wait-loading-card {
-  background-color: var(--clr-card-bg);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
-  width: 300px;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  background-color: var(--spinner-bg);
+  border-radius: calc(var(--border-radius) * var(--inverse-golden-ratio));
+  padding: calc(var(--spacing-lg) * var(--inverse-golden-ratio));
+  width: calc(300px * var(--golden-ratio));
+  box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(6px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform calc(0.3s * var(--inverse-golden-ratio)) ease;
 }
 
 .short-wait-loading-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(calc(-5px * var(--inverse-golden-ratio)));
 }
 
 .short-wait-heading {
-  color: var(--clr-heading);
-  margin-bottom: var(--spacing-md);
+  color: var(--spinner-text);
+  margin-bottom: calc(var(--spacing-md) * var(--inverse-golden-ratio));
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: calc(1.2rem * var(--inverse-golden-ratio));
 }
 
 .short-wait-heading i {
-  margin-right: var(--spacing-sm);
+  margin-right: calc(var(--spacing-sm) * var(--inverse-golden-ratio));
   color: var(--clr-primary);
 }
 
 .short-wait-loading-text {
-  color: var(--clr-heading);
-  font-size: 0.8rem;
+  color: var(--spinner-text);
+  font-size: calc(0.8rem * var(--inverse-golden-ratio));
   font-weight: 600;
   position: relative;
   z-index: 1;
 }
 
 .short-wait-paragraph {
-  margin-top: var(--spacing-md);
-  font-size: 0.9rem;
-  color: var(--clr-text);
+  margin-top: calc(var(--spacing-md) * var(--inverse-golden-ratio));
+  font-size: calc(0.9rem * var(--inverse-golden-ratio));
+  color: var(--spinner-text);
 }
 
 /* Spinner Styles */
@@ -58,16 +76,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: calc(100px * var(--inverse-golden-ratio));
 }
 
 .short-wait-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid var(--clr-primary);
-  border-top: 3px solid transparent;
+  border: calc(3px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  border-top: calc(3px * var(--inverse-golden-ratio)) solid transparent;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin calc(1s * var(--inverse-golden-ratio)) linear infinite;
 }
 
 @keyframes spin {
@@ -83,7 +99,7 @@
 /* Animated dots */
 .short-wait-dots {
   display: inline-block;
-  width: 20px;
+  width: calc(20px * var(--inverse-golden-ratio));
   text-align: left;
 }
 
@@ -103,5 +119,24 @@
 
 .short-wait-dots::after {
   content: ".";
-  animation: ellipsis 1.5s infinite;
+  animation: ellipsis calc(1.5s * var(--inverse-golden-ratio)) infinite;
+}
+
+/* Compact mode */
+.short-wait-loading-card.compact {
+  padding: calc(0.75rem * var(--inverse-golden-ratio));
+}
+
+/* Responsive design */
+@media (width <= 600px) {
+  .short-wait-loading-card {
+    width: 100%;
+    max-width: calc(300px * var(--golden-ratio));
+  }
+}
+
+/* Accessibility improvements */
+.short-wait-spinner:focus {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
 }

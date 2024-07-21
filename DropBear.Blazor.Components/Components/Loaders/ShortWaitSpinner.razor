@@ -1,20 +1,21 @@
 ﻿@inherits ComponentBase
 @namespace DropBear.Blazor.Components.Components.Loaders
-<div class="short-wait-spinner-container">
+
+<div class="short-wait-spinner-container @(IsLightMode ? "theme-light" : "theme-dark")">
     <div class="short-wait-loading-card @(IsCompact ? "compact" : "")" style="@CardStyle;">
         @if (ShowTitle)
         {
-            <h3>
-                <i class="@IconClass"></i> @Title
+            <h3 class="short-wait-heading">
+                <i class="@IconClass" aria-hidden="true"></i> @Title
             </h3>
         }
         <div class="short-wait-spinner-inner-container">
-            <div class="short-wait-spinner" style="@SpinnerStyle;"></div>
+            <div class="short-wait-spinner" style="@SpinnerStyle;" role="progressbar" aria-valuetext="@LoadingText"></div>
         </div>
         @if (ShowLoadingText)
         {
             <p class="short-wait-loading-text">
-                @LoadingText<span class="short-wait-dots">...</span>
+                @LoadingText<span class="short-wait-dots" aria-hidden="true">...</span>
             </p>
         }
     </div>

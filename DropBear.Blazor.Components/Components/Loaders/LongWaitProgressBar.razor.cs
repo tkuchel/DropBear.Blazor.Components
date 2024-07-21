@@ -8,6 +8,8 @@ namespace DropBear.Blazor.Components.Components.Loaders;
 
 public partial class LongWaitProgressBar : ComponentBase
 {
+    private const double GoldenRatio = 1.618;
+    private const double InverseGoldenRatio = 0.618;
     [Parameter] public string Title { get; set; } = "Long Wait Progress Bar";
     [Parameter] public string ProcessingText { get; set; } = "Processing your request";
     [Parameter] public string IconClass { get; set; } = "fas fa-tasks";
@@ -19,8 +21,9 @@ public partial class LongWaitProgressBar : ComponentBase
     [Parameter] public EventCallback OnCancel { get; set; }
     [Parameter] public bool ShowCancelButton { get; set; } = true;
     [Parameter] public string CancelButtonText { get; set; } = "Cancel";
+    [Parameter] public bool IsLightMode { get; set; }
 
-    private string CardStyle => IsCompact ? "padding: 0.75rem;" : "";
+    private string CardStyle => IsCompact ? $"padding: {0.75 * InverseGoldenRatio}rem;" : "";
 
     private async Task HandleCancelClick()
     {
