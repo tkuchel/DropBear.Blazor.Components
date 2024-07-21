@@ -75,7 +75,7 @@
   content: '▶';
   position: absolute;
   right: calc(8px * var(--inverse-golden-ratio));
-  font-size: calc(0.8em * var(--inverse-golden-ratio));
+  font-size: calc(0.8rem * var(--inverse-golden-ratio));
 }
 
 .context-submenu {

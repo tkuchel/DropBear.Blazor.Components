@@ -88,6 +88,7 @@
   --spacing-md: calc(0.75rem * var(--inverse-golden-ratio));
   --spacing-lg: calc(1rem * var(--golden-ratio));
   --spacing-xl: calc(1.5rem * var(--golden-ratio));
+  --container-width: calc(1000px * var(--golden-ratio)); /* Container max-width */
 
   /* Additional Colors */
   --clr-text-light: hsl(0deg 0% 100%);
@@ -97,7 +98,6 @@
   --clr-danger-hover: hsl(0deg 71% 57%);
   --clr-info: hsl(202deg 97% 65%);
   --clr-info-hover: hsl(202deg 72% 52%);
-
 
   /* Updated shadow variables */
   --shadow-offset: calc(2px * var(--inverse-golden-ratio));
@@ -124,12 +124,16 @@
   --context-menu-z-index: 1000;
 }
 
+html {
+  font-size: 26px; /* This sets the root font size to 16px */
+}
+
 body {
   font-family: Poppins, sans-serif;
   background-color: var(--clr-dark-background);
   color: var(--clr-mine-shaft);
   line-height: var(--golden-ratio);
-  font-size: calc(16px * var(--inverse-golden-ratio));
+  font-size: calc(1rem * var(--inverse-golden-ratio));
   margin: 0;
 }
 
