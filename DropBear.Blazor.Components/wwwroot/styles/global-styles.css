@@ -137,6 +137,14 @@ body {
   margin: 0;
 }
 
+.container {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
 .btn {
   font-family: Poppins, sans-serif;
   font-size: calc(1rem * var(--inverse-golden-ratio));
