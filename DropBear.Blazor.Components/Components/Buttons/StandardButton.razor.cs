@@ -1,5 +1,7 @@
 ﻿#region
 
+using System.Globalization;
+using DropBear.Blazor.Components.Enums;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -9,33 +11,49 @@ namespace DropBear.Blazor.Components.Components.Buttons;
 
 public partial class StandardButton : ComponentBase
 {
-    [Parameter] public string Variant { get; set; } = "primary";
-    [Parameter] public string Size { get; set; } = "default";
-    [Parameter] public bool Disabled { get; set; }
-    [Parameter] public string IconClass { get; set; } = "";
-    [Parameter] public string Title { get; set; } = "";
-    [Parameter] public string Type { get; set; } = "button";
-    [Parameter] public bool IsBlock { get; set; }
-
-    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
-
     [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string IconClass { get; set; } = string.Empty;
+    [Parameter] public bool Disabled { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public string Type { get; set; } = "button";
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public ButtonStyle Style { get; set; } = ButtonStyle.Primary;
+    [Parameter] public ButtonSize Size { get; set; } = ButtonSize.Medium;
+    [Parameter] public bool IsOutline { get; set; }
+    [Parameter] public bool IsBlock { get; set; }
+    [Parameter] public bool IsLightMode { get; set; }
 
-    private string ButtonClasses =>
-        $"btn standard-button-{Variant} {SizeClass} {(IsBlock ? "btn-block" : "")} {(IsIconOnly ? "btn-icon-only" : "")}".Trim();
-
-    private string SizeClass => Size switch
+    private string GetButtonClasses()
     {
-        "sm" => "btn-sm",
-        "lg" => "btn-lg",
-        _ => ""
-    };
+        var classes = "standard-button";
+        classes += $" standard-button-{Style.ToString().ToLower(CultureInfo.CurrentCulture)}";
+        classes += $" standard-button-{Size.ToString().ToLower(CultureInfo.CurrentCulture)}";
+        if (IsOutline)
+        {
+            classes += " standard-button-outline";
+        }
 
-    private bool IsIconOnly => !string.IsNullOrEmpty(IconClass) && ChildContent is null;
+        if (IsBlock)
+        {
+            classes += " standard-button-block";
+        }
+
+        if (IsLightMode)
+        {
+            classes += " light-mode";
+        }
+
+        if (Disabled)
+        {
+            classes += " disabled";
+        }
+
+        return classes;
+    }
 
     private async Task OnClickHandler(MouseEventArgs args)
     {
-        if (OnClick.HasDelegate)
+        if (!Disabled)
         {
             await OnClick.InvokeAsync(args);
         }

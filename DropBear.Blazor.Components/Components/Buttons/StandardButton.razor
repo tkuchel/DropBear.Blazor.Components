@@ -1,17 +1,17 @@
 ﻿@inherits ComponentBase
 @namespace DropBear.Blazor.Components.Components.Buttons
 
-<button class="@ButtonClasses"
+<button class="@GetButtonClasses()"
         disabled="@Disabled"
         @onclick="OnClickHandler"
         type="@Type"
         title="@Title">
     @if (!string.IsNullOrEmpty(IconClass))
     {
-        <i class="@IconClass standard-button-pad-right-5"></i>
+        <i class="@IconClass standard-button-icon"></i>
     }
     @if (ChildContent != null)
     {
-        <span class="btn-text">@ChildContent</span>
+        <span class="standard-button-text">@ChildContent</span>
     }
 </button>

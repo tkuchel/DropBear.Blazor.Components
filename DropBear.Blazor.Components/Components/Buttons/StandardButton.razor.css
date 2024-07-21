@@ -1,35 +1,169 @@
 ﻿/* StandardButton.razor.css */
-.standard-button-showcase {
-  max-width: 800px;
-  margin: 0 auto;
+:root {
+  --golden-ratio: 1.618;
+  --inverse-golden-ratio: 0.618;
 }
 
-.standard-button-header {
-  color: var(--clr-text-muted);
-  margin-top: 2rem;
+.standard-button {
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+  border: none;
+  border-radius: calc(6px * var(--inverse-golden-ratio));
+  cursor: pointer;
+  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
 }
 
-.standard-button-pad-left-5 {
-  padding-left: 5px;
+.standard-button:hover:not(.disabled) {
+  transform: translateY(calc(-2px * var(--inverse-golden-ratio)));
+  box-shadow: 0 calc(2px * var(--inverse-golden-ratio)) calc(4px * var(--inverse-golden-ratio)) rgb(0 0 0 / 10%);
 }
 
-.standard-button-pad-right-5 {
-  padding-right: 5px;
+.standard-button:active:not(.disabled) {
+  transform: translateY(calc(1px * var(--inverse-golden-ratio)));
 }
 
-.standard-button-group {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  flex-wrap: wrap;
+.standard-button-icon {
+  margin-right: calc(0.5rem * var(--inverse-golden-ratio));
 }
 
+.standard-button-text {
+  font-size: calc(1rem * var(--inverse-golden-ratio));
+}
+
+/* Button Sizes */
+.standard-button-small {
+  padding: calc(0.375rem * var(--inverse-golden-ratio)) calc(0.75rem * var(--inverse-golden-ratio));
+  font-size: calc(0.875rem * var(--inverse-golden-ratio));
+}
+
+.standard-button-medium {
+  padding: calc(0.5rem * var(--inverse-golden-ratio)) calc(1rem * var(--inverse-golden-ratio));
+  font-size: calc(1rem * var(--inverse-golden-ratio));
+}
+
+.standard-button-large {
+  padding: calc(0.75rem * var(--inverse-golden-ratio)) calc(1.5rem * var(--inverse-golden-ratio));
+  font-size: calc(1.25rem * var(--inverse-golden-ratio));
+}
+
+/* Button Styles */
 .standard-button-primary {
   background-color: var(--clr-primary);
   color: var(--clr-surface);
 }
 
-.standard-button-primary:hover {
+.standard-button-primary:hover:not(.disabled) {
   background-color: var(--clr-primary-hover);
-  filter: brightness(1.1);
+}
+
+.standard-button-secondary {
+  background-color: var(--clr-secondary);
+  color: var(--clr-surface);
+}
+
+.standard-button-secondary:hover:not(.disabled) {
+  background-color: var(--clr-secondary-hover);
+}
+
+.standard-button-success {
+  background-color: var(--clr-success);
+  color: var(--clr-surface);
+}
+
+.standard-button-danger {
+  background-color: var(--clr-danger);
+  color: var(--clr-surface);
+}
+
+.standard-button-warning {
+  background-color: var(--clr-warning);
+  color: var(--clr-mine-shaft);
+}
+
+.standard-button-info {
+  background-color: var(--clr-info);
+  color: var(--clr-surface);
+}
+
+/* Outline Styles */
+.standard-button-outline {
+  background-color: transparent;
+  border: calc(1px * var(--inverse-golden-ratio)) solid;
+}
+
+.standard-button-outline.standard-button-primary {
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+.standard-button-outline.standard-button-secondary {
+  color: var(--clr-secondary);
+  border-color: var(--clr-secondary);
+}
+
+.standard-button-outline.standard-button-success {
+  color: var(--clr-success);
+  border-color: var(--clr-success);
+}
+
+.standard-button-outline.standard-button-danger {
+  color: var(--clr-danger);
+  border-color: var(--clr-danger);
+}
+
+.standard-button-outline.standard-button-warning {
+  color: var(--clr-warning);
+  border-color: var(--clr-warning);
+}
+
+.standard-button-outline.standard-button-info {
+  color: var(--clr-info);
+  border-color: var(--clr-info);
+}
+
+/* Block Button */
+.standard-button-block {
+  display: block;
+  width: 100%;
+}
+
+/* Disabled State */
+.standard-button.disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Light Mode Styles */
+.standard-button.light-mode {
+  /* Add specific light mode styles if needed */
+}
+
+/* Button Group */
+.standard-button-group {
+  display: flex;
+  gap: calc(1rem * var(--inverse-golden-ratio));
+  margin-bottom: calc(1rem * var(--inverse-golden-ratio));
+  flex-wrap: wrap;
+}
+
+/* Responsive styles */
+@media (width <= 768px) {
+  .standard-button-group {
+    flex-direction: column;
+  }
+
+  .standard-button-block {
+    width: 100%;
+  }
+}
+
+/* Accessibility */
+.standard-button:focus {
+  outline: calc(2px * var(--inverse-golden-ratio)) solid var(--clr-primary);
+  outline-offset: calc(2px * var(--inverse-golden-ratio));
 }
