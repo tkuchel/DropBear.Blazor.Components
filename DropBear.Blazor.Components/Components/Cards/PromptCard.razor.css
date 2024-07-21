@@ -77,6 +77,8 @@
   box-shadow: 0 calc(4px * var(--inverse-golden-ratio)) calc(20px * var(--inverse-golden-ratio)) hsl(0deg 0% 0% / 15%);
   transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
   max-width: calc(500px * var(--golden-ratio));
+  padding: calc(1.25rem * var(--inverse-golden-ratio));
+  margin: calc(1.25rem * var(--inverse-golden-ratio));
 }
 
 .prompt-card:focus-within {
@@ -110,13 +112,13 @@
   margin-bottom: calc(1.75rem * var(--inverse-golden-ratio));
   font-weight: 300;
   line-height: var(--golden-ratio);
-  font-size: calc(0.9rem * var(--inverse-golden-ratio));
+  font-size: calc(1.5rem * var(--inverse-golden-ratio));
 }
 
 .prompt-card-title {
   margin: 0;
-  font-weight: 600;
-  font-size: calc(1.25rem * var(--inverse-golden-ratio));
+  font-weight: 400;
+  font-size: calc(2rem * var(--inverse-golden-ratio));
   color: var(--clr-silver-sand);
 }
 
@@ -337,12 +339,12 @@
   border: none;
   padding: calc(0.625rem * var(--inverse-golden-ratio)) calc(1.25rem * var(--inverse-golden-ratio));
   border-radius: calc(6px * var(--inverse-golden-ratio));
-  transition: all calc(0.3s * var(--inverse-golden-ratio)) ease;
+  transition: background-color calc(0.2s * var(--inverse-golden-ratio)) ease-in-out, transform calc(0.2s * var(--inverse-golden-ratio)) ease-in-out;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: calc(8px * var(--inverse-golden-ratio));
-  font-size: calc(0.9rem * var(--inverse-golden-ratio));
+  font-size: calc(1rem * var(--inverse-golden-ratio));
 }
 
 .prompt-custom-btn:hover {
@@ -356,7 +358,7 @@
 
 /* Additional hover effects for buttons */
 .prompt-custom-btn {
-  transition: background-color calc(0.2s * var(--inverse-golden-ratio)) ease-in-out, transform calc(0.2s * var(--inverse-golden-ratio)) ease-in-out;
+
 }
 
 /* Responsive styles */
