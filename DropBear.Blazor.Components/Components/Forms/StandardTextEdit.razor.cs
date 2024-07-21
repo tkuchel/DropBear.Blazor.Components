@@ -33,7 +33,11 @@ public partial class StandardTextEdit : InputBase<string>
         var classes = new List<string> { "standard-textbox-wrapper" };
         if (IsLightMode)
         {
-            classes.Add("light-mode");
+            classes.Add("theme-light");
+        }
+        else
+        {
+            classes.Add("theme-dark");
         }
 
         return string.Join(' ', classes);
@@ -44,12 +48,12 @@ public partial class StandardTextEdit : InputBase<string>
         var classes = new List<string> { "standard-textbox" };
         if (IsError)
         {
-            classes.Add("standard-error");
+            classes.Add("error");
         }
 
         if (IsValid)
         {
-            classes.Add("standard-valid");
+            classes.Add("valid");
         }
 
         return string.Join(' ', classes);

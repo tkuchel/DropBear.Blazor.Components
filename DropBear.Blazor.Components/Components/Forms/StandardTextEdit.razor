@@ -11,22 +11,24 @@
            id="@Id"
            type="@Type"
            placeholder=" "
-           disabled="@IsDisabled"/>
+           disabled="@IsDisabled"
+           aria-invalid="@IsError"
+           aria-describedby="@(IsError ? $"{Id}-error" : IsValid ? $"{Id}-valid" : null)"/>
     <label class="standard-textbox-label" for="@Id">@Label</label>
     @if (ShowIcon)
     {
-        <i class="@IconClass standard-textbox-icon" @onclick="OnIconClickHandler"></i>
+    <i class="@IconClass standard-textbox-icon" @onclick="OnIconClickHandler" aria-hidden="true"></i>
     }
     @if (ShowCharacterCount)
     {
-        <span class="standard-character-count">@CurrentValue?.Length/@MaxLength</span>
+    <span class="standard-character-count" aria-live="polite">@CurrentValue?.Length/@MaxLength</span>
     }
     @if (IsError)
     {
-        <div class="standard-error-message">@ErrorMessage</div>
+    <div class="standard-error-message" id="@($"{Id}-error")" role="alert">@ErrorMessage</div>
     }
     @if (IsValid)
     {
-        <div class="standard-valid-message">@ValidMessage</div>
+    <div class="standard-valid-message" id="@($"{Id}-valid")">@ValidMessage</div>
     }
 </div>
