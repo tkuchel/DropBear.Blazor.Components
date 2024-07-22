@@ -29,17 +29,22 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md);
-  background-color: var(--datagrid-surface);
+  background: linear-gradient(45deg, var(--datagrid-bg) 0%, var(--datagrid-bg) 100%);
   border-bottom: 1px solid var(--datagrid-border);
 }
 
 .standard-datagrid-title {
   color: var(--datagrid-text);
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  text-transform: capitalize;
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
+}
+
+.standard-datagrid-title i {
+  scale: 0.875;
 }
 
 .standard-datagrid-actions {
@@ -58,7 +63,7 @@
   background-color: var(--datagrid-surface);
   color: var(--datagrid-text);
   width: 200px;
-  font-size: 1rem;
+  font-size: 0.75rem;
 }
 
 .standard-search-icon {
@@ -229,7 +234,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md);
-  background-color: var(--datagrid-surface);
+  background: linear-gradient(45deg, var(--datagrid-bg) 0%, var(--datagrid-bg) 100%);
   border-top: 1px solid var(--datagrid-border);
 }
 

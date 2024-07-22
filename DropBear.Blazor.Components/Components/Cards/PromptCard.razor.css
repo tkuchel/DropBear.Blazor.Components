@@ -105,6 +105,7 @@
 .prompt-card-header i {
   font-size: calc(1.5rem * var(--inverse-golden-ratio));
   margin-right: calc(0.75rem * var(--inverse-golden-ratio));
+  scale: 1.25;
 }
 
 .prompt-card-text {
@@ -337,14 +338,14 @@
 /* Prompt custom button styles */
 .prompt-custom-btn {
   border: none;
-  padding: calc(0.625rem * var(--inverse-golden-ratio)) calc(1.25rem * var(--inverse-golden-ratio));
+  padding: calc(1rem * var(--inverse-golden-ratio)) calc(1.25rem * var(--inverse-golden-ratio));
   border-radius: calc(6px * var(--inverse-golden-ratio));
   transition: background-color calc(0.2s * var(--inverse-golden-ratio)) ease-in-out, transform calc(0.2s * var(--inverse-golden-ratio)) ease-in-out;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: calc(8px * var(--inverse-golden-ratio));
-  font-size: calc(1rem * var(--inverse-golden-ratio));
+  font-size: calc(1.5rem * var(--inverse-golden-ratio));
 }
 
 .prompt-custom-btn:hover {
