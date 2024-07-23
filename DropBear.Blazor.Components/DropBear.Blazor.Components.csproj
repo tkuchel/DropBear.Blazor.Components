@@ -27,7 +27,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\styles\global-styles.css">
+    <None Include="wwwroot\styles\old-global-styles.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\styles\dropbear-base-styles.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
