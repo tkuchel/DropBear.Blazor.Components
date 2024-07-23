@@ -39,7 +39,7 @@
                             @if (column.Filterable)
                             {
                                 <div class="filter-input">
-                                    <input type="text" @oninput="e => ApplyFilter(column.PropertyName, e.Value.ToString())"
+                                    <input type="text" @oninput="e => ApplyFilter(column.PropertyName, e.Value?.ToString())"
                                            placeholder="Filter..."/>
                                 </div>
                             }

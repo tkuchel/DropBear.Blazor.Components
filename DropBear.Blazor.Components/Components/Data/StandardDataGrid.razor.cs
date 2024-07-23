@@ -35,8 +35,8 @@ public sealed partial class StandardDataGrid<TItem> : ComponentBase, IDisposable
     [Parameter] public string SortColumn { get; set; } = "";
     [Parameter] public SortDirection SortDirection { get; set; } = SortDirection.Ascending;
     [Parameter] public EventCallback<(string, SortDirection)> SortChanged { get; set; }
-    [Parameter] public Dictionary<string, string> Filters { get; set; } = new(StringComparer.OrdinalIgnoreCase);
-    [Parameter] public EventCallback<Dictionary<string, string>> FiltersChanged { get; set; }
+    [Parameter] public Dictionary<string, string?> Filters { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+    [Parameter] public EventCallback<Dictionary<string, string?>> FiltersChanged { get; set; }
     [Parameter] public EventCallback<HashSet<TItem>> SelectedItemsChanged { get; set; }
     [Parameter] public Func<TItem, string>? RowClass { get; set; }
     private HashSet<TItem> SelectedItems { get; set; } = [];
@@ -169,7 +169,7 @@ public sealed partial class StandardDataGrid<TItem> : ComponentBase, IDisposable
         return SortDirection is SortDirection.Ascending ? "fa-sort-up" : "fa-sort-down";
     }
 
-    private async Task ApplyFilter(string columnName, string filterValue)
+    private async Task ApplyFilter(string columnName, string? filterValue)
     {
         if (string.IsNullOrWhiteSpace(filterValue))
         {
@@ -202,8 +202,8 @@ public sealed partial class StandardDataGrid<TItem> : ComponentBase, IDisposable
                 }
 
                 var value = column.PropertySelector?.Invoke(item).ToString();
-                return string.IsNullOrEmpty(value) ||
-                       value.Contains(filter.Value, StringComparison.OrdinalIgnoreCase);
+                return filter.Value is not null && (string.IsNullOrEmpty(value) ||
+                                                    value.Contains(filter.Value, StringComparison.OrdinalIgnoreCase));
             })
         ).ToList();
     }
