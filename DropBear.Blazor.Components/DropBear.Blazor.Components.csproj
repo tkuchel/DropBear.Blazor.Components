@@ -27,9 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\scripts\ContextMenu.js"/>
-    <None Include="wwwroot\scripts\FileUploader.js"/>
-    <None Include="wwwroot\scripts\Snackbar.js"/>
     <None Include="wwwroot\styles\global-styles.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

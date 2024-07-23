@@ -1,156 +1,105 @@
-﻿@inherits ComponentBase
+﻿@inject IJSRuntime JsRuntime
+@using DropBear.Blazor.Components.Enums
+@using Microsoft.JSInterop
+@typeparam TItem
 @namespace DropBear.Blazor.Components.Components.Data
-@typeparam TItem where TItem : notnull
 
-<div class="standard-datagrid @(IsLightMode ? "theme-light" : "theme-dark")">
-    <div class="standard-datagrid-header">
-        <h2 class="standard-datagrid-title">
-            <i class="@HeaderIcon"></i> @Title
-        </h2>
-        <div class="standard-datagrid-actions">
-            @if (AllowSearch)
-            {
-                <div class="standard-search-wrapper">
-                    <input type="text" placeholder="Search..." class="standard-search-input" @bind-value="SearchTerm" @bind-value:event="oninput">
-                    <i class="fas fa-search standard-search-icon"></i>
-                </div>
-            }
-            @if (AllowAdd)
-            {
-                <button class="btn btn-primary" @onclick="OnAddClick">
-                    <i class="fas fa-plus"></i> @AddText
-                </button>
-            }
-        </div>
-    </div>
-    <div class="standard-datagrid-table-wrapper">
-        @if (IsLoading)
-        {
-            @if (LoadingTemplate != null)
-            {
-                @LoadingTemplate
-            }
-            else
-            {
-                <div class="standard-datagrid-loading">
-                    <i class="fas fa-spinner fa-spin"></i> Loading...
-                </div>
-            }
-        }
-        else if (Items == null || !FilteredAndSortedItems.Any())
-        {
-            @if (EmptyTemplate != null)
-            {
-                @EmptyTemplate
-            }
-            else
-            {
-                <div class="standard-datagrid-empty">
-                    <i class="fas fa-inbox fa-3x"></i>
-                    <p>No items to display.</p>
-                </div>
-            }
-        }
-        else
-        {
-            <table class="standard-datagrid-table" role="table" aria-label="@Title">
+
+<div class="data-grid @(Theme == ThemeType.Dark ? "dark-theme" : "light-theme")">
+    @if (IsLoading)
+    {
+        @LoadingTemplate
+    }
+    else if (!Items.Any())
+    {
+        @NoDataTemplate
+    }
+    else
+    {
+        <div class="grid-container" @onkeydown="OnKeyDown" tabindex="0">
+            <table>
                 <thead>
-                <tr class="standard-datagrid-row header" role="row">
-                    @if (AllowSelect)
+                <tr>
+                    @if (AllowSelection)
                     {
-                        <th class="standard-datagrid-cell checkbox" role="columnheader">
-                            <input type="checkbox" @bind="AreAllSelected" aria-label="Select all items">
+                        <th class="selection-column">
+                            <div class="checkbox-container">
+                                <input type="checkbox" checked="@AreAllSelected" @onchange="ToggleAllSelection" title="Select All">
+                            </div>
                         </th>
                     }
-                    @foreach (var column in Columns!)
+                    @foreach (var column in Columns)
                     {
-                        <th class="standard-datagrid-cell sortable" role="columnheader" aria-sort="@GetSortOrder(column)" @onclick="() => SortByColumn(column)">
-                            <i class="@column.IconClass"></i> @column.Title <i class="fas fa-sort standard-datagrid-sort-icon"></i>
+                        <th class="@(column.Sortable ? "sortable" : "")" @onclick="() => Sort(column)" style="width: @(column.Width)px;">
+                            @column.Title
+                            @if (column.Sortable)
+                            {
+                                <i class="fas fa-sort sort-icon @GetSortIconClass(column)"></i>
+                            }
+                            @if (column.Filterable)
+                            {
+                                <div class="filter-input">
+                                    <input type="text" @oninput="e => ApplyFilter(column.PropertyName, e.Value.ToString())"
+                                           placeholder="Filter..."/>
+                                </div>
+                            }
+                            @if (AllowColumnResize)
+                            {
+                                <div class="column-resizer" @onmousedown="@(e => StartColumnResize(e, column))"></div>
+                            }
                         </th>
                     }
-                    @if (AllowEdit || AllowDelete)
+                    @if (ActionTemplate != null)
                     {
-                        <th class="standard-datagrid-cell" role="columnheader">Actions</th>
+                        <th>Actions</th>
                     }
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var item in FilteredAndSortedItems)
+                @foreach (var item in PaginatedItems)
                 {
-                    <tr class="standard-datagrid-row @(SelectedItems.Contains(item) ? "selected" : "")"
-                        role="row"
-                        @oncontextmenu="@(e => ShowContextMenu(e, item))"
-                        @oncontextmenu:preventDefault>
-                        @if (AllowSelect)
+                    <tr class="@(IsSelected(item) ? "selected" : "") @RowClass?.Invoke(item)"
+                        @onclick="() => OnRowClick(item)">
+                        @if (AllowSelection)
                         {
-                            <td class="standard-datagrid-cell checkbox" role="cell">
-                                <input type="checkbox"
-                                       checked="@IsItemSelected(item)"
-                                       @onchange="@(e => ToggleItemSelection(item))"
-                                       aria-label="Select item">
+                            <td class="selection-column">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" checked="@IsSelected(item)" @onchange="e => ToggleSelection(item)" title="Select Row">
+                                </div>
                             </td>
                         }
                         @foreach (var column in Columns)
                         {
-                            <td class="standard-datagrid-cell" role="cell">
-                                @if (column.CellTemplate != null)
+                            <td>
+                                @if (column.Template != null)
                                 {
-                                    @column.CellTemplate(item)
+                                    @column.Template(item)
                                 }
                                 else
                                 {
-                                    @column.ValueGetter(item)
+                                    @column.PropertySelector?.Invoke(item)
                                 }
                             </td>
                         }
-                        @if (AllowEdit || AllowDelete)
+                        @if (ActionTemplate != null)
                         {
-                            <td class="standard-datagrid-cell actions" role="cell">
-                                @if (AllowEdit)
-                                {
-                                    <button class="btn btn-icon" title="Edit" aria-label="Edit item" @onclick="() => OnEditClick.InvokeAsync(item)">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                }
-                                @if (AllowDelete)
-                                {
-                                    <button class="btn btn-icon" title="Delete" aria-label="Delete item" @onclick="() => OnDeleteClick.InvokeAsync(item)">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                }
+                            <td class="actions">
+                                @ActionTemplate(item)
                             </td>
                         }
                     </tr>
                 }
                 </tbody>
             </table>
-        }
-    </div>
-    @if (TotalPages > 1)
-    {
-        <div class="standard-datagrid-footer">
-            <div class="standard-pagination">
-                <button class="btn btn-icon" title="Previous Page" aria-label="Go to previous page" @onclick="PreviousPage" disabled="@(!CanGoToPreviousPage)">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <span>Page @CurrentPage of @TotalPages</span>
-                <button class="btn btn-icon" title="Next Page" aria-label="Go to next page" @onclick="NextPage" disabled="@(!CanGoToNextPage)">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="standard-items-per-page">
-                <label for="itemsPerPage">Items per page:</label>
-                <select id="itemsPerPage" @bind="ItemsPerPage">
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
-                </select>
-            </div>
         </div>
+
+        @if (ShowPagination)
+        {
+            <div class="pagination">
+                <button @onclick="() => ChangePage(CurrentPage - 1)" disabled="@(CurrentPage == 1)">Previous</button>
+                <span>Page @CurrentPage of @TotalPages</span>
+                <button @onclick="() => ChangePage(CurrentPage + 1)" disabled="@(CurrentPage == TotalPages)">Next</button>
+            </div>
+        }
     }
-    <StandardContextMenu @ref="ContextMenu"
-                         MenuItems="@ContextMenuItems"
-                         OnMenuItemClick="@HandleContextMenuItemClick"
-                         IsLightMode="@IsLightMode"/>
 </div>

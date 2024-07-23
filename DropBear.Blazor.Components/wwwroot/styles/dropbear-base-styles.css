@@ -34,6 +34,7 @@
   /* Typography */
   --font-family: 'Poppins', sans-serif;
   --font-size-base: 16px;
+  --font-size-sm: calc(var(--font-size-base) * var(--inverse-golden-ratio));
   --line-height-base: 1.5;
 
   /* Spacing */
@@ -55,9 +56,9 @@
   --transition-slow: 500ms ease-in-out;
 
   /* Box shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+  --shadow-md: 0 4px 6px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+  --shadow-lg: 0 10px 20px rgb(0 0 0 / 10%), 0 3px 6px rgb(0 0 0 / 5%);
 
   /* Z-index levels */
   --z-index-dropdown: 1000;
@@ -75,12 +76,15 @@ html {
   box-sizing: border-box;
 }
 
+/* CSS Reset */
 *, *::before, *::after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-family), sans-serif;
   line-height: var(--line-height-base);
   color: var(--clr-mine-shaft);
   background-color: #fff;
@@ -153,6 +157,7 @@ a:hover, a:focus {
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -181,13 +186,13 @@ a:hover, a:focus {
 }
 
 /* Responsive breakpoints */
-@media (min-width: 640px) {
+@media (width >= 640px) {
   :root {
     --font-size-base: 18px;
   }
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   :root {
     --font-size-base: 20px;
   }

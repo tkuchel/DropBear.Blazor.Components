@@ -1,186 +1,367 @@
 ﻿#region
 
-using DropBear.Blazor.Components.Components.Menus;
+using DropBear.Blazor.Components.Enums;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 
 #endregion
 
 namespace DropBear.Blazor.Components.Components.Data;
 
-public partial class StandardDataGrid<TItem>
+public sealed partial class StandardDataGrid<TItem> : ComponentBase, IDisposable
+    where TItem : class
 {
-    [Parameter] public string Title { get; set; } = "Data Grid";
-    [Parameter] public string HeaderIcon { get; set; } = "fas fa-table";
-    [Parameter] public IEnumerable<TItem>? Items { get; set; }
-#pragma warning disable CA1002
-    [Parameter] public List<ColumnDefinition<TItem>>? Columns { get; set; }
-#pragma warning restore CA1002
-    [Parameter] public bool AllowSearch { get; set; } = true;
-    [Parameter] public bool AllowAdd { get; set; } = true;
-    [Parameter] public bool AllowEdit { get; set; } = true;
-    [Parameter] public bool AllowDelete { get; set; } = true;
-    [Parameter] public bool AllowSelect { get; set; } = true;
-    [Parameter] public bool IsLightMode { get; set; }
-    [Parameter] public string AddText { get; set; } = "Add Item";
-    [Parameter] public EventCallback OnAddClick { get; set; }
-    [Parameter] public EventCallback<TItem> OnEditClick { get; set; }
-    [Parameter] public EventCallback<TItem> OnDeleteClick { get; set; }
-    [Parameter] public EventCallback<List<TItem>> OnSelectionChanged { get; set; }
-    [Parameter] public RenderFragment? EmptyTemplate { get; set; }
+    private DotNetObjectReference<StandardDataGrid<TItem>>? _dotNetHelper;
+
+    private IJSObjectReference? _module;
+    private object? _mouseMoveHandler;
+    private object? _mouseUpHandler;
+    private double _originalWidth;
+    private double _resizeStartX;
+
+    private DataGridColumn<TItem>? _resizingColumn;
     [Parameter] public RenderFragment? LoadingTemplate { get; set; }
+    [Parameter] public RenderFragment? NoDataTemplate { get; set; }
+    [Parameter] public RenderFragment<TItem>? ActionTemplate { get; set; }
+    [Parameter] public ThemeType Theme { get; set; } = ThemeType.Light;
     [Parameter] public bool IsLoading { get; set; }
-#pragma warning disable CA1002
-    [Parameter] public List<ContextMenuItem> ContextMenuItems { get; set; } = [];
-#pragma warning restore CA1002
-    [Parameter] public EventCallback<(ContextMenuItem, TItem)> OnContextMenuItemClick { get; set; }
-    [Parameter] public string ContextMenuBackgroundColor { get; set; } = "#2b2d31";
-    [Parameter] public string ContextMenuTextColor { get; set; } = "#a4b1cd";
-    [Parameter] public string ContextMenuHighlightColor { get; set; } = "#4ebafd";
+    [Parameter] public bool AllowSelection { get; set; } = true;
+    [Parameter] public bool AllowColumnResize { get; set; } = true;
+    [Parameter] public bool ShowPagination { get; set; } = true;
+    [Parameter] public int PageSize { get; set; } = 10;
+    [Parameter] public int CurrentPage { get; set; } = 1;
+    [Parameter] public EventCallback<int> CurrentPageChanged { get; set; }
+    [Parameter] public string SortColumn { get; set; } = "";
+    [Parameter] public SortDirection SortDirection { get; set; } = SortDirection.Ascending;
+    [Parameter] public EventCallback<(string, SortDirection)> SortChanged { get; set; }
+    [Parameter] public Dictionary<string, string> Filters { get; set; } = new(StringComparer.OrdinalIgnoreCase);
+    [Parameter] public EventCallback<Dictionary<string, string>> FiltersChanged { get; set; }
+    [Parameter] public EventCallback<HashSet<TItem>> SelectedItemsChanged { get; set; }
+    [Parameter] public Func<TItem, string>? RowClass { get; set; }
+    private HashSet<TItem> SelectedItems { get; set; } = [];
+    private List<TItem> FilteredItems => ApplyFilters(Items);
 
-    private string SearchTerm { get; set; } = "";
-    private int CurrentPage { get; set; } = 1;
-    private int ItemsPerPage { get; set; } = 10;
-    private string SortColumn { get; set; } = string.Empty;
-    private bool IsSortAscending { get; set; } = true;
-    private HashSet<TItem> SelectedItems { get; } = [];
-    private StandardContextMenu ContextMenu { get; set; } = new();
-    private TItem CurrentContextMenuItem { get; set; } = default!;
+    private List<TItem> PaginatedItems => FilteredItems
+        .Skip((CurrentPage - 1) * PageSize)
+        .Take(PageSize)
+        .ToList();
 
-    private IEnumerable<TItem> FilteredAndSortedItems
+    private int TotalPages => (int)Math.Ceiling(FilteredItems.Count / (double)PageSize);
+
+
+    private bool AreAllSelected => Items is { Count: > 0 } && SelectedItems.Count == Items.Count;
+
+    [Parameter] public EventCallback<TItem> RowClicked { get; set; }
+    [Parameter] public bool AllowMultipleSelection { get; set; } = true;
+
+    #region IDisposable
+
+    /// <inheritdoc />
+    public void Dispose()
     {
-        get
+        _dotNetHelper?.Dispose();
+        if (_module is IDisposable moduleDisposable)
         {
-            if (Items is null || !Items.Any())
-            {
-                return Array.Empty<TItem>();
-            }
-
-            var query = Items.AsEnumerable();
-
-            // Apply search filter
-            if (!string.IsNullOrEmpty(SearchTerm) && Columns is not null && Columns.Count is not 0)
-            {
-                query = query.Where(item => Columns.Exists(c =>
-                {
-                    var value = c.ValueGetter(item);
-                    return value is not null &&
-                           value.ToString()!.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase);
-                }));
-            }
-
-            // Apply sorting
-            if (!string.IsNullOrEmpty(SortColumn) && Columns is not null)
-            {
-                var sortColumn = Columns.Find(c => c.Field == SortColumn);
-                if (sortColumn is not null)
-                {
-                    query = IsSortAscending
-                        ? query.OrderBy(item => sortColumn.ValueGetter(item) ?? string.Empty)
-                        : query.OrderByDescending(item => sortColumn.ValueGetter(item) ?? string.Empty);
-                }
-            }
-
-            // Apply pagination
-            return query
-                .Skip((CurrentPage - 1) * ItemsPerPage)
-                .Take(ItemsPerPage)
-                .ToList();
+            moduleDisposable.Dispose();
+        }
+        else if (_module is not null)
+        {
+            _ = _module.DisposeAsync().AsTask();
         }
     }
 
-    private int TotalPages => Items is null ? 0 : (int)Math.Ceiling(Items.Count() / (double)ItemsPerPage);
-    private bool CanGoToPreviousPage => CurrentPage > 1;
-    private bool CanGoToNextPage => CurrentPage < TotalPages;
+    #endregion
 
-    private bool AreAllSelected
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        get => Items is not null && SelectedItems.Count == Items.Take(SelectedItems.Count + 1).Count();
-        set
+        if (firstRender)
         {
-            SelectedItems.Clear();
-            if (value && Items is not null)
-            {
-                foreach (var item in Items)
-                {
-                    SelectedItems.Add(item);
-                }
-            }
-
-            _ = OnSelectionChanged.InvokeAsync(SelectedItems.ToList());
+            _module = await JsRuntime.InvokeAsync<IJSObjectReference>("eval", @"
+                    const module = {
+                        addGlobalEventListener: function (event, dotnetHelper, methodName) {
+                            const handler = (e) => {
+                                dotnetHelper.invokeMethodAsync(methodName, {
+                                    clientX: e.clientX,
+                                    clientY: e.clientY
+                                });
+                            };
+                            window.addEventListener(event, handler);
+                            return handler; // Return the handler for later removal
+                        },
+                        removeGlobalEventListener: function (event, handler) {
+                            window.removeEventListener(event, handler);
+                        }
+                    };
+                    module;
+                ");
         }
     }
 
-    private bool IsItemSelected(TItem item)
+    public async ValueTask DisposeAsync()
+    {
+        if (_module is not null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+
+    private bool IsSelected(TItem item)
     {
         return SelectedItems.Contains(item);
     }
 
-    private void ToggleItemSelection(TItem item)
+    private async Task ToggleAllSelection()
     {
-        if (!SelectedItems.Add(item))
+        if (AreAllSelected)
         {
-            SelectedItems.Remove(item);
-        }
-
-        _ = OnSelectionChanged.InvokeAsync(SelectedItems.ToList());
-    }
-
-    private void SortByColumn(ColumnDefinition<TItem> column)
-    {
-        if (SortColumn == column.Field)
-        {
-            IsSortAscending = !IsSortAscending;
+            SelectedItems.Clear();
         }
         else
         {
-            SortColumn = column.Field;
-            IsSortAscending = true;
+            SelectedItems = [..Items];
         }
+
+        await SelectedItemsChanged.InvokeAsync(SelectedItems);
     }
 
-    private string GetSortOrder(ColumnDefinition<TItem> column)
+    private async Task ChangePage(int page)
     {
-        if (SortColumn != column.Field)
+        if (page < 1 || page > TotalPages)
         {
-            return "none";
+            return;
         }
 
-        return IsSortAscending ? "ascending" : "descending";
+        CurrentPage = page;
+        await CurrentPageChanged.InvokeAsync(CurrentPage);
+        await InvokeAsync(StateHasChanged);
     }
 
-    private void PreviousPage()
+    private async Task Sort(DataGridColumn<TItem> column)
     {
-        if (CanGoToPreviousPage)
+        if (!column.Sortable)
         {
-            CurrentPage--;
+            return;
         }
-    }
 
-    private void NextPage()
-    {
-        if (CanGoToNextPage)
+        if (SortColumn == column.PropertyName)
         {
-            CurrentPage++;
+            SortDirection = SortDirection is SortDirection.Ascending
+                ? SortDirection.Descending
+                : SortDirection.Ascending;
         }
-    }
-
-    protected override void OnParametersSet()
-    {
-        if (Items is not null && !Items.Any())
+        else
         {
-            CurrentPage = 1;
+            SortColumn = column.PropertyName;
+            SortDirection = SortDirection.Ascending;
+        }
+
+        await SortChanged.InvokeAsync((SortColumn, SortDirection));
+    }
+
+    private string GetSortIconClass(DataGridColumn<TItem> column)
+    {
+        if (SortColumn != column.PropertyName)
+        {
+            return "";
+        }
+
+        return SortDirection is SortDirection.Ascending ? "fa-sort-up" : "fa-sort-down";
+    }
+
+    private async Task ApplyFilter(string columnName, string filterValue)
+    {
+        if (string.IsNullOrWhiteSpace(filterValue))
+        {
+            Filters.Remove(columnName);
+        }
+        else
+        {
+            Filters[columnName] = filterValue;
+        }
+
+        CurrentPage = 1; // Reset to first page when filter changes
+        await FiltersChanged.InvokeAsync(Filters);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private List<TItem> ApplyFilters(List<TItem> items)
+    {
+        if (Filters.Count is 0)
+        {
+            return items;
+        }
+
+        return items.Where(item =>
+            Filters.All(filter =>
+            {
+                var column = Columns.Find(c => c.PropertyName == filter.Key);
+                if (column is null)
+                {
+                    return true;
+                }
+
+                var value = column.PropertySelector?.Invoke(item).ToString();
+                return string.IsNullOrEmpty(value) ||
+                       value.Contains(filter.Value, StringComparison.OrdinalIgnoreCase);
+            })
+        ).ToList();
+    }
+
+    private async Task OnKeyDown(KeyboardEventArgs e)
+    {
+        if (Items.Count is 0)
+        {
+            return;
+        }
+
+        switch (e.Key)
+        {
+            case "ArrowDown":
+                await MoveSelection(1);
+                break;
+            case "ArrowUp":
+                await MoveSelection(-1);
+                break;
+            case "Home":
+                await SelectFirstRow();
+                break;
+            case "End":
+                await SelectLastRow();
+                break;
+            case " ": // Spacebar
+                if (SelectedItems.Count == 1)
+                {
+                    await ToggleSelection(SelectedItems.First());
+                }
+
+                break;
         }
     }
 
-    private async Task ShowContextMenu(MouseEventArgs e, TItem item)
+    private async Task MoveSelection(int direction)
     {
-        CurrentContextMenuItem = item;
-        await ContextMenu.Show(e.ClientX, e.ClientY);
+        if (Items.Count == 0)
+        {
+            return;
+        }
+
+        var currentIndex = SelectedItems.Count == 1 ? Items.IndexOf(SelectedItems.First()) : -1;
+        var newIndex = Math.Clamp(currentIndex + direction, 0, Items.Count - 1);
+
+        await SelectSingleItem(Items[newIndex]);
     }
 
-    private async Task HandleContextMenuItemClick(ContextMenuItem menuItem)
+    private async Task SelectFirstRow()
     {
-        await OnContextMenuItemClick.InvokeAsync((menuItem, CurrentContextMenuItem));
+        if (Items.Count is not 0)
+        {
+            await SelectSingleItem(Items[0]);
+        }
     }
+
+    private async Task SelectLastRow()
+    {
+        if (Items.Count is not 0)
+        {
+            await SelectSingleItem(Items[^1]);
+        }
+    }
+
+    private async Task SelectSingleItem(TItem item)
+    {
+        SelectedItems.Clear();
+        SelectedItems.Add(item);
+        await SelectedItemsChanged.InvokeAsync(SelectedItems);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task ToggleSelection(TItem item)
+    {
+        if (!SelectedItems.Remove(item))
+        {
+            SelectedItems.Add(item);
+        }
+
+        await SelectedItemsChanged.InvokeAsync(SelectedItems);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task OnRowClick(TItem item)
+    {
+        if (AllowSelection)
+        {
+            if (!AllowMultipleSelection)
+            {
+                await SelectSingleItem(item);
+            }
+            else
+            {
+                await ToggleSelection(item);
+            }
+        }
+
+        await RowClicked.InvokeAsync(item);
+    }
+
+    private async Task StartColumnResize(MouseEventArgs e, DataGridColumn<TItem> column)
+    {
+        _resizingColumn = column;
+        _resizeStartX = e.ClientX;
+        _originalWidth = column.Width;
+
+        _dotNetHelper = DotNetObjectReference.Create(this);
+
+        // Add event listeners for mousemove and mouseup
+        if (_module is not null)
+        {
+            _mouseMoveHandler =
+                await _module.InvokeAsync<object>("addGlobalEventListener", "mousemove", _dotNetHelper,
+                    "OnColumnResize");
+            _mouseUpHandler =
+                await _module.InvokeAsync<object>("addGlobalEventListener", "mouseup", _dotNetHelper,
+                    "OnColumnResizeEnd");
+        }
+    }
+
+    [JSInvokable]
+    public async Task OnColumnResize(MouseEventArgs e)
+    {
+        if (_resizingColumn != null)
+        {
+            var diff = e.ClientX - _resizeStartX;
+            _resizingColumn.Width = Math.Max(50, _originalWidth + diff); // Minimum width of 50px
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    [JSInvokable]
+    public async Task OnColumnResizeEnd(MouseEventArgs e)
+    {
+        _resizingColumn = null;
+        if (_module is not null)
+        {
+            await _module.InvokeVoidAsync("removeGlobalEventListener", "mousemove", _mouseMoveHandler);
+            await _module.InvokeVoidAsync("removeGlobalEventListener", "mouseup", _mouseUpHandler);
+        }
+
+        _dotNetHelper?.Dispose();
+    }
+
+    public Task ExportToCsv()
+    {
+        return Task.CompletedTask;
+        // Implement CSV export
+    }
+
+    public Task ExportToExcel()
+    {
+        return Task.CompletedTask;
+        // Implement Excel export
+    }
+
+#pragma warning disable CA1002
+    [Parameter] public List<TItem> Items { get; set; } = [];
+    [Parameter] public List<DataGridColumn<TItem>> Columns { get; set; } = [];
+#pragma warning restore CA1002
 }
