@@ -338,6 +338,7 @@ public sealed partial class StandardDataGrid<TItem> : ComponentBase, IDisposable
     [JSInvokable]
     public async Task OnColumnResizeEnd(MouseEventArgs e)
     {
+        _ = e; // Unused parameter
         _resizingColumn = null;
         if (_module is not null)
         {
